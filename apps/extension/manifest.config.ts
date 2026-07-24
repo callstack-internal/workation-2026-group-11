@@ -13,6 +13,22 @@ export function buildManifest(env: Record<string, string>) {
     );
   }
 
+  // Backend origin the service worker is allowed to call. Derived from the same
+  // VITE_SERVER_URL that src/config.ts reads (defaults to localhost) so the two
+  // never drift. Only the origin matters for host_permissions.
+  const DEFAULT_SERVER_URL = "http://localhost:3000";
+  const serverUrl =
+    (env.VITE_SERVER_URL || "").trim() || DEFAULT_SERVER_URL;
+  let serverOrigin: string;
+  try {
+    serverOrigin = new URL(serverUrl).origin;
+  } catch {
+    throw new Error(
+      `Invalid VITE_SERVER_URL: "${serverUrl}". It must be an absolute URL ` +
+        "like http://localhost:3000 or https://api.example.com."
+    );
+  }
+
   return defineManifest({
     manifest_version: 3,
     name: "CallCost",
@@ -42,8 +58,9 @@ export function buildManifest(env: Record<string, string>) {
     permissions: ["storage", "identity"],
     host_permissions: [
       "https://www.googleapis.com/*",
-      // CallCost backend (keep in sync with SERVER_URL in src/config.ts).
-      "http://localhost:3000/*",
+      // CallCost backend — derived from VITE_SERVER_URL (see .env.example),
+      // defaulting to http://localhost:3000. src/config.ts reads the same var.
+      `${serverOrigin}/*`,
     ],
     background: {
       service_worker: "src/background.ts",
