@@ -39,6 +39,25 @@ body {
   padding: 16px 18px 14px;
 }
 
+/* ---------- view switching ---------- */
+.view {
+  animation: viewIn 0.22s ease;
+}
+.view[hidden] {
+  display: none;
+}
+
+@keyframes viewIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ---------- brand header ---------- */
 .brand {
   display: flex;
@@ -55,6 +74,13 @@ body {
   color: #fff;
   background: linear-gradient(135deg, var(--brand-a), var(--brand-b));
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.brand__mark--muted {
+  background: var(--surface-2);
+  color: var(--muted);
+  border: 1px solid var(--ring);
+  box-shadow: none;
 }
 
 .brand__name {
@@ -191,14 +217,25 @@ body.is-disabled .status {
 
 /* ---------- footer ---------- */
 .foot {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
-  gap: 7px;
   padding-top: 12px;
   border-top: 1px solid var(--ring);
   font-size: 11px;
   color: var(--muted);
+}
+
+.foot__status {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.foot__settings {
+  grid-column: 3;
+  justify-self: end;
 }
 
 .foot__dot {
@@ -215,8 +252,189 @@ body.is-disabled .foot__dot {
   box-shadow: 0 0 0 3px rgba(75, 77, 104, 0.25);
 }
 
+/* ---------- icon button (gear) ---------- */
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  background: var(--surface-2);
+  border-color: var(--ring);
+}
+
+.icon-btn:active {
+  transform: scale(0.94);
+}
+
+.icon-btn:focus-visible {
+  outline: 2px solid var(--brand-a);
+  outline-offset: 2px;
+}
+
+/* ---------- settings form ---------- */
+.settings {
+  padding: 22px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field__label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.field__input {
+  position: relative;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 0 40px 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--ring);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--brand-a);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.22);
+}
+
+.reveal {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+
+.reveal:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.reveal:focus-visible {
+  outline: 2px solid var(--brand-a);
+  outline-offset: 1px;
+}
+
+/* show the eye by default (key hidden), swap to eye-off when revealed */
+.reveal__off {
+  display: none;
+}
+.reveal[aria-pressed="true"] .reveal__on {
+  display: none;
+}
+.reveal[aria-pressed="true"] .reveal__off {
+  display: block;
+}
+
+.field__hint {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.field__hint.is-set {
+  color: var(--on);
+}
+
+/* ---------- action buttons ---------- */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease,
+    border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--brand-a);
+  outline-offset: 2px;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--ring);
+}
+
+.btn--ghost:hover {
+  background: var(--surface-2);
+}
+
+.btn--primary {
+  border: none;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-a), var(--brand-b));
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.45);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  .view {
+    animation: none !important;
     transition: none !important;
   }
 }

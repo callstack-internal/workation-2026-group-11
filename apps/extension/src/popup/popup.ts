@@ -1,13 +1,35 @@
 // CallCost — popup logic
-// Handles the enable/disable (eye) toggle and persists the state.
-// No Google Meet / cost logic yet — this is the baseline UI only.
+// Main view: the enable/disable (eye) toggle.
+// Settings view: the Google API key used later for fetching data.
 
-const STORAGE_KEY = "callcost:enabled";
+import { storageGet, storageSet } from "../storage";
+import {
+  getGoogleApiKey,
+  hasGoogleApiKey,
+  loadSettings,
+  setGoogleApiKey,
+} from "../settings";
+
+const ENABLED_KEY = "callcost:enabled";
 
 const body = document.body;
+
+// --- main view elements ---
 const toggle = document.getElementById("toggle") as HTMLButtonElement;
 const statusEl = document.getElementById("status") as HTMLParagraphElement;
 const hintEl = document.getElementById("hint") as HTMLParagraphElement;
+const openSettingsBtn = document.getElementById(
+  "open-settings",
+) as HTMLButtonElement;
+
+// --- settings view elements ---
+const mainView = document.getElementById("view-main") as HTMLElement;
+const settingsView = document.getElementById("view-settings") as HTMLElement;
+const settingsForm = document.getElementById("settings-form") as HTMLFormElement;
+const apiKeyInput = document.getElementById("api-key") as HTMLInputElement;
+const revealBtn = document.getElementById("reveal-key") as HTMLButtonElement;
+const keyStatus = document.getElementById("key-status") as HTMLParagraphElement;
+const cancelBtn = document.getElementById("cancel-settings") as HTMLButtonElement;
 
 const COPY = {
   on: {
@@ -20,66 +42,97 @@ const COPY = {
   },
 } as const;
 
-// chrome.storage in the extension, with a localStorage fallback for plain web dev.
-const hasChromeStorage =
-  typeof chrome !== "undefined" && !!chrome.storage?.local;
+/* ------------------------- enable/disable toggle ------------------------- */
 
-function loadEnabled(): Promise<boolean> {
-  return new Promise((resolve) => {
-    if (hasChromeStorage) {
-      chrome.storage.local.get({ [STORAGE_KEY]: true }, (res) => {
-        resolve(Boolean(res[STORAGE_KEY]));
-      });
-    } else {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      resolve(raw === null ? true : raw === "true");
-    }
-  });
-}
-
-function saveEnabled(enabled: boolean): void {
-  if (hasChromeStorage) {
-    chrome.storage.local.set({ [STORAGE_KEY]: enabled });
-  } else {
-    localStorage.setItem(STORAGE_KEY, String(enabled));
-  }
-}
+let enabled = true;
 
 // Reflect state on the toolbar icon (best-effort; no-op outside the extension).
-function updateBadge(enabled: boolean): void {
+function updateBadge(on: boolean): void {
   if (typeof chrome === "undefined" || !chrome.action) return;
   try {
-    chrome.action.setBadgeText({ text: enabled ? "" : "off" });
+    chrome.action.setBadgeText({ text: on ? "" : "off" });
     chrome.action.setBadgeBackgroundColor({ color: "#4b4d68" });
     chrome.action.setTitle({
-      title: enabled ? "CallCost — tracking active" : "CallCost — paused",
+      title: on ? "CallCost — tracking active" : "CallCost — paused",
     });
   } catch {
     /* ignore */
   }
 }
 
-function render(enabled: boolean): void {
-  body.classList.toggle("is-disabled", !enabled);
-  toggle.setAttribute("aria-checked", String(enabled));
-  const copy = enabled ? COPY.on : COPY.off;
+function renderEnabled(on: boolean): void {
+  body.classList.toggle("is-disabled", !on);
+  toggle.setAttribute("aria-checked", String(on));
+  const copy = on ? COPY.on : COPY.off;
   statusEl.textContent = copy.status;
   hintEl.textContent = copy.hint;
 }
 
-let enabled = true;
-
 function setEnabled(next: boolean): void {
   enabled = next;
-  render(enabled);
-  saveEnabled(enabled);
+  renderEnabled(enabled);
+  void storageSet(ENABLED_KEY, enabled);
   updateBadge(enabled);
 }
 
 toggle.addEventListener("click", () => setEnabled(!enabled));
 
-void loadEnabled().then((initial) => {
-  enabled = initial;
-  render(enabled);
-  updateBadge(enabled);
+/* ------------------------------ settings ------------------------------ */
+
+function setRevealed(revealed: boolean): void {
+  apiKeyInput.type = revealed ? "text" : "password";
+  revealBtn.setAttribute("aria-pressed", String(revealed));
+  revealBtn.setAttribute("aria-label", revealed ? "Hide API key" : "Show API key");
+}
+
+function renderKeyStatus(): void {
+  const set = hasGoogleApiKey();
+  keyStatus.textContent = set
+    ? "A key is saved and ready to use."
+    : "No key saved yet.";
+  keyStatus.classList.toggle("is-set", set);
+}
+
+function openSettings(): void {
+  // Seed the input from the persisted value so unsaved edits are discarded
+  // whenever the settings view is (re)opened.
+  apiKeyInput.value = getGoogleApiKey();
+  setRevealed(false);
+  renderKeyStatus();
+  mainView.hidden = true;
+  settingsView.hidden = false;
+  apiKeyInput.focus();
+}
+
+function closeSettings(): void {
+  settingsView.hidden = true;
+  mainView.hidden = false;
+  openSettingsBtn.focus();
+}
+
+async function saveSettings(): Promise<void> {
+  await setGoogleApiKey(apiKeyInput.value);
+  closeSettings();
+}
+
+openSettingsBtn.addEventListener("click", openSettings);
+cancelBtn.addEventListener("click", closeSettings);
+revealBtn.addEventListener("click", () =>
+  setRevealed(apiKeyInput.type === "password"),
+);
+settingsForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  void saveSettings();
 });
+
+/* -------------------------------- init -------------------------------- */
+
+async function init(): Promise<void> {
+  await loadSettings(); // hydrate the in-memory Google API key
+  const initialEnabled = await storageGet<boolean>(ENABLED_KEY, true);
+  enabled = initialEnabled;
+  renderEnabled(enabled);
+  updateBadge(enabled);
+}
+
+void init();
