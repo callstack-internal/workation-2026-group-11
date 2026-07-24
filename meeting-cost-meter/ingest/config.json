@@ -1,0 +1,68 @@
+{
+  "currency": "PLN",
+  "period": "monthly",
+  "bandPoint": "mid",
+  "contractType": "B2B",
+  "hoursPerYear": 2016,
+  "overheadMultiplier": 1.0,
+  "rateRoundingSignificantDigits": 2,
+
+  "dataSource": "local",
+
+  "local": {
+    "employeesCsv": "ingest/data/employees.csv",
+    "csvColumns": {
+      "firstName": "Name",
+      "lastName": "Last name",
+      "email": "Email",
+      "team": "Team",
+      "roleSeniority": "Role / Seniority Level",
+      "alias": "alternatively called"
+    },
+    "pdfs": [{ "path": "ingest/data/salary-delivery.pdf", "section": "delivery" }]
+  },
+
+  "employees": {
+    "databaseId": "33003504530b47efa768e7a928ccfea9",
+    "dataSourceId": "953ae54d-8b98-4a5b-8823-6a19e346817e"
+  },
+  "salaryPage": {
+    "pageId": "4c1b7bcf25574daeacc1029c47042718"
+  },
+
+  "properties": {
+    "firstName": "Name",
+    "lastName": "Last name",
+    "title": "Surname / Name",
+    "email": "Email",
+    "alias": "alternatively called",
+    "team": "Team",
+    "roleSeniority": "Role / Seniority Level"
+  },
+
+  "levelTokens": [
+    "Junior", "Junior 1", "Junior 2",
+    "Mid", "Mid 1", "Mid 2", "Regular",
+    "Senior", "Senior 1", "Senior 2",
+    "Expert", "Principal", "Lead"
+  ],
+
+  "teamToSection": {
+    "Technical Delivery": "delivery",
+    "Project Delivery": "delivery",
+    "Technology Team": "delivery",
+    "Incubator": "delivery",
+    "Sales": "business",
+    "Marketing Team": "business",
+    "People & Culture Team": "business",
+    "Finance & Administration Team": "business",
+    "CEO": "business"
+  },
+
+  "labelAliases": {
+    "RN Dev": ["React Native Developer", "RN Developer", "React Native Dev", "Mobile Developer"],
+    "QA Automation Eng.": ["QA Automation Engineer", "QA Automation"],
+    "Project Manager": ["IT Project Manager"],
+    "Senior Project Manager": ["Senior IT Project Manager", "Senior IT Project Managaer"]
+  }
+}

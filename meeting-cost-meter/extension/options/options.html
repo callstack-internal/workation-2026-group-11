@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meeting Cost Meter — Settings</title>
+    <style>
+      body { font-family: system-ui, Roboto, sans-serif; max-width: 460px; margin: 32px auto; padding: 0 20px; color: #202124; }
+      h1 { font-size: 20px; }
+      p.help { color: #5f6368; font-size: 13px; margin-top: -6px; }
+      .row { margin: 18px 0; }
+      label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+      .hint { font-weight: 400; color: #5f6368; font-size: 12px; }
+      input[type="number"] { width: 90px; padding: 6px 8px; border: 1px solid #dadce0; border-radius: 6px; }
+      input[type="text"] { width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid #dadce0; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 12px; }
+      .toggle { display: flex; align-items: center; gap: 8px; }
+      h2 { font-size: 15px; margin: 26px 0 6px; border-top: 1px solid #eee; padding-top: 18px; }
+      #status { color: #1e8e3e; font-size: 13px; height: 16px; }
+    </style>
+  </head>
+  <body>
+    <h1>💸 Meeting Cost Meter</h1>
+    <p class="help">
+      The cost ticks up linearly, then a penalty multiplier accelerates it after a grace period —
+      to nudge everyone to wrap up. Per-person salaries are never shown or stored in the browser.
+    </p>
+
+    <div class="row toggle">
+      <input type="checkbox" id="overlayEnabled" />
+      <label for="overlayEnabled" style="margin:0">Show the overlay in meetings</label>
+    </div>
+
+    <div class="row">
+      <label for="thresholdMin">Grace period <span class="hint">(minutes before the penalty starts)</span></label>
+      <input type="number" id="thresholdMin" min="0" max="240" step="1" />
+    </div>
+
+    <div class="row">
+      <label for="alphaPerMin">Escalation rate <span class="hint">(multiplier added per minute past the grace period)</span></label>
+      <input type="number" id="alphaPerMin" min="0" max="1" step="0.01" />
+    </div>
+
+    <div class="row">
+      <label for="maxMultiplier">Maximum multiplier <span class="hint">(cap on the penalty)</span></label>
+      <input type="number" id="maxMultiplier" min="1" max="20" step="0.5" />
+    </div>
+
+    <h2>Matching</h2>
+
+    <div class="row toggle">
+      <input type="checkbox" id="calendarEnabled" />
+      <label for="calendarEnabled" style="margin:0">Use Google Calendar for exact matching</label>
+    </div>
+    <p class="help">
+      Reads the current meeting's invitee emails (read-only Calendar scope) and matches them
+      exactly, instead of guessing from display names. Requires an OAuth client ID in
+      manifest.json — see the README. Falls back to name matching automatically.
+    </p>
+
+    <div class="row">
+      <label for="customSelector">Custom participant CSS selector <span class="hint">(only if Meet's markup changes and names stop being detected)</span></label>
+      <input type="text" id="customSelector" placeholder="e.g. [data-participant-id]" />
+    </div>
+
+    <h2>Demo</h2>
+
+    <div class="row toggle">
+      <input type="checkbox" id="mockMode" />
+      <label for="mockMode" style="margin:0">Mock mode <span class="hint">(fake participants + fake rates, no real data)</span></label>
+    </div>
+    <p class="help">
+      Simulates a meeting: people join and leave on a schedule and the clock can run faster
+      than real time. Works on any meet.google.com tab — no need to join a call. The overlay
+      shows a MOCK badge so it can't be mistaken for real numbers.
+    </p>
+
+    <div class="row">
+      <label for="mockSpeedX">Mock clock speed <span class="hint">(60 = one hour of meeting per real minute)</span></label>
+      <input type="number" id="mockSpeedX" min="1" max="600" step="1" />
+    </div>
+
+    <div id="status"></div>
+    <script src="options.js"></script>
+  </body>
+</html>

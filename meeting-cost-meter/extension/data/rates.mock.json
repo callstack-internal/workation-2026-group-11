@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-07-24",
+  "currency": "PLN",
+  "note": "FAKE demo data. Real per-minute rates are produced by `npm run ingest` into rates.json (gitignored). Names/values here are invented.",
+  "defaultRatePerMinute": 1.1,
+  "people": [
+    { "keys": ["ada lovelace", "ada lovelace", "lovelace ada"], "ratePerMinute": 1.9 },
+    { "keys": ["alan turing", "alan turing", "turing alan"], "ratePerMinute": 2.1 },
+    { "keys": ["grace hopper", "grace hopper", "hopper grace"], "ratePerMinute": 2.4 },
+    { "keys": ["katherine johnson", "johnson katherine"], "ratePerMinute": 1.6 },
+    { "keys": ["dennis ritchie", "ritchie dennis"], "ratePerMinute": 2.2 },
+    { "keys": ["barbara liskov", "liskov barbara"], "ratePerMinute": 2.3 },
+    { "keys": ["linus torvalds", "linus torvalds", "torvalds linus"], "ratePerMinute": 1.4 },
+    { "keys": ["margaret hamilton", "hamilton margaret"], "ratePerMinute": 1.8 },
+    { "keys": ["jan kowalski", "jan kowalski", "kowalski jan"], "ratePerMinute": 1.3 },
+    { "keys": ["zofia wojcik", "wojcik zofia"], "ratePerMinute": 1.5 }
+  ]
+}

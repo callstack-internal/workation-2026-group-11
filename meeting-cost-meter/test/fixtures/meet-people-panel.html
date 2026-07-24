@@ -1,0 +1,19 @@
+<!--
+  Reference snapshot of the shape of Google Meet's People panel / tiles that
+  scrape.js targets. Meet's real markup is obfuscated and changes often; capture
+  a fresh sample from the live DOM when selectors break, and update
+  extension/content/scrape.js accordingly. Kept for manual/regression reference.
+-->
+<div aria-label="Participants">
+  <div role="list">
+    <div role="listitem" data-participant-id="p-001" aria-label="Ada Lovelace">
+      <span>Ada Lovelace</span>
+    </div>
+    <div role="listitem" data-participant-id="p-002" aria-label="Alan Turing (You)">
+      <span>Alan Turing</span>
+    </div>
+    <div role="listitem" data-participant-id="p-003">
+      <span>Zofia Wójcik</span>
+    </div>
+  </div>
+</div>

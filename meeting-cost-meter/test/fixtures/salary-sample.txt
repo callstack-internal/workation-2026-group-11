@@ -1,0 +1,29 @@
+PRESENTATION TI TLE
+Salary Ranges
+2026
+Delivery Team
+Salary ranges for Developers (B2B)
+From | To
+Expert | 33000 | 44000
+Senior 2 | 28000 | 35000
+Senior 1 | 21000 | 31000
+Mid 2 | 17000 | 22500
+Mid 1 | 15000 | 18000
+CHAPTER TITLE | 2 2
+Salary ranges for Developers (CoE)
+From | To
+Expert | 28000 | 36500
+Senior 1 | 18000 | 26000
+Mid 1 | 12500 | 15000
+CHAPTER TITLE | 3 3
+Salary ranges for QA’s (B2B)
+From | To
+Senior QA Automation Engineer | 19000 | 27000
+QA Automation Engineer | 15000 | 19000
+Senior QA Manual Engineer | 14000 | 19500
+CHAPTER TITLE | 4 4
+Salary ranges for Portfolio Team (B2B)
+From | To
+Senior Business Analyst / Product | 21000 | 26000
+Owner
+Project Manager | 12000 | 18000

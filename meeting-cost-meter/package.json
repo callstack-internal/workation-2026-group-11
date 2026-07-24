@@ -1,0 +1,19 @@
+{
+  "name": "meeting-cost-meter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome extension that shows a live, escalating cost for Google Meet meetings to nudge people to finish sooner.",
+  "scripts": {
+    "ingest": "node --env-file-if-exists=.env ingest/index.js",
+    "ingest:dump-pdf": "node --env-file-if-exists=.env ingest/dump-pdf-text.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "pdfjs-dist": "^4.7.76"
+  }
+}
