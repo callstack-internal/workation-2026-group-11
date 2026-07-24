@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # Extension packaging
 *.zip
+
+# Extension signing key (controls the extension ID — keep secret, never commit)
+key.pem

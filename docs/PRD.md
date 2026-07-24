@@ -1,5 +1,46 @@
 # Meeting Cost Meter — Chrome extension for Google Meet
 
+> ## ⚠️ Amendment — 2026-07-24: attendee source changed to the Google Calendar API
+>
+> The sections below describe getting attendees by scraping the **Google Meet** DOM
+> (display **names**, fuzzy-matched) with the extension shipping **no network/host
+> permissions**. We have since changed that part of the design. **The rest of the PRD
+> — the Notion salary ingest, the cost model, escalation, and the aggregate-only
+> overlay — is unchanged and still valid.**
+>
+> **What changed:** attendees (and the scheduled meeting length) are now read from the
+> **Google Calendar API** via `events.get`, using OAuth (`chrome.identity`).
+>
+> **Why:** the Calendar API returns exact attendee **emails** — a clean, reliable join
+> key to the employee DB's `Email` field — plus the full guest list regardless of what's
+> rendered, and the event's scheduled `start`/`end`. This removes the PRD's biggest
+> weakness (names-only fuzzy matching + a company-average fallback for unmatched people).
+>
+> **Trade-off / what this overrides:**
+> - Overrides *"Decisions made with the user #1"* (build-time bake, no token/network in
+>   the browser) and the *"Key constraint"* (names-only). The extension now has
+>   `identity` permission, a `https://www.googleapis.com/*` host permission, and an
+>   `oauth2` block — see [apps/extension/manifest.config.ts](../apps/extension/manifest.config.ts).
+> - `content/scrape.js` + `content/match.js` (Meet DOM scraping + name matching) are
+>   **not** the current approach. Implemented instead:
+>   [src/content/calendar.ts](../apps/extension/src/content/calendar.ts) (reads the event
+>   ID from the Calendar popup) and [src/background.ts](../apps/extension/src/background.ts)
+>   (OAuth + `events.get`).
+> - Salary data (`rates.json` from Notion) is still baked at build time and still the
+>   privacy-sensitive artifact — only the *attendee/timing* source moved to the network.
+>
+> **Setup notes:** the extension ID is pinned via a `key` in the manifest
+> (`nblafpggejpkjeelebiigcdghkceknea`) so OAuth works for the whole team; the matching
+> Google Cloud OAuth client must register that ID. Scope: `calendar.events.readonly`.
+>
+> **Still open:**
+> - **Duration is the *scheduled* length** (`timing.durationSeconds`), not live elapsed
+>   time. Live elapsed (the better fit for a running meter) is a future iteration and
+>   would come from the Meet side, not Calendar.
+> - `events.get` currently queries the `primary` calendar; events living on another
+>   calendar may 404 and need handling.
+> - OAuth consent must be **Internal**, or teammates added as **test users**, to authorize.
+
 ## Context
 
 We want a Chrome extension that shames long Google Meet meetings into ending sooner by
