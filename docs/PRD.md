@@ -1,257 +1,379 @@
-# Meeting Cost Meter — Chrome extension for Google Meet
+# CallCost — Chrome extension + backend for Google Meet cost tracking
 
 ## Context
 
 We want a Chrome extension that shames long Google Meet meetings into ending sooner by
 showing a **live, escalating money counter**. It reads who is in the call, maps each
-attendee to a Callstack employee, looks up that person's salary band + seniority, derives a
-per-minute cost, sums it across everyone present, and ticks it up in real time — with a
-penalty multiplier that accelerates the longer the meeting runs.
+attendee to a Callstack employee by **email**, looks up that person's salary band +
+seniority, derives a per-minute cost, sums it across everyone present, and ticks it up in
+real time — with a penalty multiplier that accelerates the longer the meeting runs.
 
-Two data sources live in Notion:
-- **Employees** — the "Current Employees" database (226 rows) under the *List of employees*
-  page. Queryable via the Notion API. Data source id `953ae54d-8b98-4a5b-8823-6a19e346817e`
-  (database id `33003504530b47efa768e7a928ccfea9`).
-- **Salary ranges** — two **PDF attachments** on the *Salary ranges* page
-  (id `4c1b7bcf25574daeacc1029c47042718`): `Salary_Ranges_2026_Delivery_.pdf` and
-  `Salary_Ranges_2026_Business.pdf`. The API only returns a signed download URL; the numbers
-  must be parsed out of the PDFs.
+Data source: **static JSON files checked into the repo**, not a live Notion API call.
+- `apps/server/db/current-employees.json` — **already present.** An export of the "Current
+  Employees" Notion database (226 rows): `Name`, `Last name`, `Email`, `Team`,
+  `Role / Seniority Level`, plus some fields we don't need (`Manager`, `HRBP`, `GitHub`,
+  `Project`, …). Shape confirmed by inspection (see below).
+- `apps/server/db/salary-ranges.json` (name TBD) — **not delivered yet.** Will contain the
+  salary band table that used to live in two Notion-attached PDFs. Schema proposed below;
+  update this doc once the real file lands if it differs.
+
+We originally planned to hit the Notion API directly (`NOTION_TOKEN`, `@notionhq/client`,
+PDF parsing via `pdfjs-dist`). **That's off the table** — API access isn't available — so
+the backend reads local JSON instead. This makes the backend considerably thinner: no
+external calls, no token, no scheduled refresh against a third party, no PDF parsing.
 
 ### Decisions made with the user
-1. **Data architecture = build-time bake.** A Node ingest script (using `@notionhq/client`)
-   turns the employee DB + salary PDFs into a small local JSON the extension bundles. No
-   Notion token and no per-person salary ship in the browser.
-2. **Cost model = escalating penalty.** Linear base cost plus a time-based multiplier that
+1. **Data architecture = static JSON files, loaded once.** `apps/server/db/*.json` is read
+   at startup and combined into an in-memory rate table. No Notion API, no PDF parsing, no
+   external network calls from the backend at all (for v1).
+2. **Matching = exact, by email.** The Chrome extension scrapes participant **email
+   addresses** directly out of the Google Meet DOM. Email is a clean, unique key, so there is
+   no fuzzy name matching, diacritic normalization, or name-order handling to build or
+   maintain.
+3. **All business logic lives server-side.** Rate lookup, summing, and the escalating-penalty
+   math all happen in the backend. The extension is a thin client: scrape emails, poll the
+   API, render whatever comes back. It performs zero cost computation itself.
+4. **Cost model = escalating penalty.** Linear base cost plus a time-based multiplier that
    kicks in after a threshold, so the counter visibly accelerates.
-3. **Overlay = aggregate only.** Show total cost, current rate/min, elapsed time, and
+5. **Overlay = aggregate only.** Show total cost, current rate/min, elapsed time, and
    headcount — never individual salaries/bands on screen.
+6. **Data files are committed to the repo as-is** (not gitignored) — the team has access and
+   this is treated like any other repo data, not a secret to keep out of history.
+7. **Auth is explicitly future work, not in scope now.** Eventually the extension will
+   authenticate via Google Sign-In and the backend will only accept requests from
+   authenticated `@callstack.com` Google Workspace accounts. Building that is **out of scope
+   for the current milestone** — track it, don't implement it yet (see "Future work" below).
 
-### Key constraint
-The Google Meet DOM exposes attendee **display names**, not emails. So live matching is
-**name-based** (normalized), with a company-average fallback for anyone we can't match — not
-the clean email key that the employee DB would otherwise allow.
-
----
-
-## Architecture overview
-
-```
-Notion (token, PDFs)                        Chrome (no token, no salaries)
-┌───────────────────────────┐               ┌──────────────────────────────────┐
-│  ingest/ (Node, run once)  │  rates.json   │  extension/ (MV3, vanilla JS)      │
-│  @notionhq/client + pdfjs  │ ────────────► │  content script on meet.google.com │
-│  employees + salary PDFs   │  (name→rate)  │  scrape → match → cost → overlay   │
-└───────────────────────────┘               └──────────────────────────────────┘
-```
-
-- **ingest/** runs on a developer machine with `NOTION_TOKEN` in env. Output = a minimal
-  `rates.json` (normalized name variants → per-minute rate + a default/average rate).
-- **extension/** is dependency-free vanilla JS/TS. It bundles `rates.json`, needs **no**
-  network/host permissions, and does all cost + escalation math client-side.
-
-This split is why the choice is privacy-preserving: bands, raw salaries, PDFs, and the token
-never leave the ingest step. Only a single rounded rate-per-minute per person is shipped.
+### Team split
+This is built by a team split along the existing monorepo boundary:
+- **Backend team** owns `apps/server` — data loading, rate calculation, escalation math, the
+  `/api/*` routes. This PRD is their primary spec.
+- **Frontend team** owns `apps/extension` — Meet DOM scraping, polling, and the overlay UI.
+- **Shared contract** — `packages/shared` is the one thing both teams import and must keep
+  in lockstep: route paths + request/response TypeScript types. Treat changes to it as an
+  API change that needs both sides' sign-off, not a unilateral edit.
 
 ---
 
-## Repo layout
+## Repo layout (existing pnpm monorepo)
+
+The workspace already exists (`workation-2026-group-11`, pnpm workspaces, TypeScript
+throughout) with a placeholder "hello world" API. This PRD describes what replaces that
+placeholder — no new top-level structure needs to be invented.
 
 ```
-workshop/
-  package.json                 # deps: @notionhq/client, pdfjs-dist (ingest only); devtool esbuild if TS
-  .env.example                 # NOTION_TOKEN=...
-  .gitignore                   # ignore extension/data/rates.json (contains derived salary info)
-  ingest/
-    config.json                # hoursPerYear, overheadMultiplier, bandPoint, currency, label maps
-    notion.js                  # @notionhq/client: query employees, read salary page blocks
-    pdf.js                     # download + parse the two salary PDFs -> salary band table
-    build-rates.js             # combine employees + bands -> rates.json (+ round rates)
-    dump-pdf-text.js           # dev helper: print raw PDF text to design the row parser
-    index.js                   # orchestrator: run all of the above
-  extension/
-    manifest.json              # MV3
-    content/
-      scrape.js                # resilient Meet participant scraping (+ MutationObserver)
-      match.js                 # name normalization + matching against rates.json
-      cost.js                  # rate sum + escalation engine
-      overlay.js               # Shadow-DOM floating panel (aggregate-only UI)
-      overlay.css
-    background/service-worker.js  # minimal: settings storage / message routing
-    options/ (options.html + options.js)
-    data/rates.json            # baked output (gitignored)
-    data/rates.mock.json       # committed demo data (fake names/rates) for testing
-    assets/icons/
-  test/
-    match.test.js  cost.test.js  pdf.test.js
-    fixtures/ (meet-people-panel.html, salary-sample.txt, rates.mock.json)
-  README.md
+workation_2026/                  # pnpm workspace root
+  package.json                   # dev / dev:server / dev:extension / build / typecheck
+  pnpm-workspace.yaml             # packages: apps/*, packages/*
+  tsconfig.base.json
+  docs/
+    PRD.md
+  packages/
+    shared/                      # @workation/shared — the API contract, imported by both apps
+      src/index.ts                # API_ROUTES + request/response types (source of truth)
+  apps/
+    server/                      # ← backend team's app
+      package.json                # deps: express, cors, @workation/shared — nothing else needed
+      tsup.config.ts               # build (bundles @workation/shared, no separate build step needed)
+      db/
+        current-employees.json    # ✅ already present — raw employee export (226 rows)
+        salary-ranges.json         # ⏳ pending — salary band table (schema proposed below)
+      src/
+        index.ts                  # express app entry — currently a placeholder health/messages demo
+        config.ts                 # overheadMultiplier, hoursPerYear, bandPoint, T0, alpha, mMax, port
+        data/
+          employees.ts             # load + normalize db/current-employees.json
+          salaryRanges.ts          # load + normalize db/salary-ranges.json
+        rates/
+          buildRates.ts           # combine employees + bands -> Map<email, ratePerMinute>
+          store.ts                # in-memory rate table, built once at startup
+        cost/
+          escalation.ts           # pure functions: multiplier(t), computeCost(...)
+        routes/
+          cost.ts                 # POST /api/cost
+      test/
+        escalation.test.ts
+        buildRates.test.ts
+    extension/                    # ← frontend team's app (Vite + @crxjs/vite-plugin)
+      manifest.config.ts          # MV3 manifest — needs content_scripts + host_permissions added
+      src/
+        popup/                    # existing baseline enable/disable toggle UI
+        content/
+          scrape.ts               # participant *email* scraping (+ MutationObserver)
+          poll.ts                 # tracks meetingStartedAt, polls server /api/cost
+          overlay.ts / overlay.css # Shadow-DOM floating panel (aggregate-only UI)
+        options/
+          index.html / options.ts # backend base URL + overlay on/off
 ```
-
-Use **plain JS** (or TS compiled with esbuild) — the extension has no runtime npm deps, so it
-can be loaded unpacked with no build step. `@notionhq/client` and `pdfjs-dist` are used only
-by the Node ingest scripts.
 
 ---
 
-## Component 1 — `ingest/` (build-time bake)
+## `db/current-employees.json` — confirmed shape
 
-Run with `NOTION_TOKEN` set. Produces `extension/data/rates.json`.
+```jsonc
+{
+  "source": {
+    "database": "Current Employees",
+    "page": "List of employees 🧑‍💻",
+    "pageUrl": "https://app.notion.com/...",
+    "dataSourceId": "953ae54d-8b98-4a5b-8823-6a19e346817e",
+    "exportedAt": "2026-07-24"
+  },
+  "count": 226,
+  "employees": [
+    {
+      "id": "0163472b-d02b-4c23-9ade-46ffe9b14f08",
+      "Name": "Adam",
+      "Last name": "Trzciński",
+      "Surname / Name": "Trzciński Adam",
+      "Email": "adam.trzcinski@callstack.com",
+      "Team": ["Technical Delivery"],
+      "Role / Seniority Level": ["RN Dev", "Expert"],
+      "alternatively called": "Adamos"
+      // + Manager, HRBP, GitHub, Project, userDefined:ID, Twitter Username, url, createdTime — unused
+    }
+  ]
+}
+```
 
-### 1a. Query employees — `ingest/notion.js`
-- `new Client({ auth: process.env.NOTION_TOKEN, notionVersion: '2025-09-03' })`.
-- Query the data source (`953ae54d-8b98-4a5b-8823-6a19e346817e`), paginate on
-  `has_more`/`next_cursor` until all 226 rows are pulled.
-- Per row extract: `Name`, `Last name`, `Surname / Name` (title), `Email`,
-  `alternatively called`, `Team` (multi_select), `Role / Seniority Level` (multi_select).
-- **Parse role + seniority** out of the `Role / Seniority Level` array. Delivery rows look
-  like `["RN Dev","Senior 1"]`, `["QA Automation Eng.","Senior"]`, `["RN Dev","Expert"]`;
-  business rows are often a single job title (`["Senior Content Marketer"]`). Split into
-  `{ roleFamily, level }` using a small classifier: known level tokens
-  (`Junior/Mid/Senior 1/Senior 2/Expert/…`) vs. everything else = role family.
-- `Team` decides which salary PDF to look in: `*Delivery*`/`Technology Team` → Delivery PDF;
-  Sales/Marketing/People & Culture/Finance/CEO → Business PDF.
+Field notes relevant to rate-building:
+- `count` (226) matches `employees.length` — good sanity check to assert on load.
+- `Team` values observed: `CEO`, `Finance & Administration Team`, `Incubator`,
+  `Marketing Team`, `People & Culture Team`, `Project Delivery`, `Sales`,
+  `Technical Delivery`, `Technology Team`. This is what decides which salary-range
+  **section** to look a person up in (delivery-ish vs. business-ish teams) — same split the
+  old Notion PRD described.
+- `Role / Seniority Level` is an array, 1 or 2 items: delivery rows are usually
+  `["RN Dev", "Senior 1"]`-shaped (role + level); business rows are often a single title
+  (`["Head of Sales"]`, `["CEO"]`) with no separate level. Level tokens seen:
+  `Expert`, `Senior 1`, `Senior 2`, `Mid 2`, etc. — split `{ roleFamily, level }` with a
+  small classifier (known level tokens vs. everything else = role family), same approach as
+  before.
+- **`Email` is not always a bare address** — at least one record has it as
+  `"Ada Gawrysiak <ada.gawrysiak@callstack.com>"` (display-name + angle-bracket form). The
+  loader must extract the email out of that format as a fallback, not assume every value is
+  a plain address. Normalize with `trim().toLowerCase()` either way.
 
-### 1b. Parse salary PDFs — `ingest/pdf.js`
-- Read the salary page blocks: `notion.blocks.children.list({ block_id: '4c1b7bcf...' })`,
-  find the `file`/`pdf` blocks, take the signed `file.url`, `fetch()` each PDF fresh (the URL
-  expires ~1h — download every run, never cache the URL).
-- Parse with `pdfjs-dist` (`getDocument` → `page.getTextContent()`, use item `transform`
-  x/y to reconstruct rows/columns). Build a band table:
-  `{ section: 'delivery'|'business', roleFamily, level } → { min, max, currency, period }`.
-- **First implementation step is `dump-pdf-text.js`** to see the actual layout, because the
-  columns, currency, and whether amounts are **monthly vs annual** are unknown until we read
-  them. The row parser is written against that dump.
+## `db/salary-ranges.json` — proposed shape (pending real file)
 
-### 1c. Combine + compute rate — `ingest/build-rates.js`
-- For each employee, look up their band by `(section, roleFamily, level)`. Normalize PDF
-  labels ↔ employee tags with a maintained map in `config.json`; log any employee whose band
-  isn't found (they fall back to the average at runtime).
-- Rate math (all assumptions live in `ingest/config.json`, not in the extension):
-    - `annualGross = bandPoint(min,max)` where `bandPoint` default = **midpoint** (min/mid/max
-      configurable). If PDF amounts are monthly, `annualGross = monthly * 12`.
+Until the real file arrives, build and test against this shape; update this section (and
+`data/salaryRanges.ts`) once it's delivered if the actual structure differs:
+
+```jsonc
+{
+  "ranges": [
+    {
+      "section": "delivery",       // "delivery" | "business" — matches the Team-based split above
+      "roleFamily": "RN Dev",
+      "level": "Senior 1",
+      "min": 12000,
+      "max": 15000,
+      "currency": "PLN",
+      "period": "month"            // "month" | "year"
+    }
+  ]
+}
+```
+
+---
+
+## The shared contract — `packages/shared/src/index.ts`
+
+Currently holds a placeholder `health`/`messages` demo contract. It gets replaced with the
+real one, e.g.:
+
+```ts
+export const API_ROUTES = {
+  health: "/api/health",
+  cost: "/api/cost",
+} as const;
+
+export interface HealthResponse {
+  status: "ok";
+  peopleCount: number;
+}
+
+export interface EscalationOverride {
+  T0?: number;
+  alpha?: number;
+  mMax?: number;
+}
+
+export interface CostRequest {
+  emails: string[];            // scraped participant emails
+  meetingStartedAt: string;    // ISO timestamp, sent on every poll
+  escalation?: EscalationOverride;
+}
+
+export interface CostResponse {
+  currency: string;
+  elapsedSeconds: number;
+  headcount: { matched: number; total: number };
+  ratePerMinuteBase: number;
+  multiplier: number;
+  currentRatePerMinute: number;
+  totalCost: number;
+}
+
+export interface ApiError {
+  error: string;
+}
+```
+
+Both apps import these from `@workation/shared` — the server to type its route handlers,
+the extension to type its `fetch` calls. Whoever changes a route or a field shape updates
+this file and pings the other team, since it's the only place the two apps are coupled.
+
+---
+
+## Backend — `apps/server`
+
+### 1. Load employees — `src/data/employees.ts`
+- Read `db/current-employees.json` (`fs.readFileSync` + `JSON.parse`, or a JSON import).
+  Assert `employees.length === count` as a basic integrity check.
+- Per row extract: `Name`, `Last name`, `Email` (handling the `Name <email>` form above),
+  `Team`, `Role / Seniority Level`.
+- **Parse role + seniority** out of the `Role / Seniority Level` array into
+  `{ roleFamily, level }` as described above.
+- `Team` decides `section`: `Technical Delivery` / `Technology Team` / `Project Delivery` →
+  `"delivery"`; `CEO` / `Sales` / `Marketing Team` / `People & Culture Team` /
+  `Finance & Administration Team` / `Incubator` → `"business"`. Keep this mapping in
+  `config.ts` so it's a one-line change if a team name doesn't fit.
+
+### 2. Load salary ranges — `src/data/salaryRanges.ts`
+- Read `db/salary-ranges.json` the same way. Build a lookup keyed by
+  `(section, roleFamily, level)` → `{ min, max, currency, period }`.
+- No PDF parsing, no signed URLs, no fetch — this only exists because the old plan needed to
+  parse PDFs; now it's just `JSON.parse`.
+
+### 3. Combine + compute rate — `src/rates/buildRates.ts`
+- For each employee, look up their band by `(section, roleFamily, level)`; normalize label
+  mismatches with a maintained map in `config.ts`; **log any employee whose band isn't
+  found** (they fall back to the average at request time).
+- Rate math (all assumptions live in `src/config.ts`):
+    - `annualGross = bandPoint(min, max)` where `bandPoint` default = **midpoint** (min/mid/max
+      configurable). If the range is monthly (`period: "month"`), `annualGross = monthly * 12`.
     - `costPerYear = annualGross * overheadMultiplier` (default `1.0`; bump to ~1.25–1.4 to
       model employer overhead).
     - `ratePerMinute = costPerYear / (hoursPerYear * 60)` (default `hoursPerYear = 2016`
       ≈ 8h × 21 days × 12).
     - **Round** `ratePerMinute` (e.g. to 2 significant figures) to blunt salary precision.
-- Build normalized match keys per person: from `Name`+`Last name`, the `Surname / Name`
-  title (surname-first), `alternatively called` (nickname), and email localpart. Normalize =
-  lowercase, `NFD` diacritic strip (Polish ł/ń/ó/ż…), collapse punctuation, token-set.
-- Emit `rates.json` (schema below). Also compute `defaultRatePerMinute` = mean of all
-  employee rates (used for unmatched attendees).
+- Key each rate by **normalized email** (`trim().toLowerCase()`) — a single clean map,
+  `ratesByEmail`. No name variants, nicknames, or token-set matching needed.
+- Compute `defaultRatePerMinute` = mean of all employee rates (used for unmatched
+  attendees).
 
-### `rates.json` contract
-```jsonc
-{
-  "generatedAt": "2026-07-24",
-  "currency": "PLN",            // from PDF
-  "defaultRatePerMinute": 0.95, // company average, for unmatched attendees
-  "people": [
-    { "keys": ["jan kowalski", "kowalski jan", "janek"], "ratePerMinute": 1.23 }
-  ]
-}
+### 4. In-memory store — `src/rates/store.ts`
+- Since the data is static (checked-in JSON, not a live external source), this is simpler
+  than a refresh-on-a-timer cache: `src/index.ts` builds the rate table **once** at startup
+  (steps 1–3) before `app.listen`, and every request reads from that in-memory object.
+- No scheduled refresh needed for v1. If the JSON files change, restart the server (a
+  file-watcher / hot-reload can be added later if that becomes annoying — not needed now).
+
+### 5. Cost engine — `src/cost/escalation.ts`
+Pure, unit-testable functions — the single source of truth for cost math (nothing
+client-side duplicates this):
+- `base = Σ ratePerMinute` over matched participant emails, plus
+  `(total − matched) * defaultRatePerMinute` for anyone not found in `ratesByEmail`.
+- `elapsedMinutes = max(0, (now − meetingStartedAt) / 60000)`.
+- Penalty multiplier: `multiplier(t) = 1` for `t ≤ T0`, else `1 + α·(t − T0)`, capped at
+  `mMax`. Defaults: `T0 = 30 min`, `α = 0.05/min`, `mMax = 4` (⇒ ×1.75 at 45 min, ×2.5 at
+  60 min).
+- `currentRatePerMinute = base · multiplier(t)`.
+- `totalCost = base · t · multiplier(t)`.
+- `T0`, `α`, `mMax` default from `config.ts` but may be overridden per-request via the
+  optional `escalation` field on `CostRequest` — this only tunes the formula's *parameters*,
+  so it stays consistent with "no business logic in the frontend."
+
+### Routes — `src/routes/cost.ts` (types from `@workation/shared`)
 ```
-No names beyond match keys, no bands, no levels, no raw salary.
+GET  /api/health   -> HealthResponse
+POST /api/cost     body: CostRequest   -> CostResponse
+```
+- 400 + `ApiError` on missing/malformed `emails` or `meetingStartedAt`.
+- `cors()` already wired in `src/index.ts` for the extension's origin. No auth in v1 — see
+  "Future work" below.
 
 ---
 
-## Component 2 — `extension/` (MV3, aggregate-only overlay)
+## Extension — `apps/extension` (owned by the frontend team, summarized for context)
 
-### `manifest.json`
-- `manifest_version: 3`, `content_scripts` matching `https://meet.google.com/*`.
-- Permissions: `storage` only. **No** host permissions (data is baked in).
-- `web_accessible_resources`: `data/rates.json` (or import it into the content bundle).
-- Optional `options_page` for settings; small toolbar `action` to toggle the overlay.
-
-### `content/scrape.js` — participant scraping
-- Read attendee display names from the People panel and/or video tiles. Meet markup is
-  fragile, so isolate all selectors here with **layered fallbacks** (aria-labels,
-  `[data-*]`, role=listitem) and degrade gracefully if none match.
-- Strip `(You)`, presentation tiles, and duplicates. Re-scan via `MutationObserver` +
-  a debounce so joins/leaves update the set. Expose `getParticipants(): string[]`.
-
-### `content/match.js` — name → rate
-- Normalize each attendee name the same way as ingest, match against `people[].keys`
-  (exact normalized, then token-subset for "First Last" vs "Surname Name" order).
-- Unmatched → `defaultRatePerMinute`, counted separately so the UI can show
-  "8 people (6 matched)". Return `{ matched, total, ratePerMinuteTotal }`.
-
-### `content/cost.js` — escalating cost engine
-- `base = Σ ratePerMinute` over present participants (currency/min).
-- Track meeting start (first participants seen; persist in `chrome.storage.session` so a
-  reload doesn't reset it). `t = elapsed minutes`.
-- Penalty multiplier: `m(t) = 1` for `t ≤ T0`, else `1 + α·(t − T0)`, capped at `mMax`.
-  Defaults: `T0 = 30 min`, `α = 0.05/min`, `mMax = 4` (⇒ ×1.75 at 45 min, ×2.5 at 60 min).
-- `displayedTotal = base · t · m(t)`; `currentRatePerMin = base · m(t)`.
-- Tick every 1s (`setInterval`) recomputing from wall-clock elapsed (don't accumulate — avoids
-  drift/tab-throttling errors). All of `T0, α, mMax` are user-configurable.
-
-### `content/overlay.js` + `overlay.css` — UI (aggregate only)
-- Floating draggable panel rendered in a **Shadow DOM** (isolates from Meet's CSS and keeps
-  our styles from leaking). Shows: big **total cost**, **current rate/min**, **elapsed
-  timer**, **headcount** (`matched/total`), and an **escalation badge** once `t > T0`
-  (color green→amber→red + a "wrap it up" nudge at thresholds).
-- No per-person figures. A hotkey / toolbar toggle hides it instantly (e.g. before a
-  screen-share). Consider auto-hiding when a screen-share is detected.
-
-### `options/` + `background/service-worker.js`
-- Options page persists escalation params (`T0`, `α`, `mMax`), currency display, and overlay
-  on/off to `chrome.storage.sync`. Service worker is minimal (settings broadcast / toggle
-  relay). Rate math is fixed at bake time and not re-tunable client-side (keeps salaries out
-  of the browser).
+- `manifest.config.ts` needs `content_scripts` matching `https://meet.google.com/*` and
+  `host_permissions` for the server's origin (dev: `http://localhost:3000/*`).
+- `src/content/scrape.ts` scrapes participant **email addresses** (not names) from the Meet
+  DOM with layered selector fallbacks + `MutationObserver`.
+- `src/content/poll.ts` tracks `meetingStartedAt`, POSTs `CostRequest` to
+  `${serverUrl}${API_ROUTES.cost}` every few seconds, passes the `CostResponse` straight to
+  the overlay — no math performed client-side.
+- `src/content/overlay.ts` renders a Shadow-DOM, aggregate-only panel (total cost, rate/min,
+  elapsed timer, `matched/total` headcount, escalation badge). Never renders per-person data,
+  because the server never sends it any.
 
 ---
 
 ## Privacy & sensitivity notes
-- `extension/data/rates.json` is derived salary data → **gitignored**; commit only
-  `rates.mock.json` (fake) for demos. Don't publish the real file to a public repo.
-- Overlay is aggregate-only and hideable; nothing salary-identifying renders on screen.
-- Rounding rates reduces reverse-engineering precision from the shipped file.
+- The extension only ever receives per-request aggregates (`CostResponse`) — no per-person
+  rate, band, or raw salary crosses the wire, even though the source data files are committed
+  to the repo.
+- Rounding rates (done server-side, in `buildRates.ts`) still blunts precision on anything
+  that *is* exposed, as defense in depth.
+- **v1 has no request authentication** — anyone who can reach the server's port can POST any
+  email list to `/api/cost`. Acceptable for now (internal/dev use, data is already
+  repo-visible), but not for a public deployment — see "Future work."
 
-## Open items resolved during implementation
-- **PDF internals**: exact columns, currency, and monthly-vs-annual — confirmed by running
-  `dump-pdf-text.js` first; the parser and `config.json` label maps are written against it.
-- **Meet selectors**: verified against the live People panel; captured as an HTML fixture for
-  regression.
-- **Role/level ↔ PDF label mismatches**: logged during ingest; unresolved people fall back to
-  the average rate.
+## Future work (explicitly out of scope right now)
+- **Google Sign-In + `@callstack.com` org restriction.** The extension will eventually
+  authenticate the user via Google OAuth, and the backend will verify the resulting token
+  and only serve requests from `callstack.com` Google Workspace accounts. This is a real
+  security layer to build later, not a stub to half-implement now — don't add partial auth
+  scaffolding (e.g. unused middleware, TODO'd token checks) until it's actually being built.
+- Hot-reloading `db/*.json` without a server restart, if that turns out to matter.
+
+## Open items to resolve during implementation
+- **`db/salary-ranges.json` doesn't exist yet** — the schema above is a proposal. Confirm it
+  against the real file the moment it lands and adjust `data/salaryRanges.ts` accordingly.
+- **Role/level ↔ salary-range label mismatches**: log at startup; unresolved people fall back
+  to the average rate.
+- **Meet selectors for email**: verify against a live People panel which attribute/tooltip
+  actually exposes participant email addresses (frontend team).
 
 ---
 
-## Verification
+## Verification (backend)
 
-**Ingest**
 ```bash
-cp .env.example .env   # add NOTION_TOKEN
-node ingest/dump-pdf-text.js   # inspect PDF layout first
-node ingest/index.js           # produces extension/data/rates.json
+pnpm install
+pnpm dev:server
+curl http://localhost:3000/api/health
+curl -X POST http://localhost:3000/api/cost \
+  -H 'content-type: application/json' \
+  -d '{"emails":["adam.trzcinski@callstack.com"],"meetingStartedAt":"2026-07-24T10:00:00.000Z"}'
+pnpm --filter server test
 ```
-- Assert ~226 people, a sane `currency`, and plausible rate range; spot-check 2–3 known
-  people by hand (dev only). Review the "band not found" log.
+- Assert all 226 people load without error, a sane `currency`, and a plausible rate range;
+  spot-check 2–3 known people by hand (dev only). Review the "band not found" log.
+- Assert `/api/cost` returns an increasing `totalCost` as `meetingStartedAt` moves further
+  into the past, and that `multiplier` escalates past `T0`.
 
-**Extension**
-- `chrome://extensions` → Developer mode → **Load unpacked** → select `extension/`.
-- Join a test Meet: confirm participants are scraped, `matched/total` is right, the total
-  ticks up every second, the penalty badge appears after `T0`, and the Shadow-DOM overlay
-  doesn't break Meet's layout. Toggle-hide works.
-- **Mock mode** (point the build at `rates.mock.json`) so scraping/cost/escalation can be
-  demoed without a live 8-person meeting or any real salary data — also drive it against the
-  saved People-panel HTML fixture.
-
-**Unit tests** (`test/`)
-- `match.test.js`: diacritics, name-order, nickname, and unmatched-fallback cases.
-- `cost.test.js`: base sum, `m(t)` at t=0/T0/45/60, cap at `mMax`, elapsed→total.
-- `pdf.test.js`: row parser against `fixtures/salary-sample.txt`.
+**Unit tests** (`apps/server/test/`)
+- `escalation.test.ts`: base sum, `multiplier(t)` at t=0/T0/45/60, cap at `mMax`,
+  elapsed→total.
+- `buildRates.test.ts`: email-key lookup (including the `Name <email>` form), unmatched-
+  fallback to `defaultRatePerMinute`, mean calculation.
 
 ---
 
-## Suggested task order
-1. Scaffold repo (`package.json`, `.gitignore`, `.env.example`, `manifest.json`, mock data).
-2. `ingest/notion.js` — query employees, parse role/seniority. Verify counts.
-3. `dump-pdf-text.js` → design `ingest/pdf.js` band parser. Verify against a sample.
-4. `build-rates.js` — combine + rate math + `rates.json`. Review band-not-found log.
-5. Extension content pipeline against `rates.mock.json` + DOM fixture: `scrape → match →
-   cost → overlay`. Get the ticker + escalation working.
-6. Options page + settings persistence; overlay hide/toggle.
-7. Swap in real `rates.json`, test on a live Meet, tune escalation defaults.
-8. Unit tests + README (setup, ingest, load-unpacked, refresh).
+## Suggested task order (backend)
+1. Replace the placeholder `API_ROUTES`/types in `packages/shared/src/index.ts` with the real
+   `health`/`cost` contract above — coordinate with the frontend team before merging, since
+   it's shared.
+2. `src/config.ts` — escalation defaults, rate-math constants, team→section mapping.
+3. `src/data/employees.ts` — load + normalize `db/current-employees.json`. Verify count and
+   the `Name <email>` edge case.
+4. `src/data/salaryRanges.ts` — load + normalize `db/salary-ranges.json` once it lands (build
+   against the proposed schema + a hand-written sample in the meantime).
+5. `src/rates/buildRates.ts` + `src/rates/store.ts` — combine + rate math + email-keyed map,
+   built once at startup. Review band-not-found log.
+6. `src/cost/escalation.ts` + unit tests — pure math, testable without any data files.
+7. `src/routes/cost.ts`, update `src/index.ts` to wire it up (replace the placeholder
+   `messages` demo route), verify with `curl`.
