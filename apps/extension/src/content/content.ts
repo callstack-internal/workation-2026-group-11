@@ -9,6 +9,11 @@ const STORAGE_KEY = "callcost:enabled";
 const MARKER_ATTR = "data-callcost-cost";
 const STYLE_ID = "callcost-styles";
 const SLOT_CLASS = "callcost-slot";
+const HIDDEN_CLASS = "callcost-hidden";
+
+// Mirrors the popup's eye toggle (callcost:enabled). When disabled (crossed
+// eye) the injected cost row is hidden; when enabled (open eye) it's shown.
+let enabled = true;
 
 // Latest cost we've heard about for the open event (null before the first
 // event opens). Drives what the badge renders.
@@ -37,6 +42,10 @@ const STYLES = `
     0%, 100% { transform: translateY(0) rotate(0deg); }
     25% { transform: translateY(-1px) rotate(-8deg); }
     75% { transform: translateY(1px) rotate(8deg); }
+  }
+
+  [${MARKER_ATTR}].${HIDDEN_CLASS} {
+    display: none !important;
   }
 
   [${MARKER_ATTR}] .callcost-badge {
@@ -107,6 +116,9 @@ function buildCostRow(notificationsRow: Element): HTMLElement {
   const row = document.createElement("div");
   row.className = notificationsRow.className;
   row.setAttribute(MARKER_ATTR, "");
+  // Respect the current toggle state at creation to avoid a flash of the label
+  // when the plugin is disabled and the dialog (re)renders.
+  if (!enabled) row.classList.add(HIDDEN_CLASS);
 
   row.innerHTML = `
     <div aria-hidden="true" class="zZj8Pb EaVNbc">
@@ -140,9 +152,18 @@ function updateSlots(): void {
   }
 }
 
-async function main(): Promise<void> {
-  if (!(await isEnabled())) return;
+// Show/hide every injected cost row to match the current toggle state.
+function applyVisibility(): void {
+  document
+    .querySelectorAll(`[${MARKER_ATTR}]`)
+    .forEach((row) => row.classList.toggle(HIDDEN_CLASS, !enabled));
+}
 
+async function main(): Promise<void> {
+  enabled = await isEnabled();
+
+  // Always inject the row + styles; visibility is driven by the toggle so the
+  // label can be shown/hidden live without reloading the Calendar tab.
   injectStyles();
   injectCostRow();
 
@@ -153,6 +174,15 @@ async function main(): Promise<void> {
 
   const observer = new MutationObserver(() => injectCostRow());
   observer.observe(document.body, { childList: true, subtree: true });
+
+  // React to the eye toggle in the popup (writes callcost:enabled to storage).
+  if (typeof chrome !== "undefined" && chrome.storage?.onChanged) {
+    chrome.storage.onChanged.addListener((changes, area) => {
+      if (area !== "local" || !changes[STORAGE_KEY]) return;
+      enabled = Boolean(changes[STORAGE_KEY].newValue);
+      applyVisibility();
+    });
+  }
 }
 
 void main();
