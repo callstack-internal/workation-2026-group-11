@@ -11,7 +11,9 @@ const COST_EVENT = "callcost:cost";
 export type CostDetail =
   | { status: "loading"; eventId: string }
   | { status: "ok"; eventId: string; result: EventCostResponse }
-  | { status: "error"; eventId: string; message: string };
+  | { status: "error"; eventId: string; message: string }
+  // Organizer hid the guest list: no attendee list, so no cost to show.
+  | { status: "hidden"; eventId: string };
 
 export function emitCost(detail: CostDetail): void {
   window.dispatchEvent(new CustomEvent<CostDetail>(COST_EVENT, { detail }));

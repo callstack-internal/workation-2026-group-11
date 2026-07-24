@@ -8,6 +8,7 @@ import { API_ROUTES, type EventCostResponse } from "@workation/shared";
 import { SERVER_URL } from "./config";
 import type {
   Attendee,
+  AttendeeListStatus,
   AttendeesResponse,
   CostResult,
   EventTiming,
@@ -126,25 +127,34 @@ chrome.runtime.onMessage.addListener((msg: GetAttendeesRequest, _sender, sendRes
 
   fetchEvent(msg.eventId)
     .then(async (event) => {
-      const attendees: Attendee[] = (event.attendees ?? []).map((a) => ({
-        email: a.email,
-        responseStatus: a.responseStatus,
-        organizer: !!a.organizer,
-        resource: !!a.resource,
-      }));
+      // `guestsCanSeeOtherGuests` is present (false) only when the organizer
+      // hid the guest list; otherwise it's omitted and defaults to visible.
+      const status: AttendeeListStatus =
+        event.guestsCanSeeOtherGuests === false
+          ? "guest_list_hidden"
+          : "complete";
+
+      // When the guest list is hidden the API returns only the requesting
+      // user, which isn't the real list — empty it so nothing downstream
+      // counts a bogus attendee, and skip pricing (there's nothing to price).
+      const attendees: Attendee[] =
+        status === "guest_list_hidden"
+          ? []
+          : (event.attendees ?? []).map((a) => ({
+              email: a.email,
+              responseStatus: a.responseStatus,
+              organizer: !!a.organizer,
+              resource: !!a.resource,
+            }));
       const timing = computeTiming(event.start, event.end);
       const response: AttendeesResponse = {
         ok: true,
-        // `guestsCanSeeOtherGuests` is present (false) only when the organizer
-        // hid the guest list; otherwise it's omitted and defaults to visible.
-        status:
-          event.guestsCanSeeOtherGuests === false
-            ? "guest_list_hidden"
-            : "complete",
+        status,
         attendees,
         summary: event.summary,
         timing,
-        cost: await priceEvent(attendees, timing),
+        cost:
+          status === "complete" ? await priceEvent(attendees, timing) : undefined,
       };
       sendResponse(response);
     })

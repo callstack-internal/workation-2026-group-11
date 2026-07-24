@@ -89,6 +89,9 @@ function badgeHtml(): string {
   if (current.status === "error") {
     return `<span class="callcost-badge callcost-badge--muted">Cost unavailable</span>`;
   }
+  if (current.status === "hidden") {
+    return `<span class="callcost-badge callcost-badge--muted">Guest list hidden</span>`;
+  }
   return `<span class="callcost-badge">${currencyFmt.format(current.result.totalCost)} to be burned</span>`;
 }
 

@@ -54,6 +54,28 @@ function scan(): void {
       emitCost({ status: "error", eventId, message: resp?.error ?? "Fetch failed" });
       return;
     }
+    const { durationSeconds, allDay } = resp.timing;
+    // Human-readable label for the log only; durationSeconds is the value
+    // downstream logic should use.
+    const label = allDay
+      ? "all-day"
+      : durationSeconds != null
+        ? `${durationSeconds}s (${Math.round(durationSeconds / 60)} min)`
+        : "unknown";
+
+    if (resp.status === "guest_list_hidden") {
+      // The organizer hid the guest list, so the API only returns us — the
+      // real attendee list isn't available via our own OAuth and there's no
+      // cost to show. This is an expected state, so log at info level:
+      // console.warn/error would surface in Chrome's extension Errors panel.
+      emitCost({ status: "hidden", eventId });
+      console.info(
+        `[CallCost] "${resp.summary}" — guest list hidden by organizer; ` +
+          `attendee list unavailable via the API (${label}).`
+      );
+      return;
+    }
+
     if (resp.cost?.ok) {
       emitCost({ status: "ok", eventId, result: resp.cost.data });
     } else {
@@ -65,24 +87,6 @@ function scan(): void {
     const emails = resp.attendees
       .filter((a) => a.responseStatus !== "declined")
       .map((a) => a.email);
-    const { durationSeconds, allDay } = resp.timing;
-    // Human-readable label for the log only; durationSeconds is the value
-    // downstream logic should use.
-    const label = allDay
-      ? "all-day"
-      : durationSeconds != null
-        ? `${durationSeconds}s (${Math.round(durationSeconds / 60)} min)`
-        : "unknown";
-    if (resp.status === "guest_list_hidden") {
-      // The organizer hid the guest list, so the API only returns us — the
-      // real attendee list is not available via our own OAuth. Report it
-      // honestly rather than pretending there's a single attendee.
-      console.warn(
-        `[CallCost] "${resp.summary}" — guest list hidden by organizer; ` +
-          `attendee list unavailable via the API (${label}).`
-      );
-      return;
-    }
     console.log(
       `[CallCost] "${resp.summary}" — ${emails.length} attendee(s), ${label}:`,
       emails
