@@ -12,6 +12,7 @@
   "QA Automation Eng.": {
     "Senior": 23000
   },
+  "Event Marketing Manager": 15250,
   "Marketing Project Manager": 16000,
   "Content & Promotion Specialist": 12500,
   "Marketing Core Lead": 19250,
@@ -28,7 +29,10 @@
   "Account Manager": 19900,
   "Financial Analyst": 14400,
   "Finance & Administration Specialist": 12500,
+  "Financial Controller": 17500,
+  "Administration Specialist": 9750,
   "Office Manager": 9750,
   "Office Coordinator": 8000,
+  "IT Security Specialist": 17500,
   "IT Administrator": 14500
 }
