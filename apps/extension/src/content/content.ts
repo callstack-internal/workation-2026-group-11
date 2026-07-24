@@ -67,6 +67,32 @@ const STYLES = `
     animation: callcost-shake 0.9s ease-in-out infinite;
   }
 
+  /* Cost tiers: green (< 500) and yellow (< 1500) tone down the alarm; red
+     (>= 1500) is the base .callcost-badge look above. */
+  [${MARKER_ATTR}] .callcost-badge--green {
+    background: #e6f4ea;
+    color: #137333;
+    border-color: #b7e1c1;
+    animation: none;
+  }
+
+  [${MARKER_ATTR}] .callcost-badge--green::before {
+    content: "\\1F7E2";
+    animation: none;
+  }
+
+  [${MARKER_ATTR}] .callcost-badge--yellow {
+    background: #fef7e0;
+    color: #b06000;
+    border-color: #fddc8a;
+    animation: none;
+  }
+
+  [${MARKER_ATTR}] .callcost-badge--yellow::before {
+    content: "\\1F7E1";
+    animation: none;
+  }
+
   /* Calm, non-alarming states while loading or on error. */
   [${MARKER_ATTR}] .callcost-badge--muted {
     background: #e8eaed;
@@ -104,7 +130,12 @@ function badgeHtml(): string {
     const src = chrome.runtime.getURL("guest-list-hidden.jpg");
     return `<img class="callcost-hidden-meme" src="${src}" alt="Guest list hidden" />`;
   }
-  return `<span class="callcost-badge">${currencyFmt.format(current.result.totalCost)} to be burned</span>`;
+  // Tier the priced badge by total cost: green (cheap), yellow (getting
+  // pricey), red (ouch). Red is the base .callcost-badge look (fire + pulse).
+  const cost = current.result.totalCost;
+  const tier = cost < 500 ? "green" : cost < 1500 ? "yellow" : "";
+  const cls = tier ? `callcost-badge callcost-badge--${tier}` : "callcost-badge";
+  return `<span class="${cls}">${currencyFmt.format(cost)} to be burned</span>`;
 }
 
 function injectStyles(): void {
