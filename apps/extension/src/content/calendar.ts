@@ -73,6 +73,16 @@ function scan(): void {
       : durationSeconds != null
         ? `${durationSeconds}s (${Math.round(durationSeconds / 60)} min)`
         : "unknown";
+    if (resp.status === "guest_list_hidden") {
+      // The organizer hid the guest list, so the API only returns us — the
+      // real attendee list is not available via our own OAuth. Report it
+      // honestly rather than pretending there's a single attendee.
+      console.warn(
+        `[CallCost] "${resp.summary}" — guest list hidden by organizer; ` +
+          `attendee list unavailable via the API (${label}).`
+      );
+      return;
+    }
     console.log(
       `[CallCost] "${resp.summary}" — ${emails.length} attendee(s), ${label}:`,
       emails

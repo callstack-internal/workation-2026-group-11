@@ -66,6 +66,7 @@ async function fetchEvent(
   attendees?: Attendee[];
   start?: EventDateTime;
   end?: EventDateTime;
+  guestsCanSeeOtherGuests?: boolean;
 }> {
   const token = await getToken(true);
   const url = `${API_BASE}/calendars/${encodeURIComponent(
@@ -134,6 +135,12 @@ chrome.runtime.onMessage.addListener((msg: GetAttendeesRequest, _sender, sendRes
       const timing = computeTiming(event.start, event.end);
       const response: AttendeesResponse = {
         ok: true,
+        // `guestsCanSeeOtherGuests` is present (false) only when the organizer
+        // hid the guest list; otherwise it's omitted and defaults to visible.
+        status:
+          event.guestsCanSeeOtherGuests === false
+            ? "guest_list_hidden"
+            : "complete",
         attendees,
         summary: event.summary,
         timing,

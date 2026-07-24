@@ -34,9 +34,21 @@ export type CostResult =
   | { ok: true; data: EventCostResponse }
   | { ok: false; error: string };
 
+/** Whether the full attendee list was actually available from the API. */
+export type AttendeeListStatus =
+  /** Full attendee list returned. */
+  | "complete"
+  /**
+   * The organizer hid the guest list (`guestsCanSeeOtherGuests: false`), so the
+   * API returns only the requesting user. The real list is not retrievable via
+   * our own OAuth; `attendees` should not be treated as complete.
+   */
+  | "guest_list_hidden";
+
 export type AttendeesResponse =
   | {
       ok: true;
+      status: AttendeeListStatus;
       attendees: Attendee[];
       summary?: string;
       timing: EventTiming;
