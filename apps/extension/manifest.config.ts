@@ -84,5 +84,14 @@ export function buildManifest(env: Record<string, string>) {
       client_id: clientId,
       scopes: ["https://www.googleapis.com/auth/calendar.events.readonly"],
     },
+    // Meme shown in place of the cost label when the guest list is hidden.
+    // Bundled locally so it renders under Calendar's strict CSP (an external
+    // image URL would be blocked).
+    web_accessible_resources: [
+      {
+        resources: ["guest-list-hidden.jpg"],
+        matches: ["https://calendar.google.com/*"],
+      },
+    ],
   });
 }

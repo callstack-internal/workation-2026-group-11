@@ -80,6 +80,14 @@ const STYLES = `
     content: "";
     animation: none;
   }
+
+  [${MARKER_ATTR}] .callcost-hidden-meme {
+    display: block;
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
 `;
 
 function badgeHtml(): string {
@@ -90,7 +98,11 @@ function badgeHtml(): string {
     return `<span class="callcost-badge callcost-badge--muted">Cost unavailable</span>`;
   }
   if (current.status === "hidden") {
-    return `<span class="callcost-badge callcost-badge--muted">Guest list hidden</span>`;
+    // Guest list is hidden, so there's no cost to show — drop in the meme
+    // ("I won't tell you the sum, it'd shock you… let's just say a lot") instead
+    // of a plain label.
+    const src = chrome.runtime.getURL("guest-list-hidden.jpg");
+    return `<img class="callcost-hidden-meme" src="${src}" alt="Guest list hidden" />`;
   }
   return `<span class="callcost-badge">${currencyFmt.format(current.result.totalCost)} to be burned</span>`;
 }
