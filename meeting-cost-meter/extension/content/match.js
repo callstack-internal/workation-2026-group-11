@@ -29,10 +29,29 @@
     const map = new Map();
     for (const person of rates.people || []) {
       for (const key of person.keys || []) {
-        if (!map.has(key)) map.set(key, person.ratePerMinute);
+        if (!map.has(key)) {
+          map.set(key, {
+            ratePerMinute: Number(person.ratePerMinute),
+            estimated: person.estimated === true,
+          });
+        }
       }
     }
     return map;
+  }
+
+  function rateEntry(value) {
+    if (value && typeof value === 'object') {
+      const rate = Number(value.ratePerMinute);
+      return Number.isFinite(rate) ? { rate, estimated: value.estimated === true } : null;
+    }
+    const rate = Number(value);
+    return Number.isFinite(rate) ? { rate, estimated: false } : null;
+  }
+
+  function explicitFallback(rates) {
+    const value = Number(rates?.defaultRatePerMinute);
+    return Number.isFinite(value) && value > 0 ? value : null;
   }
 
   // --- fuzzy fallback (Levenshtein similarity) ---
@@ -86,6 +105,9 @@
 
     let ratePerMinuteTotal = 0;
     let matched = 0;
+    let estimated = 0;
+    let fallback = 0;
+    let unknown = 0;
     const details = [];
 
     for (const name of names) {
@@ -94,35 +116,92 @@
       const normLookup = normalizeName(lookupName);
 
       let rate = null;
+      let isEstimated = false;
       let matchType = 'none';
       for (const c of [normLookup, tokenKey(lookupName)]) {
         if (index.has(c)) {
-          rate = index.get(c);
-          matchType = overrides[normDisplay] ? 'override' : 'exact';
-          break;
+          const entry = rateEntry(index.get(c));
+          if (entry) {
+            rate = entry.rate;
+            isEstimated = entry.estimated;
+            matchType = overrides[normDisplay] ? 'override' : 'exact';
+            break;
+          }
         }
       }
       if (rate == null) {
         const near = nearestKey(normLookup, keys, fuzzyThreshold);
         if (near != null) {
-          rate = index.get(near);
-          matchType = 'fuzzy';
+          const entry = rateEntry(index.get(near));
+          if (entry) {
+            rate = entry.rate;
+            isEstimated = entry.estimated;
+            matchType = 'fuzzy';
+          }
         }
       }
 
       const isMatch = matchType !== 'none';
-      if (!isMatch) rate = rates.defaultRatePerMinute || 0;
-      if (isMatch) matched++;
+      let isFallback = false;
+      let rateKnown = true;
+      if (!isMatch) {
+        const fallbackRate = explicitFallback(rates);
+        if (fallbackRate != null) {
+          rate = fallbackRate;
+          isEstimated = true;
+          isFallback = true;
+          fallback++;
+        } else {
+          rate = 0;
+          rateKnown = false;
+          unknown++;
+        }
+      } else {
+        matched++;
+      }
+      if (isEstimated) estimated++;
       ratePerMinuteTotal += rate;
-      details.push({ name, rate, isMatch, matchType });
+      details.push({ name, rate, isMatch, matchType, isEstimated, isFallback, rateKnown });
     }
-    return { matched, total: names.length, ratePerMinuteTotal, details };
+    return {
+      matched,
+      total: names.length,
+      ratePerMinuteTotal,
+      estimated,
+      fallback,
+      unknown,
+      details,
+    };
   }
 
   /** Exact match by email address (Calendar-API path). */
   function rateForEmail(email, rates, index) {
-    const rate = index.get(String(email || '').trim().toLowerCase());
-    return rate != null ? { rate, isMatch: true } : { rate: rates.defaultRatePerMinute || 0, isMatch: false };
+    const entry = rateEntry(index.get(String(email || '').trim().toLowerCase()));
+    if (entry) {
+      return {
+        rate: entry.rate,
+        isMatch: true,
+        isEstimated: entry.estimated,
+        isFallback: false,
+        rateKnown: true,
+      };
+    }
+    const fallbackRate = explicitFallback(rates);
+    return fallbackRate != null
+      ? {
+          rate: fallbackRate,
+          isMatch: false,
+          isEstimated: true,
+          isFallback: true,
+          rateKnown: true,
+        }
+      : {
+          rate: 0,
+          isMatch: false,
+          isEstimated: false,
+          isFallback: false,
+          rateKnown: false,
+        };
   }
 
   /**
@@ -156,8 +235,8 @@
   /**
    * Calendar-first matching: invitees [{email, displayName?, responseStatus?}]
    * carry identity + rate (exact email keys); scraped display names carry
-   * presence only. With no scraped names, every non-declined invitee is
-   * charged. Names that resolve to no invitee fall back to name matching.
+   * presence only. With no scraped names, nobody is charged: invitees are not
+   * proof of attendance. Names that resolve to no invitee use name matching.
    */
   function matchByCalendar(names, invitees, rates, index, opts = {}) {
     const presenceThreshold = opts.presenceThreshold ?? 0.6;
@@ -169,24 +248,27 @@
         return { email: String(i.email).trim().toLowerCase(), label: i.displayName || localpartName, nameKeys, claimed: false };
       });
 
-    // No presence info — charge the whole invite list.
+    // No presence info: an invite list is not an attendance roster.
     if (!names || !names.length) {
-      let ratePerMinuteTotal = 0;
-      let matched = 0;
-      const details = [];
-      for (const inv of pool) {
-        const r = rateForEmail(inv.email, rates, index);
-        if (r.isMatch) matched++;
-        ratePerMinuteTotal += r.rate;
-        details.push({ name: inv.label, rate: r.rate, isMatch: r.isMatch, matchType: r.isMatch ? 'email' : 'none' });
-      }
-      return { matched, total: pool.length, ratePerMinuteTotal, details, presence: 'invitees' };
+      return {
+        matched: 0,
+        total: 0,
+        ratePerMinuteTotal: 0,
+        estimated: 0,
+        fallback: 0,
+        unknown: 0,
+        details: [],
+        presence: 'none',
+      };
     }
 
     // Presence known: resolve each scraped name to an invitee. The candidate
     // set is tiny (this meeting's invitees), so a lower threshold is safe.
     let ratePerMinuteTotal = 0;
     let matched = 0;
+    let estimated = 0;
+    let fallback = 0;
+    let unknown = 0;
     const details = [];
     for (const name of names) {
       const target = tokenKey(opts.overrides?.[normalizeName(name)] || name);
@@ -206,16 +288,39 @@
         best.claimed = true;
         const r = rateForEmail(best.email, rates, index);
         if (r.isMatch) matched++;
+        if (r.isEstimated) estimated++;
+        if (r.isFallback) fallback++;
+        if (!r.rateKnown) unknown++;
         ratePerMinuteTotal += r.rate;
-        details.push({ name, rate: r.rate, isMatch: r.isMatch, matchType: r.isMatch ? 'email' : 'none' });
+        details.push({
+          name,
+          rate: r.rate,
+          isMatch: r.isMatch,
+          matchType: r.isMatch ? 'email' : 'none',
+          isEstimated: r.isEstimated,
+          isFallback: r.isFallback,
+          rateKnown: r.rateKnown,
+        });
       } else {
         const m = matchParticipants([name], rates, index, opts);
         if (m.details[0].isMatch) matched++;
+        estimated += m.estimated;
+        fallback += m.fallback;
+        unknown += m.unknown;
         ratePerMinuteTotal += m.details[0].rate;
         details.push(m.details[0]);
       }
     }
-    return { matched, total: names.length, ratePerMinuteTotal, details, presence: 'scraped' };
+    return {
+      matched,
+      total: names.length,
+      ratePerMinuteTotal,
+      estimated,
+      fallback,
+      unknown,
+      details,
+      presence: 'scraped',
+    };
   }
 
   MCM.match = { normalizeName, tokenKey, buildIndex, matchParticipants, rateForEmail, suggestFor, matchByCalendar, similarity };

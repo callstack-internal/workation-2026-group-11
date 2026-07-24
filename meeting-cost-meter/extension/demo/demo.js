@@ -10,7 +10,12 @@
   let rates = { currency: 'USD', defaultRatePerMinute: 1, people: [] };
   let index = new Map();
   let overlay = null;
-  let settings = { ...MCM.cost.DEFAULTS };
+  let settings = {
+    ...MCM.settings.DEFAULTS,
+    alertThresholdsUsd: { ...MCM.settings.ALERT_THRESHOLDS_USD },
+  };
+  let ledger = MCM.cost.createLedger();
+  let fxQuote = null;
 
   function elapsedMin() {
     const live = clock.running ? ((Date.now() - clock.wallStart) / 60000) * clock.speed : 0;
@@ -34,24 +39,66 @@
 
   async function loadSettings() {
     try {
-      settings = { ...MCM.cost.DEFAULTS, ...(await chrome.storage.sync.get(MCM.cost.DEFAULTS)) };
+      settings = {
+        ...settings,
+        ...(await chrome.storage.sync.get(settings)),
+      };
+      settings.alertThresholdsUsd = MCM.settings.alertThresholds(settings.alertThresholdsUsd);
     } catch (_) {
       /* keep defaults */
+    }
+  }
+
+  async function loadFx() {
+    try {
+      const response = await chrome.runtime.sendMessage({ type: 'mcm-fx-rate' });
+      if (Number(response?.plnPerUsd) > 0) fxQuote = response;
+    } catch (_) {
+      /* PLN demo still works; USD and alert colors remain unavailable */
     }
   }
 
   function tick() {
     const m = MCM.match.matchParticipants(roster, rates, index);
     const t = elapsedMin();
-    const c = MCM.cost.compute(m.ratePerMinuteTotal, t, settings);
+    const c = ledger.update({
+      nowMs: t * 60000,
+      ratePerMinute: m.ratePerMinuteTotal,
+      hasPresence: roster.length > 0,
+      settings,
+    });
+    const displayCurrency = settings.displayCurrency === 'USD' ? 'USD' : 'PLN';
+    const total = MCM.currency.convert(
+      c.total,
+      rates.currency,
+      displayCurrency,
+      fxQuote?.plnPerUsd,
+    );
+    const currentRatePerMin = MCM.currency.convert(
+      c.currentRatePerMin,
+      rates.currency,
+      displayCurrency,
+      fxQuote?.plnPerUsd,
+    );
+    const totalUsd = MCM.currency.convert(c.total, rates.currency, 'USD', fxQuote?.plnPerUsd);
     overlay.update({
-      total: c.total,
-      currentRatePerMin: c.currentRatePerMin,
+      total,
+      currentRatePerMin,
       multiplier: c.multiplier,
       matched: m.matched,
       totalPeople: m.total,
-      elapsedMin: t,
-      currency: rates.currency,
+      elapsedMin: c.elapsedMin,
+      currency: displayCurrency,
+      mock: true,
+      alertLevel: MCM.settings.alertLevel(totalUsd, settings.alertThresholdsUsd),
+      alertThresholdsUsd: settings.alertThresholdsUsd,
+      availabilityMessage:
+        totalUsd == null ? 'Live NBP USD/PLN quote unavailable; USD alerts are paused.' : '',
+      ratesAvailable: true,
+      started: c.started,
+      estimated: m.estimated,
+      fallback: m.fallback,
+      unknown: m.unknown,
     });
   }
 
@@ -92,6 +139,7 @@
     document.getElementById('reset').addEventListener('click', () => {
       clock.baseMin = 0;
       clock.wallStart = Date.now();
+      ledger = MCM.cost.createLedger();
       tick();
     });
     for (const btn of document.querySelectorAll('.speed')) {
@@ -120,14 +168,33 @@
   }
 
   async function main() {
-    await Promise.all([loadRates(), loadSettings()]);
-    overlay = MCM.overlay.createOverlay({ currency: rates.currency });
+    await Promise.all([loadRates(), loadSettings(), loadFx()]);
+    // Seed the roster at t=0 so the initial 20-minute demo state has history.
+    const initial = MCM.match.matchParticipants(roster, rates, index);
+    ledger.update({
+      nowMs: 0,
+      ratePerMinute: initial.ratePerMinuteTotal,
+      hasPresence: roster.length > 0,
+      settings,
+    });
+    overlay = MCM.overlay.createOverlay({
+      currency: settings.displayCurrency,
+      onCurrencyChange: (currency) => {
+        settings.displayCurrency = currency;
+        chrome.storage.sync.set({ displayCurrency: currency }).catch(() => {});
+        tick();
+      },
+    });
     wireControls();
     renderChips();
     tick();
     setInterval(tick, 250);
     chrome.storage.onChanged?.addListener((changes, area) => {
-      if (area === 'sync') for (const [k, { newValue }] of Object.entries(changes)) settings[k] = newValue;
+      if (area === 'sync') {
+        for (const [k, { newValue }] of Object.entries(changes)) settings[k] = newValue;
+        settings.alertThresholdsUsd = MCM.settings.alertThresholds(settings.alertThresholdsUsd);
+        tick();
+      }
     });
   }
 

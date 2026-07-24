@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meeting Cost Meter — Visual QA</title>
+    <style>
+      :root { color-scheme: dark; }
+      body { margin:0; min-height:100vh; background:#102a23; color:#e8eaed;
+        font-family:system-ui,sans-serif; }
+      main { padding:28px; max-width:680px; }
+      h1 { margin:0 0 6px; font-size:22px; }
+      p { color:#a8c7b8; }
+      .controls { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+      button { padding:7px 11px; border:1px solid #4d7768; border-radius:7px;
+        background:#1c4637; color:#fff; cursor:pointer; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Meeting Cost Meter visual QA</h1>
+      <p>Use these deterministic states to verify colors, red blinking, estimates, and PLN/USD switching.</p>
+      <div class="controls">
+        <button data-total="0">Green $0</button>
+        <button data-total="15">Yellow $15</button>
+        <button data-total="25">Orange $25</button>
+        <button data-total="35">Red $35</button>
+        <button id="estimate">Partial estimate</button>
+        <button id="waiting">Waiting state</button>
+      </div>
+    </main>
+    <script src="/shared/settings.js"></script>
+    <script src="/content/cost.js"></script>
+    <script src="/content/currency.js"></script>
+    <script src="/content/overlay.js"></script>
+    <script src="/harness.js"></script>
+  </body>
+</html>

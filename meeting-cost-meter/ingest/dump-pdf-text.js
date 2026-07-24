@@ -15,10 +15,23 @@ const ROOT = path.resolve(fileURLToPath(import.meta.url), '../..');
 async function getPdfSources() {
   const useLocal = process.argv.includes('--local') || (!process.argv.includes('--notion') && config.dataSource === 'local');
   if (useLocal) {
-    return (config.local?.pdfs || []).map((p) => {
+    const sources = [];
+    for (const p of config.local?.pdfs || []) {
       const abs = path.resolve(ROOT, p.path);
-      return { data: new Uint8Array(fs.readFileSync(abs)), section: p.section, filename: path.basename(abs) };
-    });
+      if (!fs.existsSync(abs)) {
+        if (p.optional) {
+          console.warn(`Optional salary PDF not found: ${path.relative(ROOT, abs)} (${p.section})`);
+          continue;
+        }
+        throw new Error(`Required salary PDF not found: ${path.relative(ROOT, abs)}`);
+      }
+      sources.push({
+        data: new Uint8Array(fs.readFileSync(abs)),
+        section: p.section,
+        filename: path.basename(abs),
+      });
+    }
+    return sources;
   }
   const { createClient, fetchSalaryPdfLinks } = await import('./notion.js');
   const { downloadPdf } = await import('./pdf.js');

@@ -39,4 +39,31 @@ test('unmatched attendees fall back to the default rate', () => {
   assert.equal(r.total, 2);
   assert.equal(Math.round(r.ratePerMinuteTotal * 100) / 100, 3.0); // 1.9 + 1.1
   assert.equal(r.details.find((d) => d.name === 'Some External Guest').isMatch, false);
+  assert.equal(r.fallback, 1);
+  assert.equal(r.estimated, 1);
+});
+
+test('unknown attendees are excluded and flagged when no explicit fallback exists', () => {
+  const rates = { defaultRatePerMinute: null, people: [person('Ada Lovelace', 1.9)] };
+  const index = match.buildIndex(rates);
+  const r = match.matchParticipants(['Ada Lovelace', 'Some External Guest'], rates, index);
+  assert.equal(r.ratePerMinuteTotal, 1.9);
+  assert.equal(r.unknown, 1);
+  assert.equal(r.fallback, 0);
+  assert.equal(r.details[1].rateKnown, false);
+});
+
+test('matched contract-assumption rates are counted as estimates', () => {
+  const rates = {
+    defaultRatePerMinute: null,
+    people: [{ ...person('Ada Lovelace', 1.9), estimated: true }],
+  };
+  const r = match.matchParticipants(
+    ['Ada Lovelace'],
+    rates,
+    match.buildIndex(rates),
+  );
+  assert.equal(r.matched, 1);
+  assert.equal(r.estimated, 1);
+  assert.equal(r.fallback, 0);
 });

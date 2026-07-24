@@ -57,7 +57,9 @@ const splitTags = (cell) =>
 
 /**
  * Map a CSV export (header row + data rows) to employee records using
- * `columns` = { firstName, lastName, email, team, roleSeniority, alias? }
+ * `columns` = {
+ *   firstName, lastName, email, team, roleSeniority, alias?, contractType?
+ * }
  * (values are the CSV header names). Multi-value cells (teams, role/seniority)
  * are comma-separated inside one quoted cell — split back into tags.
  */
@@ -98,6 +100,7 @@ export function csvToEmployees(text, columns) {
       aliases: alias ? splitTags(alias) : [],
       teams: splitTags(cell(row, 'team')),
       roleTags: splitTags(cell(row, 'roleSeniority')),
+      contractType: cell(row, 'contractType'),
     });
   }
   return employees;

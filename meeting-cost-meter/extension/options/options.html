@@ -12,8 +12,12 @@
       label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 4px; }
       .hint { font-weight: 400; color: #5f6368; font-size: 12px; }
       input[type="number"] { width: 90px; padding: 6px 8px; border: 1px solid #dadce0; border-radius: 6px; }
+      select { padding: 6px 8px; border: 1px solid #dadce0; border-radius: 6px; background:#fff; }
       input[type="text"] { width: 100%; box-sizing: border-box; padding: 6px 8px; border: 1px solid #dadce0; border-radius: 6px; font-family: ui-monospace, monospace; font-size: 12px; }
       .toggle { display: flex; align-items: center; gap: 8px; }
+      .thresholds { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+      .thresholds label { font-size:12px; font-weight:500; }
+      .thresholds input { width:100% !important; box-sizing:border-box; }
       h2 { font-size: 15px; margin: 26px 0 6px; border-top: 1px solid #eee; padding-top: 18px; }
       #status { color: #1e8e3e; font-size: 13px; height: 16px; }
     </style>
@@ -22,12 +26,42 @@
     <h1>💸 Meeting Cost Meter</h1>
     <p class="help">
       The cost ticks up linearly, then a penalty multiplier accelerates it after a grace period —
-      to nudge everyone to wrap up. Per-person salaries are never shown or stored in the browser.
+      to nudge everyone to wrap up. Per-person rates are never shown; the local generated
+      rates file remains confidential and is excluded from Git.
     </p>
 
     <div class="row toggle">
       <input type="checkbox" id="overlayEnabled" />
       <label for="overlayEnabled" style="margin:0">Show the overlay in meetings</label>
+    </div>
+
+    <h2>Currency and cost alerts</h2>
+
+    <div class="row">
+      <label for="displayCurrency">Display currency</label>
+      <select id="displayCurrency">
+        <option value="PLN">PLN</option>
+        <option value="USD">USD</option>
+      </select>
+    </div>
+    <p class="help">
+      PLN/USD conversion uses the latest official NBP table-A midpoint and a cached official
+      quote if NBP is temporarily unavailable. The extension never guesses an exchange rate.
+    </p>
+
+    <div class="row">
+      <label>Toolbar and window thresholds <span class="hint">(USD total; strictly above)</span></label>
+      <div class="thresholds">
+        <label>Yellow
+          <input type="number" id="alertYellowUsd" min="0" step="1" />
+        </label>
+        <label>Orange
+          <input type="number" id="alertOrangeUsd" min="0" step="1" />
+        </label>
+        <label>Red + blink
+          <input type="number" id="alertRedUsd" min="0" step="1" />
+        </label>
+      </div>
     </div>
 
     <div class="row">
@@ -80,6 +114,7 @@
     </div>
 
     <div id="status"></div>
+    <script src="../shared/settings.js"></script>
     <script src="options.js"></script>
   </body>
 </html>

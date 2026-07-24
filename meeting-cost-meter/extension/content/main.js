@@ -1,44 +1,53 @@
-// Orchestrator content script. Loaded last, after scrape/match/cost/overlay have
-// registered themselves on window.__MCM.
+// Live orchestrator. Rates, attendance, and time are deliberately independent:
+// - real mode never loads demo rates;
+// - Calendar identifies scraped attendees but never substitutes invitees;
+// - a cumulative ledger preserves prior cost when the roster changes.
 (function () {
   const MCM = window.__MCM;
-  if (!MCM || !MCM.scrape || !MCM.match || !MCM.cost || !MCM.overlay) {
+  if (
+    !MCM?.scrape ||
+    !MCM?.match ||
+    !MCM?.cost ||
+    !MCM?.currency ||
+    !MCM?.overlay ||
+    !MCM?.settings
+  ) {
     console.error('[MCM] namespace incomplete — check content script order in manifest.json');
     return;
   }
 
   const TICK_MS = 1000;
-  const MAX_MEETING_MS = 8 * 60 * 60 * 1000; // reset a stale stored start after 8h
+  const LEDGER_SAVE_MS = 5000;
+  const MAX_MEETING_MS = 8 * 60 * 60 * 1000;
   const CALENDAR_REFRESH_MS = 10 * 60 * 1000;
+  const FX_REFRESH_MS = 6 * 60 * 60 * 1000;
   const OVERRIDES_KEY = 'mcm_overrides';
 
-  async function loadRatesFile(files) {
-    for (const file of files) {
-      try {
-        const res = await fetch(chrome.runtime.getURL(file));
-        if (res.ok) {
-          const json = await res.json();
-          if (json.people) return json;
-        }
-      } catch (_) {
-        /* try next */
-      }
+  async function loadRatesFile(file) {
+    try {
+      const res = await fetch(chrome.runtime.getURL(file));
+      if (!res.ok) return null;
+      const json = await res.json();
+      if (!Array.isArray(json?.people) || !json.people.length || !json.currency) return null;
+      return json;
+    } catch {
+      return null;
     }
-    return { currency: 'USD', defaultRatePerMinute: 1, people: [] };
   }
 
   async function loadSettings() {
     const defaults = {
-      ...MCM.cost.DEFAULTS,
-      overlayEnabled: true,
-      mockMode: false,
-      mockSpeedX: 60,
-      calendarEnabled: false,
-      customSelector: '',
+      ...MCM.settings.DEFAULTS,
+      alertThresholdsUsd: { ...MCM.settings.ALERT_THRESHOLDS_USD },
     };
     try {
       const stored = await chrome.storage.sync.get(defaults);
-      return { ...defaults, ...stored };
+      return {
+        ...defaults,
+        ...stored,
+        displayCurrency: stored.displayCurrency === 'USD' ? 'USD' : 'PLN',
+        alertThresholdsUsd: MCM.settings.alertThresholds(stored.alertThresholdsUsd),
+      };
     } catch {
       return defaults;
     }
@@ -54,45 +63,85 @@
   }
 
   function meetingCode() {
-    return location.pathname.replace(/\//g, '') || 'unknown';
+    return MCM.scrape.meetingCodeFromPath(location.pathname);
   }
 
-  // Persist the start time so a page reload doesn't reset the meter.
-  async function getMeetingStart() {
-    const code = meetingCode();
-    const key = 'mcm_start';
+  function ledgerStorageKey(code) {
+    return `mcm_ledger_${code}`;
+  }
+
+  async function loadLedgerSnapshot(code) {
+    if (!code) return null;
+    const key = ledgerStorageKey(code);
     try {
       const { [key]: saved } = await chrome.storage.local.get(key);
-      const now = Date.now();
-      if (saved && saved.code === code && now - saved.ts < MAX_MEETING_MS) return saved.ts;
-      await chrome.storage.local.set({ [key]: { code, ts: now } });
-      return now;
+      const age = Date.now() - Number(saved?.savedAt);
+      if (
+        saved?.code === code &&
+        saved.snapshot?.version === 1 &&
+        age >= 0 &&
+        age < MAX_MEETING_MS
+      ) {
+        return saved.snapshot;
+      }
     } catch {
-      return Date.now();
+      // A non-persistent ledger is still safe; it just will not survive reload.
+    }
+    return null;
+  }
+
+  async function requestFxQuote() {
+    try {
+      const response = await chrome.runtime.sendMessage({ type: 'mcm-fx-rate' });
+      const rate = Number(response?.plnPerUsd);
+      return rate > 0 ? { plnPerUsd: rate, effectiveDate: response.effectiveDate || '' } : null;
+    } catch {
+      return null;
     }
   }
 
   async function main() {
-    const [realRates, mockRates, settings, startTs, savedOverrides] = await Promise.all([
-      loadRatesFile(['data/rates.json', 'data/rates.mock.json']),
-      loadRatesFile(['data/rates.mock.json']),
+    const initialMeetingCode = meetingCode();
+    const [realRates, mockRates, settings, savedOverrides, savedLedger] = await Promise.all([
+      loadRatesFile('data/rates.json'),
+      loadRatesFile('data/rates.mock.json'),
       loadSettings(),
-      getMeetingStart(),
       loadOverrides(),
+      loadLedgerSnapshot(initialMeetingCode),
     ]);
-    const realIndex = MCM.match.buildIndex(realRates);
-    const mockIndex = MCM.match.buildIndex(mockRates);
+
+    if (!realRates) {
+      console.warn(
+        '[MCM] real rates are unavailable. Real mode will not use demo values; run `npm run ingest` and reload the extension.',
+      );
+    }
+
+    const realIndex = realRates ? MCM.match.buildIndex(realRates) : new Map();
+    const mockIndex = mockRates ? MCM.match.buildIndex(mockRates) : new Map();
     let currentSettings = settings;
     let overrides = savedOverrides;
-    let mockStart = Date.now(); // mock meetings always start "now"
-    let calendarAttendees = null; // [{email, displayName, responseStatus}] | null
+    let realLedger = MCM.cost.createLedger(savedLedger);
+    let mockLedger = MCM.cost.createLedger();
+    let mockWallStart = Date.now();
+    let fxQuote = null;
+    let calendarAttendees = null;
     let calendarWarned = false;
-    const suggestionCache = new Map(); // normalized display name -> suggestions
+    let lastLedgerSave = 0;
+    let lastToolbarState = '';
+    let currentMeetingCode = initialMeetingCode;
+    let finishedMeeting = null;
+    let lastMatchedRates = emptyMatchSummary();
+    const suggestionCache = new Map();
 
     MCM.scrape.setCustomSelector(currentSettings.customSelector);
 
     const overlay = MCM.overlay.createOverlay({
-      currency: realRates.currency,
+      currency: currentSettings.displayCurrency,
+      onCurrencyChange: (currency) => {
+        currentSettings.displayCurrency = currency;
+        chrome.storage.sync.set({ displayCurrency: currency }).catch(() => {});
+        tick();
+      },
       onManualRoster: (names) => {
         MCM.scrape.setManualRoster(names);
         tick();
@@ -105,6 +154,7 @@
       },
     });
     overlay.setVisible(currentSettings.overlayEnabled !== false);
+    overlay.setActive(initialMeetingCode != null);
 
     function suggestionsFor(detail, keys) {
       const norm = MCM.match.normalizeName(detail.name);
@@ -114,62 +164,287 @@
       return suggestionCache.get(norm);
     }
 
+    function emptyMatchSummary() {
+      return {
+        matched: 0,
+        total: 0,
+        ratePerMinuteTotal: 0,
+        estimated: 0,
+        fallback: 0,
+        unknown: 0,
+        details: [],
+      };
+    }
+
+    async function refreshFx() {
+      const quote = await requestFxQuote();
+      if (quote) {
+        fxQuote = quote;
+        tick();
+      } else if (!fxQuote) {
+        console.warn('[MCM] NBP USD/PLN quote unavailable; USD display and USD alert thresholds are paused.');
+      }
+    }
+
     async function refreshCalendar() {
       if (!currentSettings.calendarEnabled || currentSettings.mockMode) return;
+      const code = meetingCode();
+      if (!code) return;
       try {
-        const res = await chrome.runtime.sendMessage({ type: 'mcm-calendar-attendees', code: meetingCode() });
+        const res = await chrome.runtime.sendMessage({
+          type: 'mcm-calendar-attendees',
+          code,
+        });
         if (res?.error) throw new Error(res.error);
         calendarAttendees = res?.eventFound ? res.attendees : null;
         if (res && !res.eventFound && !calendarWarned) {
           calendarWarned = true;
-          console.info('[MCM] no calendar event found for this Meet — using name matching.');
+          console.info('[MCM] no Calendar event found for this Meet — using name matching.');
         }
       } catch (err) {
         calendarAttendees = null;
         if (!calendarWarned) {
           calendarWarned = true;
-          console.warn(`[MCM] Calendar lookup failed (${err.message}) — falling back to name matching. Check the OAuth client id in manifest.json.`);
+          console.warn(
+            `[MCM] Calendar lookup failed (${err.message}) — using name matching. Check the OAuth client ID in manifest.json.`,
+          );
         }
       }
     }
 
+    function saveRealLedger(force = false) {
+      if (!currentMeetingCode) return;
+      const now = Date.now();
+      if (!force && now - lastLedgerSave < LEDGER_SAVE_MS) return;
+      lastLedgerSave = now;
+      const key = ledgerStorageKey(currentMeetingCode);
+      chrome.storage.local
+        .set({
+          [key]: {
+            code: currentMeetingCode,
+            savedAt: now,
+            snapshot: realLedger.snapshot(),
+          },
+        })
+        .catch(() => {});
+    }
+
+    function notifyToolbar(level, allowBlink = true) {
+      const blinkOn =
+        level !== 'red' || !allowBlink || Math.floor(Date.now() / 1000) % 2 === 0;
+      const stateKey = `${level}:${allowBlink}:${blinkOn}`;
+      if (stateKey === lastToolbarState) return;
+      lastToolbarState = stateKey;
+      chrome.runtime
+        .sendMessage({ type: 'mcm-alert-state', level, blinkOn })
+        .catch(() => {});
+    }
+
+    function renderUnavailable(names, mock) {
+      const message = mock
+        ? 'Mock rates are unavailable. Reinstall the extension data files.'
+        : 'Real rates unavailable. Run `npm run ingest`, then reload the extension.';
+      overlay.update({
+        total: null,
+        currentRatePerMin: null,
+        multiplier: 1,
+        matched: 0,
+        totalPeople: names.length,
+        elapsedMin: 0,
+        currency: currentSettings.displayCurrency,
+        mock,
+        unmatched: [],
+        alertLevel: 'unavailable',
+        alertThresholdsUsd: currentSettings.alertThresholdsUsd,
+        availabilityMessage: message,
+        ratesAvailable: false,
+        started: false,
+        estimated: 0,
+        fallback: 0,
+        unknown: 0,
+      });
+      notifyToolbar('unavailable');
+    }
+
+    function renderCost({ ledgerState, matchedRates, rates, mock, unmatched = [], ended = false }) {
+      const sourceCurrency = MCM.currency.normalizeCurrency(rates.currency);
+      const displayCurrency = currentSettings.displayCurrency;
+      const plnPerUsd = fxQuote?.plnPerUsd;
+      const total = MCM.currency.convert(
+        ledgerState.total,
+        sourceCurrency,
+        displayCurrency,
+        plnPerUsd,
+      );
+      const currentRatePerMin = MCM.currency.convert(
+        ended ? 0 : ledgerState.currentRatePerMin,
+        sourceCurrency,
+        displayCurrency,
+        plnPerUsd,
+      );
+      const totalUsd = MCM.currency.convert(
+        ledgerState.total,
+        sourceCurrency,
+        'USD',
+        plnPerUsd,
+      );
+      const alertLevel = MCM.settings.alertLevel(
+        totalUsd,
+        currentSettings.alertThresholdsUsd,
+      );
+      const fxUnavailable = total == null || currentRatePerMin == null || totalUsd == null;
+      const messages = [];
+      if (ended) messages.push('Meeting ended — final cost frozen.');
+      if (fxUnavailable) {
+        messages.push('Live NBP USD/PLN quote unavailable; conversion and cost alerts are paused.');
+      }
+
+      overlay.update({
+        total,
+        currentRatePerMin,
+        multiplier: ledgerState.multiplier,
+        matched: matchedRates.matched,
+        totalPeople: matchedRates.total,
+        elapsedMin: ledgerState.elapsedMin,
+        currency: displayCurrency,
+        mock,
+        unmatched,
+        alertLevel,
+        alertThresholdsUsd: currentSettings.alertThresholdsUsd,
+        availabilityMessage: messages.join(' '),
+        ratesAvailable: true,
+        started: ledgerState.started,
+        estimated: matchedRates.estimated,
+        fallback: matchedRates.fallback,
+        unknown: matchedRates.unknown,
+        ended,
+      });
+      notifyToolbar(alertLevel, !ended);
+    }
+
     function tick() {
+      const pageMeetingCode = meetingCode();
+      if (!pageMeetingCode) {
+        if (currentMeetingCode) {
+          saveRealLedger(true);
+          currentMeetingCode = null;
+          realLedger = MCM.cost.createLedger();
+          mockLedger = MCM.cost.createLedger();
+          mockWallStart = Date.now();
+          calendarAttendees = null;
+        }
+        finishedMeeting = null;
+        lastMatchedRates = emptyMatchSummary();
+        overlay.setActive(false);
+        notifyToolbar('idle');
+        return;
+      }
+
+      overlay.setActive(true);
+      if (pageMeetingCode !== currentMeetingCode) {
+        currentMeetingCode = pageMeetingCode;
+        realLedger = MCM.cost.createLedger();
+        mockLedger = MCM.cost.createLedger();
+        mockWallStart = Date.now();
+        lastLedgerSave = 0;
+        calendarAttendees = null;
+        calendarWarned = false;
+        finishedMeeting = null;
+        lastMatchedRates = emptyMatchSummary();
+        refreshCalendar();
+      }
+
       const mock = !!currentSettings.mockMode;
       const rates = mock ? mockRates : realRates;
       const index = mock ? mockIndex : realIndex;
+      const mockSpeed = Number(currentSettings.mockSpeedX) > 0
+        ? Number(currentSettings.mockSpeedX)
+        : 1;
+      const mockNowMs = (Date.now() - mockWallStart) * mockSpeed;
+      const rosterElapsedMin = mockNowMs / 60000;
+      const ledger = mock ? mockLedger : realLedger;
+      const ledgerNowMs = mock ? mockNowMs : Date.now();
 
-      let elapsedMin;
-      if (mock) {
-        const speed = Number(currentSettings.mockSpeedX) > 0 ? Number(currentSettings.mockSpeedX) : 1;
-        elapsedMin = ((Date.now() - mockStart) / 60000) * speed;
-      } else {
-        elapsedMin = (Date.now() - startTs) / 60000;
+      if (MCM.scrape.isMeetingEnded()) {
+        if (!rates) {
+          renderUnavailable([], mock);
+          return;
+        }
+        if (
+          !finishedMeeting ||
+          finishedMeeting.code !== pageMeetingCode ||
+          finishedMeeting.mock !== mock
+        ) {
+          const ledgerState = ledger.update({
+            nowMs: ledgerNowMs,
+            ratePerMinute: 0,
+            hasPresence: false,
+            settings: currentSettings,
+          });
+          finishedMeeting = {
+            code: pageMeetingCode,
+            mock,
+            ledgerState,
+            matchedRates: lastMatchedRates,
+          };
+          if (!mock) saveRealLedger(true);
+        }
+        renderCost({ ...finishedMeeting, rates, ended: true });
+        return;
       }
 
-      const names = mock ? MCM.mock.rosterAt(elapsedMin) : MCM.scrape.getParticipants();
-
-      let m;
-      if (!mock && calendarAttendees && calendarAttendees.length) {
-        m = MCM.match.matchByCalendar(names, calendarAttendees, rates, index, { overrides });
-      } else {
-        m = MCM.match.matchParticipants(names, rates, index, { overrides });
+      if (finishedMeeting?.code === pageMeetingCode) {
+        // A Rejoin removes the post-call heading. Resume from "now" without
+        // charging or timing the interval spent on the exit screen.
+        realLedger.rebase(Date.now(), currentSettings);
+        mockLedger.rebase(mockNowMs, currentSettings);
+        finishedMeeting = null;
       }
+
+      const names = mock
+        ? MCM.mock.rosterAt(rosterElapsedMin)
+        : MCM.scrape.getParticipants();
+
+      if (!rates) {
+        renderUnavailable(names, mock);
+        return;
+      }
+
+      let matchedRates;
+      if (!mock && calendarAttendees?.length) {
+        matchedRates = MCM.match.matchByCalendar(
+          names,
+          calendarAttendees,
+          rates,
+          index,
+          { overrides },
+        );
+      } else {
+        matchedRates = MCM.match.matchParticipants(names, rates, index, { overrides });
+      }
+      lastMatchedRates = matchedRates;
 
       const keys = [...index.keys()];
-      const unmatched = m.details
-        .filter((d) => !d.isMatch)
-        .map((d) => ({ name: d.name, suggestions: suggestionsFor(d, keys) }))
-        .filter((u) => u.suggestions.length);
+      const unmatched = matchedRates.details
+        .filter((detail) => !detail.isMatch)
+        .map((detail) => ({
+          name: detail.name,
+          suggestions: suggestionsFor(detail, keys),
+        }))
+        .filter((entry) => entry.suggestions.length);
 
-      const c = MCM.cost.compute(m.ratePerMinuteTotal, elapsedMin, currentSettings);
-      overlay.update({
-        total: c.total,
-        currentRatePerMin: c.currentRatePerMin,
-        multiplier: c.multiplier,
-        matched: m.matched,
-        totalPeople: m.total,
-        elapsedMin,
-        currency: rates.currency,
+      const ledgerState = ledger.update({
+        nowMs: ledgerNowMs,
+        ratePerMinute: matchedRates.ratePerMinuteTotal,
+        hasPresence: names.length > 0,
+        settings: currentSettings,
+      });
+      if (!mock) saveRealLedger();
+
+      renderCost({
+        ledgerState,
+        matchedRates,
+        rates,
         mock,
         unmatched,
       });
@@ -177,25 +452,40 @@
 
     setInterval(tick, TICK_MS);
     MCM.scrape.onChange(tick);
+    refreshFx();
+    setInterval(refreshFx, FX_REFRESH_MS);
     refreshCalendar();
     setInterval(refreshCalendar, CALENDAR_REFRESH_MS);
     tick();
 
-    // Toolbar click (from background) and hotkey both toggle the overlay.
     chrome.runtime.onMessage.addListener((msg) => {
       if (msg?.type === 'toggle-overlay') overlay.toggle();
     });
-    window.addEventListener('keydown', (e) => {
-      if (e.altKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) overlay.toggle();
+    window.addEventListener('keydown', (event) => {
+      if (event.altKey && event.shiftKey && (event.key === 'C' || event.key === 'c')) {
+        overlay.toggle();
+      }
     });
+    window.addEventListener('beforeunload', () => saveRealLedger(true));
 
-    // React to settings changes from the options page without a reload.
     chrome.storage.onChanged.addListener((changes, area) => {
       if (area !== 'sync') return;
-      for (const [k, { newValue }] of Object.entries(changes)) currentSettings[k] = newValue;
-      if ('overlayEnabled' in changes) overlay.setVisible(currentSettings.overlayEnabled !== false);
-      if ('customSelector' in changes) MCM.scrape.setCustomSelector(currentSettings.customSelector);
-      if ('mockMode' in changes && changes.mockMode.newValue) mockStart = Date.now(); // restart the demo
+      for (const [key, { newValue }] of Object.entries(changes)) {
+        currentSettings[key] = newValue;
+      }
+      currentSettings.alertThresholdsUsd = MCM.settings.alertThresholds(
+        currentSettings.alertThresholdsUsd,
+      );
+      if ('overlayEnabled' in changes) {
+        overlay.setVisible(currentSettings.overlayEnabled !== false);
+      }
+      if ('customSelector' in changes) {
+        MCM.scrape.setCustomSelector(currentSettings.customSelector);
+      }
+      if ('mockMode' in changes && changes.mockMode.newValue) {
+        mockWallStart = Date.now();
+        mockLedger = MCM.cost.createLedger();
+      }
       if ('calendarEnabled' in changes) {
         calendarWarned = false;
         if (changes.calendarEnabled.newValue) refreshCalendar();
