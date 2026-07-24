@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meeting Cost Meter — Demo</title>
+    <style>
+      :root { color-scheme: dark; }
+      body { margin: 0; min-height: 100vh; background: #0b3d2e; color: #e8eaed; font-family: system-ui, Roboto, sans-serif; }
+      header { padding: 24px 28px 8px; }
+      h1 { margin: 0 0 4px; font-size: 22px; }
+      p.sub { margin: 0; color: #9fc7b6; font-size: 14px; }
+      .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 16px 28px; }
+      .controls fieldset { border: 1px solid #2f6b53; border-radius: 10px; padding: 8px 12px; margin: 0; }
+      .controls legend { font-size: 11px; color: #9fc7b6; padding: 0 4px; }
+      button { font: inherit; cursor: pointer; background: #1a5c44; color: #e8eaed; border: 1px solid #2f6b53; border-radius: 8px; padding: 6px 10px; }
+      button:hover { background: #237355; }
+      button.active { background: #34a853; border-color: #34a853; color: #06281b; font-weight: 600; }
+      .roster { padding: 4px 28px 24px; }
+      .roster h2 { font-size: 13px; color: #9fc7b6; margin: 8px 0; }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .chip { background: #12503b; border: 1px solid #2f6b53; border-radius: 999px; padding: 4px 10px 4px 12px; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+      .chip button { padding: 0 4px; border: none; background: none; color: #9fc7b6; }
+      .add { display: flex; gap: 8px; margin-top: 12px; }
+      .add input { flex: 0 0 240px; padding: 6px 10px; border-radius: 8px; border: 1px solid #2f6b53; background: #0b3d2e; color: #e8eaed; }
+      code { background: #06281b; padding: 1px 5px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>💸 Meeting Cost Meter — Demo</h1>
+      <p class="sub">Fully mock: fake attendees, mock rates, a clock you control. No meeting, no Notion, no salary data.</p>
+    </header>
+
+    <div class="controls">
+      <fieldset>
+        <legend>Clock</legend>
+        <button id="playPause">⏸ Pause</button>
+        <button data-jump="5">+5 min</button>
+        <button data-jump="15">+15 min</button>
+        <button id="reset">Reset</button>
+      </fieldset>
+      <fieldset>
+        <legend>Speed</legend>
+        <button class="speed" data-speed="1">1×</button>
+        <button class="speed" data-speed="10">10×</button>
+        <button class="speed active" data-speed="60">60×</button>
+        <button class="speed" data-speed="600">600×</button>
+      </fieldset>
+    </div>
+
+    <div class="roster">
+      <h2>Attendees (mock)</h2>
+      <div class="chips" id="chips"></div>
+      <div class="add">
+        <input id="newName" type="text" placeholder="Add attendee name…" />
+        <button id="addBtn">Add</button>
+        <button id="addUnknown">Add unmatched guest</button>
+      </div>
+    </div>
+
+    <script src="../content/match.js"></script>
+    <script src="../content/cost.js"></script>
+    <script src="../content/overlay.js"></script>
+    <script src="../content/mock.js"></script>
+    <script src="demo.js"></script>
+  </body>
+</html>

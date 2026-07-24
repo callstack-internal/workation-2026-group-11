@@ -1,0 +1,15 @@
+node_modules/
+.env
+.idea/
+
+# Local planning transcripts can contain account details or copied production data.
+poc/
+
+# Derived salary data — never commit. Regenerate with `npm run ingest`.
+extension/data/rates.json
+
+# Local ingest inputs (real employee CSV / salary PDFs) — never commit.
+ingest/data/
+
+*.log
+.DS_Store

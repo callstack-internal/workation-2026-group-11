@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Meeting Cost Meter",
+  "version": "0.1.0",
+  "description": "Shows a live, escalating cost for your Google Meet meetings to nudge everyone to finish sooner.",
+  "permissions": ["storage", "identity"],
+  "host_permissions": ["https://www.googleapis.com/*"],
+  "oauth2": {
+    "client_id": "REPLACE_WITH_YOUR_OAUTH_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/calendar.readonly"]
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": [
+        "content/scrape.js",
+        "content/match.js",
+        "content/cost.js",
+        "content/overlay.js",
+        "content/mock.js",
+        "content/main.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["data/rates.json", "data/rates.mock.json"],
+      "matches": ["https://meet.google.com/*"]
+    }
+  ],
+  "options_page": "options/options.html",
+  "action": {
+    "default_title": "Toggle the Meeting Cost overlay"
+  }
+}
