@@ -6,9 +6,58 @@ export {};
 
 const STORAGE_KEY = "callcost:enabled";
 const MARKER_ATTR = "data-callcost-cost";
+const STYLE_ID = "callcost-styles";
 
 // Hardcoded for now; will be computed from participants/duration/rates later.
 const ESTIMATED_COST = "$42.50";
+
+// Injected once. Gives the cost label a funny "your wallet is on fire" vibe:
+// a red warning pill that pulses and gently wobbles.
+const STYLES = `
+  @keyframes callcost-pulse {
+    0%, 100% {
+      transform: scale(1) rotate(-1deg);
+      box-shadow: 0 0 0 0 rgba(217, 48, 37, 0.55);
+    }
+    50% {
+      transform: scale(1.06) rotate(1deg);
+      box-shadow: 0 0 0 8px rgba(217, 48, 37, 0);
+    }
+  }
+
+  [${MARKER_ATTR}] .callcost-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: #fce8e6;
+    color: #c5221f;
+    font-weight: 700;
+    border: 1px solid #f5b5b0;
+    animation: callcost-pulse 1.2s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  [${MARKER_ATTR}] .callcost-badge::before {
+    content: "\\1F525";
+    animation: callcost-shake 0.9s ease-in-out infinite;
+  }
+
+  @keyframes callcost-shake {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-1px) rotate(-8deg); }
+    75% { transform: translateY(1px) rotate(8deg); }
+  }
+`;
+
+function injectStyles(): void {
+  if (document.getElementById(STYLE_ID)) return;
+  const style = document.createElement("style");
+  style.id = STYLE_ID;
+  style.textContent = STYLES;
+  document.head.appendChild(style);
+}
 
 function isEnabled(): Promise<boolean> {
   return new Promise((resolve) => {
@@ -32,7 +81,7 @@ function buildCostRow(notificationsRow: Element): HTMLElement {
       <i class="google-material-icons notranslate" aria-hidden="true">payments</i>
     </div>
     <div class="toUqff ">
-      <ol class="oIOto" aria-label="Estimated cost"><li>${ESTIMATED_COST}</li></ol>
+      <ol class="oIOto" aria-label="Estimated cost"><li><span class="callcost-badge">${ESTIMATED_COST} to be burned</span></li></ol>
     </div>
   `;
 
@@ -55,6 +104,7 @@ function injectCostRow(): void {
 async function main(): Promise<void> {
   if (!(await isEnabled())) return;
 
+  injectStyles();
   injectCostRow();
 
   const observer = new MutationObserver(() => injectCostRow());
