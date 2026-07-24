@@ -73,14 +73,16 @@ workation_2026/                  # pnpm workspace root
       src/index.ts                # API_ROUTES + request/response types (source of truth)
   apps/
     server/                      # ← backend team's app
-      package.json                # deps: express, cors, @workation/shared — nothing else needed
+      package.json                # deps: express, cors, @workation/shared, jsonwebtoken
       tsup.config.ts               # build (bundles @workation/shared, no separate build step needed)
       db/
         current-employees.json    # ✅ already present — raw employee export (226 rows)
         salary-ranges.json         # ⏳ pending — salary band table (schema proposed below)
       src/
         index.ts                  # express app entry — currently a placeholder health/messages demo
-        config.ts                 # overheadMultiplier, hoursPerYear, bandPoint, T0, alpha, mMax, port
+        config.ts                 # overheadMultiplier, hoursPerYear, bandPoint, T0, alpha, mMax,
+                                   #   port, GOOGLE_OAUTH_CLIENT_ID, ALLOWED_HD, SESSION_JWT_SECRET,
+                                   #   SESSION_TTL_MS
         data/
           employees.ts             # load + normalize db/current-employees.json
           salaryRanges.ts          # load + normalize db/salary-ranges.json
@@ -89,18 +91,27 @@ workation_2026/                  # pnpm workspace root
           store.ts                # in-memory rate table, built once at startup
         cost/
           escalation.ts           # pure functions: multiplier(t), computeCost(...)
+        auth/
+          google.ts               # verifyGoogleAccessToken(token) -> { email, hd, emailVerified }
+          session.ts               # createSessionToken(email) / verifySessionToken(token)
+        middleware/
+          requireAuth.ts           # Authorization: Bearer <sessionToken> gate, applied to /api/cost
         routes/
-          cost.ts                 # POST /api/cost
+          cost.ts                 # POST /api/cost (behind requireAuth)
+          auth.ts                  # POST /api/auth/session
       test/
         escalation.test.ts
         buildRates.test.ts
+        session.test.ts           # sign/verify round-trip, expiry rejection
     extension/                    # ← frontend team's app (Vite + @crxjs/vite-plugin)
-      manifest.config.ts          # MV3 manifest — needs content_scripts + host_permissions added
+      manifest.config.ts          # MV3 manifest — needs content_scripts, host_permissions,
+                                   #   identity permission + oauth2 client block added
       src/
         popup/                    # existing baseline enable/disable toggle UI
         content/
           scrape.ts               # participant *email* scraping (+ MutationObserver)
-          poll.ts                 # tracks meetingStartedAt, polls server /api/cost
+          poll.ts                 # tracks meetingStartedAt, polls server /api/cost with the
+                                   #   session token, refreshes it silently on 401
           overlay.ts / overlay.css # Shadow-DOM floating panel (aggregate-only UI)
         options/
           index.html / options.ts # backend base URL + overlay on/off
@@ -186,6 +197,7 @@ real one, e.g.:
 export const API_ROUTES = {
   health: "/api/health",
   cost: "/api/cost",
+  authSession: "/api/auth/session",
 } as const;
 
 export interface HealthResponse {
@@ -215,10 +227,23 @@ export interface CostResponse {
   totalCost: number;
 }
 
+// See "Authentication & authorization" for the flow these two belong to.
+export interface AuthSessionRequest {
+  googleAccessToken: string;
+}
+
+export interface AuthSessionResponse {
+  sessionToken: string;
+  expiresAt: string;
+}
+
 export interface ApiError {
   error: string;
 }
 ```
+
+`POST /api/cost` also requires an `Authorization: Bearer <sessionToken>` header (from
+`AuthSessionResponse`) — that's transport-level, not part of the `CostRequest` body.
 
 Both apps import these from `@workation/shared` — the server to type its route handlers,
 the extension to type its `fetch` calls. Whoever changes a route or a field shape updates
@@ -288,23 +313,90 @@ client-side duplicates this):
 ### Routes — `src/routes/cost.ts` (types from `@workation/shared`)
 ```
 GET  /api/health   -> HealthResponse
-POST /api/cost     body: CostRequest   -> CostResponse
+POST /api/cost     body: CostRequest   -> CostResponse   (requires a valid session — see below)
 ```
 - 400 + `ApiError` on missing/malformed `emails` or `meetingStartedAt`.
-- `cors()` already wired in `src/index.ts` for the extension's origin. No auth in v1 — see
-  "Future work" below.
+- `cors()` already wired in `src/index.ts` for the extension's origin.
+- Gated by `requireAuth` middleware — see "Authentication & authorization" below.
+
+### 6. Auth — `src/auth/`, `src/middleware/requireAuth.ts`, `src/routes/auth.ts`
+Implementation pieces for the flow described in "Authentication & authorization":
+- `src/auth/google.ts` — `verifyGoogleAccessToken(token)`: calls Google's `tokeninfo` endpoint
+  (checks the token is valid and its `aud` matches our OAuth client id — rejects tokens
+  minted for a different app) and Google's `userinfo` endpoint (gets `email`,
+  `email_verified`, `hd`). Plain `fetch` — no new Google SDK dependency needed.
+- `src/auth/session.ts` — `createSessionToken(email)` / `verifySessionToken(token)`: our own
+  signed, short-lived JWT (one small dep, e.g. `jsonwebtoken`, HS256, secret from
+  `SESSION_JWT_SECRET`).
+- `src/routes/auth.ts` — `POST /api/auth/session` (see contract below).
+- `src/middleware/requireAuth.ts` — reads `Authorization: Bearer <sessionToken>`, verifies it
+  locally (no Google call), 401 + `ApiError` on missing/invalid/expired, attaches
+  `req.user = { email }`. Applied to `/api/cost`; **not** applied to `/api/health` or
+  `/api/auth/session` itself.
+
+---
+
+## Authentication & authorization
+
+**Goal**: only serve `/api/cost` to Chrome extension users signed in with a `callstack.com`
+Google Workspace account. **Threat model**: this is an internal, low-stakes tool — a correct
+org gate is enough. Explicitly **not** building (v1): token revocation/logout invalidation,
+replay protection, rate limiting, or auth audit logging. Short token expiries are the
+mitigation instead of a revocation list.
+
+### Google Cloud setup (do this first, outside the codebase)
+- Create an OAuth 2.0 Client ID (type: Chrome Extension) in a Google Cloud project tied to
+  the `callstack.com` Workspace.
+- Set the **OAuth consent screen to "Internal."** This is the primary enforcement layer —
+  Google refuses sign-in for anyone outside the org before a token ever reaches the backend.
+  The backend's own `hd === "callstack.com"` check (below) is defense-in-depth on top of
+  that, not the only gate — worth keeping in case the consent screen is ever
+  reconfigured or a second, less-trusted client is added later.
+- Scopes: `openid email profile` — identity only, nothing else.
+
+### Flow
+1. **Extension** (frontend team): manifest gets an `oauth2` block (`client_id`, the scopes
+   above) + the `identity` permission. Calls `chrome.identity.getAuthToken({ interactive:
+   true })` to get a Google access token — once at login, not on every poll.
+2. **Extension → backend, once per login/refresh**: `POST /api/auth/session` with that
+   access token.
+3. **Backend** verifies the token directly with Google (`src/auth/google.ts`), checks
+   `email_verified` and `hd === "callstack.com"`. Rejects (401) anyone else.
+4. **Backend mints its own session token** (`src/auth/session.ts`) — a short-lived signed
+   JWT (`{ email, exp }`, default TTL ~8h — a workday, so it doesn't expire mid-meeting) —
+   and returns it. This is the token actually used going forward, so steps 5+ never need to
+   call Google again.
+5. **Extension** sends `Authorization: Bearer <sessionToken>` on every `POST /api/cost` poll.
+   Backend's `requireAuth` middleware verifies it **locally** (signature + expiry, no
+   network call) — cheap enough for a ~3s polling interval.
+6. On a 401 (expired session), the extension calls `chrome.identity.getAuthToken({
+   interactive: false })` to refresh silently and re-run steps 2–4; it only prompts the user
+   interactively if the silent refresh fails.
+
+Note the session token's `email` (the signed-in user) is unrelated to the participant
+`emails` in `CostRequest` (the people in the Meet call) — one gates *who may call the API*,
+the other is *who the cost is calculated for*. Don't conflate them.
+
+`AuthSessionRequest`/`AuthSessionResponse` live in the shared contract above, alongside
+`CostRequest`/`CostResponse` — same file, same rule: change it, tell the other team.
 
 ---
 
 ## Extension — `apps/extension` (owned by the frontend team, summarized for context)
 
-- `manifest.config.ts` needs `content_scripts` matching `https://meet.google.com/*` and
-  `host_permissions` for the server's origin (dev: `http://localhost:3000/*`).
+- `manifest.config.ts` needs `content_scripts` matching `https://meet.google.com/*`,
+  `host_permissions` for the server's origin (dev: `http://localhost:3000/*`), the
+  `identity` permission, and an `oauth2` block (client id + scopes) — see "Authentication &
+  authorization" above.
+- A login step (popup or background) calls `chrome.identity.getAuthToken` and
+  `POST /api/auth/session`, then stores the resulting `sessionToken` (e.g.
+  `chrome.storage.session`).
 - `src/content/scrape.ts` scrapes participant **email addresses** (not names) from the Meet
   DOM with layered selector fallbacks + `MutationObserver`.
-- `src/content/poll.ts` tracks `meetingStartedAt`, POSTs `CostRequest` to
-  `${serverUrl}${API_ROUTES.cost}` every few seconds, passes the `CostResponse` straight to
-  the overlay — no math performed client-side.
+- `src/content/poll.ts` tracks `meetingStartedAt`, POSTs `CostRequest` (with
+  `Authorization: Bearer <sessionToken>`) to `${serverUrl}${API_ROUTES.cost}` every few
+  seconds, passes the `CostResponse` straight to the overlay — no math performed
+  client-side. On a 401, triggers a silent token refresh (step 6 above) before retrying.
 - `src/content/overlay.ts` renders a Shadow-DOM, aggregate-only panel (total cost, rate/min,
   elapsed timer, `matched/total` headcount, escalation badge). Never renders per-person data,
   because the server never sends it any.
@@ -317,16 +409,12 @@ POST /api/cost     body: CostRequest   -> CostResponse
   to the repo.
 - Rounding rates (done server-side, in `buildRates.ts`) still blunts precision on anything
   that *is* exposed, as defense in depth.
-- **v1 has no request authentication** — anyone who can reach the server's port can POST any
-  email list to `/api/cost`. Acceptable for now (internal/dev use, data is already
-  repo-visible), but not for a public deployment — see "Future work."
+- `/api/cost` requires a valid session (see "Authentication & authorization") scoped to
+  `callstack.com` accounts. `/api/health` stays open (no sensitive data in it).
 
-## Future work (explicitly out of scope right now)
-- **Google Sign-In + `@callstack.com` org restriction.** The extension will eventually
-  authenticate the user via Google OAuth, and the backend will verify the resulting token
-  and only serve requests from `callstack.com` Google Workspace accounts. This is a real
-  security layer to build later, not a stub to half-implement now — don't add partial auth
-  scaffolding (e.g. unused middleware, TODO'd token checks) until it's actually being built.
+## Later, not now
+- Token revocation/logout, replay protection, rate limiting, and auth audit logging — see
+  the threat-model note above; short session TTLs are the v1 mitigation instead.
 - Hot-reloading `db/*.json` without a server restart, if that turns out to matter.
 
 ## Open items to resolve during implementation
@@ -336,6 +424,9 @@ POST /api/cost     body: CostRequest   -> CostResponse
   to the average rate.
 - **Meet selectors for email**: verify against a live People panel which attribute/tooltip
   actually exposes participant email addresses (frontend team).
+- **GCP OAuth client + Internal consent screen**: someone needs to actually create this in
+  the callstack.com-linked Google Cloud project before the auth flow can be tested
+  end-to-end; note the client id once it exists (`config.ts` / `.env`).
 
 ---
 
@@ -376,4 +467,12 @@ pnpm --filter server test
    built once at startup. Review band-not-found log.
 6. `src/cost/escalation.ts` + unit tests — pure math, testable without any data files.
 7. `src/routes/cost.ts`, update `src/index.ts` to wire it up (replace the placeholder
-   `messages` demo route), verify with `curl`.
+   `messages` demo route), verify with `curl` (no auth yet at this point — add it next).
+8. Get the GCP OAuth client + Internal consent screen created (blocks end-to-end testing of
+   the next steps, not the code itself — can write 9–10 against the proposed shapes first).
+9. `src/auth/google.ts` + `src/auth/session.ts` + `session.test.ts` — token verification and
+   our own JWT sign/verify, unit-testable independent of a real Google token.
+10. `src/routes/auth.ts` + `src/middleware/requireAuth.ts`, apply it to `/api/cost`. Verify
+    end-to-end once the GCP client from step 8 exists: get a real access token, exchange it
+    at `/api/auth/session`, use the session token against `/api/cost`, confirm a
+    non-`callstack.com` account (or a tampered/expired session token) gets a 401.
