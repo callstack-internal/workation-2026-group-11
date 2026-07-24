@@ -1,60 +1,85 @@
-import type { Message } from "@workation/shared";
-import { createMessage, getHealth, getMessages } from "../api";
+// CallCost — popup logic
+// Handles the enable/disable (eye) toggle and persists the state.
+// No Google Meet / cost logic yet — this is the baseline UI only.
 
-const statusEl = document.getElementById("status") as HTMLSpanElement;
-const formEl = document.getElementById("message-form") as HTMLFormElement;
-const inputEl = document.getElementById("message-input") as HTMLInputElement;
-const listEl = document.getElementById("messages") as HTMLUListElement;
+const STORAGE_KEY = "callcost:enabled";
 
-function renderMessages(messages: Message[]): void {
-  listEl.replaceChildren();
-  for (const message of messages) {
-    const li = document.createElement("li");
-    li.textContent = message.text;
+const body = document.body;
+const toggle = document.getElementById("toggle") as HTMLButtonElement;
+const statusEl = document.getElementById("status") as HTMLParagraphElement;
+const hintEl = document.getElementById("hint") as HTMLParagraphElement;
 
-    const time = document.createElement("time");
-    time.dateTime = message.createdAt;
-    time.textContent = new Date(message.createdAt).toLocaleString();
-    li.appendChild(time);
+const COPY = {
+  on: {
+    status: "Tracking active",
+    hint: "CallCost is keeping an eye on your calls.",
+  },
+  off: {
+    status: "Paused",
+    hint: "Tracking is off. Tap the eye to resume.",
+  },
+} as const;
 
-    listEl.appendChild(li);
+// chrome.storage in the extension, with a localStorage fallback for plain web dev.
+const hasChromeStorage =
+  typeof chrome !== "undefined" && !!chrome.storage?.local;
+
+function loadEnabled(): Promise<boolean> {
+  return new Promise((resolve) => {
+    if (hasChromeStorage) {
+      chrome.storage.local.get({ [STORAGE_KEY]: true }, (res) => {
+        resolve(Boolean(res[STORAGE_KEY]));
+      });
+    } else {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      resolve(raw === null ? true : raw === "true");
+    }
+  });
+}
+
+function saveEnabled(enabled: boolean): void {
+  if (hasChromeStorage) {
+    chrome.storage.local.set({ [STORAGE_KEY]: enabled });
+  } else {
+    localStorage.setItem(STORAGE_KEY, String(enabled));
   }
 }
 
-async function refreshHealth(): Promise<void> {
+// Reflect state on the toolbar icon (best-effort; no-op outside the extension).
+function updateBadge(enabled: boolean): void {
+  if (typeof chrome === "undefined" || !chrome.action) return;
   try {
-    await getHealth();
-    statusEl.dataset.state = "ok";
-    statusEl.textContent = "connected";
+    chrome.action.setBadgeText({ text: enabled ? "" : "off" });
+    chrome.action.setBadgeBackgroundColor({ color: "#4b4d68" });
+    chrome.action.setTitle({
+      title: enabled ? "CallCost — tracking active" : "CallCost — paused",
+    });
   } catch {
-    statusEl.dataset.state = "error";
-    statusEl.textContent = "offline";
+    /* ignore */
   }
 }
 
-async function refreshMessages(): Promise<void> {
-  try {
-    const { messages } = await getMessages();
-    renderMessages(messages);
-  } catch {
-    // Leave the list as-is; the status badge already reflects connectivity.
-  }
+function render(enabled: boolean): void {
+  body.classList.toggle("is-disabled", !enabled);
+  toggle.setAttribute("aria-checked", String(enabled));
+  const copy = enabled ? COPY.on : COPY.off;
+  statusEl.textContent = copy.status;
+  hintEl.textContent = copy.hint;
 }
 
-formEl.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  const text = inputEl.value.trim();
-  if (!text) return;
+let enabled = true;
 
-  try {
-    await createMessage(text);
-    inputEl.value = "";
-    await refreshMessages();
-  } catch {
-    statusEl.dataset.state = "error";
-    statusEl.textContent = "send failed";
-  }
+function setEnabled(next: boolean): void {
+  enabled = next;
+  render(enabled);
+  saveEnabled(enabled);
+  updateBadge(enabled);
+}
+
+toggle.addEventListener("click", () => setEnabled(!enabled));
+
+void loadEnabled().then((initial) => {
+  enabled = initial;
+  render(enabled);
+  updateBadge(enabled);
 });
-
-void refreshHealth();
-void refreshMessages();
