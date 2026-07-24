@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workation</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Workation</h1>
+        <span id="status" class="status" data-state="pending">connecting…</span>
+      </header>
+
+      <form id="message-form">
+        <input
+          id="message-input"
+          type="text"
+          placeholder="Send a message to the server…"
+          autocomplete="off"
+          required
+        />
+        <button type="submit">Send</button>
+      </form>
+
+      <ul id="messages" class="messages"></ul>
+    </main>
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>
