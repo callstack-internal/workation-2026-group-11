@@ -1,6 +1,8 @@
 // Message contract between the Calendar content script and the background
 // service worker.
 
+import type { EventCostResponse } from "@workation/shared";
+
 export interface Attendee {
   email: string;
   responseStatus?: string;
@@ -24,11 +26,21 @@ export interface EventTiming {
   allDay: boolean;
 }
 
+/**
+ * Result of asking the backend to price the event. Kept separate from the
+ * attendees fetch so a costing failure never hides the attendee data.
+ */
+export type CostResult =
+  | { ok: true; data: EventCostResponse }
+  | { ok: false; error: string };
+
 export type AttendeesResponse =
   | {
       ok: true;
       attendees: Attendee[];
       summary?: string;
       timing: EventTiming;
+      /** Absent when the event has no usable duration (e.g. all-day). */
+      cost?: CostResult;
     }
   | { ok: false; error: string };

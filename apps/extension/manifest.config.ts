@@ -40,7 +40,11 @@ export function buildManifest(env: Record<string, string>) {
       128: "icons/icon128.png",
     },
     permissions: ["storage", "identity"],
-    host_permissions: ["https://www.googleapis.com/*"],
+    host_permissions: [
+      "https://www.googleapis.com/*",
+      // CallCost backend (keep in sync with SERVER_URL in src/config.ts).
+      "http://localhost:3000/*",
+    ],
     background: {
       service_worker: "src/background.ts",
       type: "module",

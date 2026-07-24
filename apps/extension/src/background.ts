@@ -4,9 +4,12 @@
 // Content scripts can't do either directly, so they message us with an event
 // ID and we return the attendee list.
 
+import { API_ROUTES, type EventCostResponse } from "@workation/shared";
+import { SERVER_URL } from "./config";
 import type {
   Attendee,
   AttendeesResponse,
+  CostResult,
   EventTiming,
   GetAttendeesRequest,
 } from "./messaging";
@@ -84,22 +87,57 @@ async function fetchEvent(
   return res.json();
 }
 
+/**
+ * Ask the CallCost backend to price the event from its attendees and duration.
+ * Resources (meeting rooms) are excluded — they aren't people with a salary.
+ */
+async function fetchCost(
+  attendees: Attendee[],
+  durationSeconds: number
+): Promise<EventCostResponse> {
+  const emails = attendees.filter((a) => !a.resource).map((a) => a.email);
+  const res = await fetch(`${SERVER_URL}${API_ROUTES.eventCost}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ emails, durationSeconds }),
+  });
+  if (!res.ok) {
+    throw new Error(`Cost API ${res.status}: ${await res.text()}`);
+  }
+  return res.json() as Promise<EventCostResponse>;
+}
+
+async function priceEvent(
+  attendees: Attendee[],
+  timing: EventTiming
+): Promise<CostResult | undefined> {
+  if (timing.durationSeconds == null) return undefined; // all-day / no duration
+  try {
+    const data = await fetchCost(attendees, timing.durationSeconds);
+    return { ok: true, data };
+  } catch (err) {
+    return { ok: false, error: err instanceof Error ? err.message : String(err) };
+  }
+}
+
 chrome.runtime.onMessage.addListener((msg: GetAttendeesRequest, _sender, sendResponse) => {
   if (msg?.type !== "getAttendees") return;
 
   fetchEvent(msg.eventId)
-    .then((event) => {
+    .then(async (event) => {
       const attendees: Attendee[] = (event.attendees ?? []).map((a) => ({
         email: a.email,
         responseStatus: a.responseStatus,
         organizer: !!a.organizer,
         resource: !!a.resource,
       }));
+      const timing = computeTiming(event.start, event.end);
       const response: AttendeesResponse = {
         ok: true,
         attendees,
         summary: event.summary,
-        timing: computeTiming(event.start, event.end),
+        timing,
+        cost: await priceEvent(attendees, timing),
       };
       sendResponse(response);
     })

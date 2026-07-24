@@ -6,6 +6,7 @@
 // screen (long guest lists are collapsed and not fully in the DOM).
 
 import type { AttendeesResponse, GetAttendeesRequest } from "../messaging";
+import { emitCost } from "./costBridge";
 
 // The popup's RSVP buttons/containers carry a `jslog` attribute whose `2:[...]`
 // array starts with the event ID, e.g.:
@@ -33,21 +34,32 @@ function scan(): void {
   }
   if (found.eventId === lastEventId) return;
   lastEventId = found.eventId;
+  const eventId = found.eventId;
+
+  emitCost({ status: "loading", eventId });
 
   const request: GetAttendeesRequest = {
     type: "getAttendees",
-    eventId: found.eventId,
+    eventId,
   };
 
   chrome.runtime.sendMessage(request, (resp: AttendeesResponse) => {
     if (chrome.runtime.lastError) {
       console.error("[CallCost]", chrome.runtime.lastError.message);
+      emitCost({ status: "error", eventId, message: chrome.runtime.lastError.message ?? "Messaging error" });
       return;
     }
     if (!resp?.ok) {
       console.error("[CallCost] Failed:", resp?.error);
+      emitCost({ status: "error", eventId, message: resp?.error ?? "Fetch failed" });
       return;
     }
+    if (resp.cost?.ok) {
+      emitCost({ status: "ok", eventId, result: resp.cost.data });
+    } else {
+      emitCost({ status: "error", eventId, message: resp.cost?.error ?? "No cost available" });
+    }
+
     // Exclude anyone who declined; keep accepted, tentative, and
     // not-yet-responded (needsAction / unset).
     const emails = resp.attendees
