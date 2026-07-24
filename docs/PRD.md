@@ -1,5 +1,33 @@
 # CallCost — Chrome extension + backend for Google Meet cost tracking
 
+> ## ⚠️ Amendment — 2026-07-24: request auth added (`@callstack.com`-only)
+>
+> The "Future work" item below — Google Sign-In + org restriction — is now implemented,
+> earlier than originally planned, because the backend was reachable by anyone who could
+> hit its port. **`POST /api/event-cost` now requires a valid Google OAuth access token for
+> a verified `@callstack.com` account; unauthenticated or non-Callstack requests get
+> `401`/`403` with no cost data.**
+>
+> **How, without Google Workspace admin access:** the extension already obtains an OAuth
+> access token via `chrome.identity` (for the Calendar API). It now also requests the
+> `userinfo.email` scope and forwards that same token as `Authorization: Bearer <token>` on
+> every `/api/event-cost` call. The backend (`apps/server/src/auth.ts`) validates the token
+> against Google's public `https://oauth2.googleapis.com/tokeninfo` endpoint — checking the
+> `aud` claim matches CallCost's own OAuth client ID (so a token minted for a *different*
+> app can't be replayed here), `email_verified === true`, and the email's domain is exactly
+> `callstack.com`. This is pure server-side verification against Google's identity data; it
+> needs no `admin.google.com` access, domain-wide delegation, or Workspace API. A successful
+> verification is cached in memory for 60s per token to avoid hammering Google's endpoint
+> given the extension polls every few seconds.
+>
+> **Also added:** CORS on the server is now locked to the extension's fixed origin
+> (`chrome-extension://nblafpggejpkjeelebiigcdghkceknea`, stable because the manifest pins a
+> `key`) instead of the previous open `cors()`. `GET /api/health` remains public (standard
+> for a liveness check).
+>
+> **Setup:** `apps/server/.env` needs `GOOGLE_OAUTH_CLIENT_ID` set to the **same** value as
+> `apps/extension/.env`'s — see `apps/server/.env.example`.
+
 > ## ⚠️ Amendment — 2026-07-24: attendee source changed to the Google Calendar API
 >
 > The sections below describe getting attendees by scraping the **Google Meet** DOM
@@ -358,16 +386,11 @@ POST /api/cost     body: CostRequest   -> CostResponse
   to the repo.
 - Rounding rates (done server-side, in `buildRates.ts`) still blunts precision on anything
   that *is* exposed, as defense in depth.
-- **v1 has no request authentication** — anyone who can reach the server's port can POST any
-  email list to `/api/cost`. Acceptable for now (internal/dev use, data is already
-  repo-visible), but not for a public deployment — see "Future work."
+- **`/api/event-cost` now requires a verified `@callstack.com` Google account** (see the
+  2026-07-24 auth amendment at the top of this doc) — `apps/server/src/auth.ts`. `/api/health`
+  is intentionally still public.
 
 ## Future work (explicitly out of scope right now)
-- **Google Sign-In + `@callstack.com` org restriction.** The extension will eventually
-  authenticate the user via Google OAuth, and the backend will verify the resulting token
-  and only serve requests from `callstack.com` Google Workspace accounts. This is a real
-  security layer to build later, not a stub to half-implement now — don't add partial auth
-  scaffolding (e.g. unused middleware, TODO'd token checks) until it's actually being built.
 - Hot-reloading `db/*.json` without a server restart, if that turns out to matter.
 
 ## Open items to resolve during implementation

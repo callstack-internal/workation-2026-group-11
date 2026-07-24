@@ -63,13 +63,18 @@ async function fetchEvent(
   eventId: string,
   calendarId = "primary"
 ): Promise<{
-  summary?: string;
-  attendees?: Attendee[];
-  start?: EventDateTime;
-  end?: EventDateTime;
-  guestsCanSeeOtherGuests?: boolean;
+  event: {
+    summary?: string;
+    attendees?: Attendee[];
+    start?: EventDateTime;
+    end?: EventDateTime;
+    guestsCanSeeOtherGuests?: boolean;
+  };
+  // The token that ended up working — reused to authenticate the cost
+  // request so we don't need a second chrome.identity round trip.
+  token: string;
 }> {
-  const token = await getToken(true);
+  let token = await getToken(true);
   const url = `${API_BASE}/calendars/${encodeURIComponent(
     calendarId
   )}/events/${encodeURIComponent(eventId)}`;
@@ -79,28 +84,36 @@ async function fetchEvent(
   if (res.status === 401) {
     // Token expired/revoked — drop it and retry once with a fresh one.
     await removeCachedToken(token);
-    const fresh = await getToken(true);
-    res = await fetch(url, { headers: { Authorization: `Bearer ${fresh}` } });
+    token = await getToken(true);
+    res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
   }
 
   if (!res.ok) {
     throw new Error(`API ${res.status}: ${await res.text()}`);
   }
-  return res.json();
+  return { event: await res.json(), token };
 }
 
 /**
  * Ask the CallCost backend to price the event from its attendees and duration.
  * Resources (meeting rooms) are excluded — they aren't people with a salary.
+ *
+ * The access token is forwarded as a Bearer credential so the backend can
+ * verify (via Google) that the caller is a real @callstack.com account
+ * before it does any pricing work.
  */
 async function fetchCost(
   attendees: Attendee[],
-  durationSeconds: number
+  durationSeconds: number,
+  token: string
 ): Promise<EventCostResponse> {
   const emails = attendees.filter((a) => !a.resource).map((a) => a.email);
   const res = await fetch(`${SERVER_URL}${API_ROUTES.eventCost}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({ emails, durationSeconds }),
   });
   if (!res.ok) {
@@ -111,11 +124,12 @@ async function fetchCost(
 
 async function priceEvent(
   attendees: Attendee[],
-  timing: EventTiming
+  timing: EventTiming,
+  token: string
 ): Promise<CostResult | undefined> {
   if (timing.durationSeconds == null) return undefined; // all-day / no duration
   try {
-    const data = await fetchCost(attendees, timing.durationSeconds);
+    const data = await fetchCost(attendees, timing.durationSeconds, token);
     return { ok: true, data };
   } catch (err) {
     return { ok: false, error: err instanceof Error ? err.message : String(err) };
@@ -126,7 +140,7 @@ chrome.runtime.onMessage.addListener((msg: GetAttendeesRequest, _sender, sendRes
   if (msg?.type !== "getAttendees") return;
 
   fetchEvent(msg.eventId)
-    .then(async (event) => {
+    .then(async ({ event, token }) => {
       // `guestsCanSeeOtherGuests` is present (false) only when the organizer
       // hid the guest list; otherwise it's omitted and defaults to visible.
       const status: AttendeeListStatus =
@@ -154,7 +168,7 @@ chrome.runtime.onMessage.addListener((msg: GetAttendeesRequest, _sender, sendRes
         summary: event.summary,
         timing,
         cost:
-          status === "complete" ? await priceEvent(attendees, timing) : undefined,
+          status === "complete" ? await priceEvent(attendees, timing, token) : undefined,
       };
       sendResponse(response);
     })

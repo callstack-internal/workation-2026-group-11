@@ -82,7 +82,12 @@ export function buildManifest(env: Record<string, string>) {
     ],
     oauth2: {
       client_id: clientId,
-      scopes: ["https://www.googleapis.com/auth/calendar.events.readonly"],
+      scopes: [
+        "https://www.googleapis.com/auth/calendar.events.readonly",
+        // Lets the backend verify (via Google's tokeninfo endpoint) that the
+        // caller is a real, verified @callstack.com account — see auth.ts.
+        "https://www.googleapis.com/auth/userinfo.email",
+      ],
     },
     // Meme shown in place of the cost label when the guest list is hidden.
     // Bundled locally so it renders under Calendar's strict CSP (an external

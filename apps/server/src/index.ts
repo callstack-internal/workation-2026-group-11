@@ -9,6 +9,7 @@ import {
   type MessagesResponse,
 } from "@workation/shared";
 import { computeEventCost } from "./eventCost.js";
+import { requireCallstackAuth } from "./auth.js";
 
 const PORT = Number(process.env.PORT ?? 3000);
 const startedAt = Date.now();
@@ -18,8 +19,10 @@ const messages: Message[] = [];
 
 const app = express();
 
-// Allow the Chrome extension (and local dev tools) to call the API.
-app.use(cors());
+// Only the CallCost extension's fixed origin may call this API (its manifest
+// pins a `key`, so the extension ID — and this origin — never changes).
+const EXTENSION_ORIGIN = "chrome-extension://nblafpggejpkjeelebiigcdghkceknea";
+app.use(cors({ origin: EXTENSION_ORIGIN }));
 app.use(express.json());
 
 app.get(API_ROUTES.health, (_req, res) => {
@@ -53,7 +56,7 @@ app.post(API_ROUTES.messages, (req, res) => {
   res.status(201).json(message);
 });
 
-app.post(API_ROUTES.eventCost, (req, res) => {
+app.post(API_ROUTES.eventCost, requireCallstackAuth, (req, res) => {
   const { status, body } = computeEventCost(req.body);
   res.status(status).json(body);
 });
