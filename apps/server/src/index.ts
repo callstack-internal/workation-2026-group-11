@@ -8,6 +8,7 @@ import {
   type Message,
   type MessagesResponse,
 } from "@workation/shared";
+import { computeEventCost } from "./eventCost.js";
 
 const PORT = Number(process.env.PORT ?? 3000);
 const startedAt = Date.now();
@@ -50,6 +51,11 @@ app.post(API_ROUTES.messages, (req, res) => {
   };
   messages.unshift(message);
   res.status(201).json(message);
+});
+
+app.post(API_ROUTES.eventCost, (req, res) => {
+  const { status, body } = computeEventCost(req.body);
+  res.status(status).json(body);
 });
 
 app.listen(PORT, () => {
