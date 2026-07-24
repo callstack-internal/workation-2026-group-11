@@ -1,0 +1,222 @@
+:root {
+  --bg: #0f1020;
+  --surface: #17182b;
+  --surface-2: #1e2036;
+  --text: #f4f4fb;
+  --muted: #9a9cb8;
+  --brand-a: #6366f1;
+  --brand-b: #8b5cf6;
+  --on: #34d399;
+  --on-soft: rgba(52, 211, 153, 0.16);
+  --off: #4b4d68;
+  --ring: rgba(255, 255, 255, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  width: 320px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(
+      130% 90% at 50% -10%,
+      rgba(139, 92, 246, 0.22),
+      transparent 60%
+    ),
+    var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  padding: 16px 18px 14px;
+}
+
+/* ---------- brand header ---------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-a), var(--brand-b));
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.brand__name {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+}
+
+.brand__tag {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  padding: 3px 7px;
+  border: 1px solid var(--ring);
+  border-radius: 999px;
+}
+
+/* ---------- stage / toggle ---------- */
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 26px 0 20px;
+}
+
+.toggle {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 1px solid var(--ring);
+  background: linear-gradient(160deg, var(--surface-2), var(--surface));
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.18s ease, box-shadow 0.28s ease,
+    border-color 0.28s ease, background 0.28s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.toggle:hover {
+  transform: translateY(-1px);
+}
+
+.toggle:active {
+  transform: scale(0.96);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--brand-a);
+  outline-offset: 3px;
+}
+
+.toggle__glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    circle at 50% 40%,
+    rgba(52, 211, 153, 0.35),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.toggle .icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* default (enabled) state */
+.toggle .icon--on {
+  opacity: 1;
+  transform: scale(1);
+  color: var(--on);
+}
+.toggle .icon--off {
+  opacity: 0;
+  transform: scale(0.85);
+  color: var(--off);
+}
+
+/* enabled visual accents */
+body:not(.is-disabled) .toggle {
+  border-color: rgba(52, 211, 153, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35),
+    0 0 0 6px rgba(52, 211, 153, 0.06);
+}
+body:not(.is-disabled) .toggle__glow {
+  opacity: 1;
+}
+
+/* disabled state swaps the icons + mutes everything */
+body.is-disabled .toggle {
+  background: linear-gradient(160deg, #191a2b, #131426);
+}
+body.is-disabled .toggle .icon--on {
+  opacity: 0;
+  transform: scale(0.85);
+}
+body.is-disabled .toggle .icon--off {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------- status text ---------- */
+.status {
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.hint {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+  max-width: 220px;
+  line-height: 1.45;
+}
+
+body.is-disabled .status {
+  color: var(--muted);
+}
+
+/* ---------- footer ---------- */
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ring);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.foot__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--on);
+  box-shadow: 0 0 0 3px var(--on-soft);
+  transition: background 0.28s ease, box-shadow 0.28s ease;
+}
+
+body.is-disabled .foot__dot {
+  background: var(--off);
+  box-shadow: 0 0 0 3px rgba(75, 77, 104, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
