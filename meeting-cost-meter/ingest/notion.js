@@ -28,6 +28,16 @@ function multiSelect(prop) {
   return (prop?.multi_select || []).map((o) => o.name);
 }
 
+function propertyText(prop) {
+  return (
+    prop?.select?.name ||
+    prop?.status?.name ||
+    plainText(prop?.rich_text) ||
+    plainText(prop?.title) ||
+    ''
+  );
+}
+
 /** Map one Notion page (DB row) to a flat employee record using config.properties. */
 export function mapEmployee(page, props) {
   const p = page.properties || {};
@@ -38,6 +48,7 @@ export function mapEmployee(page, props) {
   const alias = plainText(p[props.alias]?.rich_text);
   const teams = multiSelect(p[props.team]);
   const roleTags = multiSelect(p[props.roleSeniority]);
+  const contractType = props.contractType ? propertyText(p[props.contractType]) : '';
 
   if (!firstName && !lastName && !title && !email) return null; // empty/placeholder row
 
@@ -49,6 +60,7 @@ export function mapEmployee(page, props) {
     aliases: alias ? [alias] : [],
     teams,
     roleTags,
+    contractType,
   };
 }
 

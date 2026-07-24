@@ -2,11 +2,56 @@
 //
 // ⚠ This is the fragile part: Meet's markup is obfuscated and changes often, so
 // we try several strategies and fail soft. If auto-detection returns nothing,
-// the extension falls back to a manual roster (set in the overlay) or mock data.
+// real mode bills nobody and offers a manual roster; mock data is explicit-only.
 // Use `window.__MCM.scrape.debugDump()` in the console to discover new selectors.
 (function () {
   const G = typeof window !== 'undefined' ? window : globalThis;
   const MCM = (G.__MCM = G.__MCM || {});
+
+  // Real Meet calls use a three-four-three letter code in the path. Landing,
+  // lookup, new-call, and settings routes are not meetings and must never
+  // activate the overlay or its ledger.
+  const MEETING_PATH_RE = /^\/([a-z]{3}-[a-z]{4}-[a-z]{3})\/?$/i;
+
+  function meetingCodeFromPath(pathname) {
+    return String(pathname || '').match(MEETING_PATH_RE)?.[1]?.toLowerCase() || null;
+  }
+
+  function isMeetingPath(pathname) {
+    return meetingCodeFromPath(pathname) != null;
+  }
+
+  const MEETING_ENDED_RE =
+    /^(?:you(?: have|['’]ve)? left (?:the )?(?:meeting|call)|(?:this |the )?(?:meeting|call) (?:has )?ended)$/i;
+
+  function isMeetingEndedText(text) {
+    return MEETING_ENDED_RE.test(String(text || '').replace(/\s+/g, ' ').trim());
+  }
+
+  function hasPostMeetingControls(labels) {
+    const normalized = (labels || []).map((label) =>
+      String(label || '').replace(/\s+/g, ' ').trim().toLowerCase(),
+    );
+    return (
+      normalized.some((label) => label === 'rejoin') &&
+      normalized.some((label) => label === 'return to home screen')
+    );
+  }
+
+  function isMeetingEnded() {
+    if (typeof G.__MCM_FORCE_MEETING_ENDED === 'boolean') {
+      return G.__MCM_FORCE_MEETING_ENDED;
+    }
+    if (typeof document === 'undefined') return false;
+    const headings = document.querySelectorAll('h1, h2, h3, [role="heading"]');
+    for (const heading of headings) {
+      if (isMeetingEndedText(heading.textContent)) return true;
+    }
+    const buttonLabels = [...document.querySelectorAll('button, [role="button"]')].map(
+      (button) => button.getAttribute('aria-label') || button.textContent,
+    );
+    return hasPostMeetingControls(buttonLabels);
+  }
 
   // Strings that show up in tiles/roster but are not people.
   const NOT_A_NAME = /^(you|presenting|pinned|more options|mute|remove|meeting details|in this call|contributors|\d+)$/i;
@@ -148,5 +193,18 @@
     console.groupEnd();
   }
 
-  MCM.scrape = { getParticipants, onChange, setManualRoster, setCustomSelector, debugDump, looksLikeName, cleanName };
+  MCM.scrape = {
+    getParticipants,
+    onChange,
+    setManualRoster,
+    setCustomSelector,
+    debugDump,
+    looksLikeName,
+    cleanName,
+    meetingCodeFromPath,
+    isMeetingPath,
+    isMeetingEndedText,
+    hasPostMeetingControls,
+    isMeetingEnded,
+  };
 })();

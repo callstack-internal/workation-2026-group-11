@@ -51,11 +51,23 @@ async function loadFromLocal() {
   console.log(`Reading employees from ${path.relative(ROOT, csvPath)}…`);
   const employees = csvToEmployees(fs.readFileSync(csvPath, 'utf8'), config.local.csvColumns);
 
-  const pdfSources = (config.local.pdfs || []).map((p) => {
+  const pdfSources = [];
+  for (const p of config.local.pdfs || []) {
     const abs = path.resolve(ROOT, p.path);
+    if (!fs.existsSync(abs)) {
+      if (p.optional) {
+        console.warn(`Optional salary PDF not found: ${path.relative(ROOT, abs)} (${p.section})`);
+        continue;
+      }
+      throw new Error(`Required salary PDF not found: ${path.relative(ROOT, abs)}`);
+    }
     console.log(`Reading ${path.relative(ROOT, abs)} (${p.section})…`);
-    return { data: new Uint8Array(fs.readFileSync(abs)), section: p.section, filename: path.basename(abs) };
-  });
+    pdfSources.push({
+      data: new Uint8Array(fs.readFileSync(abs)),
+      section: p.section,
+      filename: path.basename(abs),
+    });
+  }
   return { employees, pdfSources };
 }
 
@@ -77,15 +89,23 @@ async function main() {
     console.warn('\n  ⚠  No salary bands parsed. Run `npm run ingest:dump-pdf` and tune ingest/pdf.js.');
   }
 
-  const { people, defaultRatePerMinute, matchedCount, unmatched } = buildRates({
+  const { people, defaultRatePerMinute, matchedCount, estimatedCount, unmatched } = buildRates({
     employees,
     salaryTable,
     config,
   });
 
   console.log(`\nMatched ${matchedCount}/${employees.length} employees to a salary band.`);
+  if (estimatedCount) {
+    console.log(
+      `${estimatedCount} matched rates use the configured "${config.contractType}" contract-type assumption.`,
+    );
+  }
   if (unmatched.length) {
-    console.log(`${unmatched.length} without a band (will use the average rate at runtime):`);
+    const fallback = defaultRatePerMinute
+      ? `will use the explicit ${defaultRatePerMinute} ${config.currency}/min fallback`
+      : 'have no configured rate and will be excluded from cost with a visible warning';
+    console.log(`${unmatched.length} without a band (${fallback}):`);
     for (const u of unmatched.slice(0, 25)) {
       console.log(`  - [${u.classified.section}] role="${u.classified.roleFamily}" level="${u.classified.level}"`);
     }
@@ -96,6 +116,14 @@ async function main() {
     generatedAt: new Date().toISOString().slice(0, 10),
     currency: config.currency,
     defaultRatePerMinute,
+    coverage: {
+      employeeCount: employees.length,
+      matchedCount,
+      estimatedCount,
+      unmatchedCount: unmatched.length,
+      contractTypeAssumption: config.contractType,
+      hasExplicitFallback: defaultRatePerMinute != null,
+    },
     people,
   };
 

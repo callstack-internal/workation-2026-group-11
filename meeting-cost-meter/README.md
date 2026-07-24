@@ -9,20 +9,20 @@ meetings *feel* expensive so people wrap up sooner.
 ## How it works
 
 ```
-Notion (token + salary PDFs)                 Chrome (no token, no salaries)
+Notion/CSV + salary PDFs                     Chrome (no token or raw salary bands)
 ┌──────────────────────────────┐  rates.json  ┌────────────────────────────────┐
-│ ingest/  — run once, on your  │ ───────────► │ extension/ — MV3, vanilla JS    │
-│ machine, with @notionhq/client│  name→rate   │ scrape → match → cost → overlay │
+│ ingest/ — run locally once    │ ───────────► │ extension/ — MV3, vanilla JS    │
+│ parse → classify → round rate │  name→rate   │ scrape → match → ledger → UI    │
 └──────────────────────────────┘              └────────────────────────────────┘
 ```
 
 Two stages, deliberately split for privacy:
 
 1. **`ingest/` (build-time bake).** A Node script queries the *Current Employees* Notion
-   database, downloads and parses the two *Salary ranges* PDFs, and writes a minimal
+   database (or CSV), downloads/reads the available *Salary ranges* PDFs, and writes a minimal
    `extension/data/rates.json` — just **normalized name keys → a rounded per-minute rate**,
-   plus a company-average fallback. No token, no salary bands, and no PDFs ever reach the
-   browser.
+   plus coverage metadata and an optional explicitly configured company fallback. No token,
+   raw salary bands, or PDFs reach the browser.
 2. **`extension/` (the Chrome extension).** Dependency-free content scripts that scrape the
    Meet participant list, match names to baked rates, run the escalating-cost math, and draw
    an **aggregate-only** overlay (total, rate/min, elapsed, headcount — never individual
@@ -50,9 +50,16 @@ token (permission issue): any regular Notion member can still export the data.
 1. In Notion, open *Current Employees* → `•••` → *Export* → CSV. Save it as
    `ingest/data/employees.csv` (the CSV column names are mapped in
    `config.local.csvColumns`).
-2. Download the salary PDFs and list them in `config.local.pdfs`
-   (default: `ingest/data/salary-delivery.pdf`).
+2. Download the salary PDFs and list them in `config.local.pdfs`. Delivery is required at
+   `ingest/data/salary-delivery.pdf`; Business is picked up automatically from
+   `ingest/data/salary-business.pdf` when available.
 3. `ingest/data/` is gitignored — real employee data never gets committed.
+
+The supplied employee export has no contract-type column. The checked-in decision is therefore
+`"contractType": "average"`: each matched band uses the midpoint between its B2B and CoE
+versions and the UI marks those rates as estimates. For exact per-person rates, add the real
+CSV/Notion property name to `csvColumns.contractType` or `properties.contractType`; recognized
+values include `B2B`, `CoE`, `Contract of Employment`, and `UoP`.
 
 **`"notion"` — live API.** Create an internal integration at
 <https://www.notion.so/my-integrations>, **share both pages with it** (*List of employees*
@@ -78,9 +85,11 @@ monthly/annual, `levelTokens`, `teamToSection`, `labelAliases`) and the heuristi
 npm run ingest
 ```
 
-This writes `extension/data/rates.json` and logs how many employees matched a band. Anyone
-who didn't match (role/level not found in a PDF) falls back to the average rate at runtime —
-review that list and extend `labelAliases` if needed.
+This writes `extension/data/rates.json` and logs how many employees matched a band. A person
+without a salary band has no rate and is excluded from the cost with a visible “partial
+estimate” warning. To use a defensible company-wide fallback, set `fallbackAnnualGross` to an
+explicit approved figure; the ingest never derives a fallback from only the employees that
+happened to match.
 
 > `extension/data/rates.json` is **gitignored** — it's derived salary data. Don't commit it.
 
@@ -93,6 +102,8 @@ review that list and extend `labelAliases` if needed.
 | `hoursPerYear`                      | Working hours/year for the hourly conversion   | 2016    |
 | `overheadMultiplier`                | Employer overhead (benefits/taxes); 1.0 = none | 1.0     |
 | `rateRoundingSignificantDigits`     | Rounding to blunt salary precision             | 2       |
+| `contractType`                      | Missing per-person contract assumption         | average |
+| `fallbackAnnualGross`               | Approved fallback for unknown bands; null=none  | null    |
 
 `ratePerMinute = (bandPoint × 12? × overhead) / (hoursPerYear × 60)`.
 
@@ -102,23 +113,26 @@ review that list and extend `labelAliases` if needed.
 2. **Load unpacked** → select the `extension/` folder.
 3. Join a Google Meet call. The overlay appears top-right.
 
-Out of the box (before you run the ingest) the extension uses the committed
-`extension/data/rates.mock.json` (fake names/rates) so you can demo it immediately. Once
-`rates.json` exists it's preferred automatically.
+Real mode requires the locally generated `extension/data/rates.json`. If it is absent or
+unreadable, the overlay says **Real rates unavailable** and does not calculate a cost. Demo
+rates are loaded only when **Mock mode** is explicitly enabled, so fake values cannot silently
+appear in a real meeting.
 
 - **Toggle overlay:** click the toolbar icon, or press `Alt+Shift+C` (e.g. before a
   screen-share).
-- **Settings:** right-click the icon → *Options* to tune the escalation curve, matching, and
-  mock mode.
+- **Currency:** use the PLN/USD button in the overlay. Conversion uses the latest official
+  NBP table-A USD midpoint, cached locally; no hard-coded exchange rate is used.
+- **Settings:** right-click the icon → *Options* to tune escalation, matching, mock mode, and
+  the USD cost-alert thresholds.
 
 ### Mock mode (demo without any real data)
 
 Options → **Mock mode** runs the whole pipeline on fake data: a simulated roster (people
 join at minute 2/4/6…, one steps out and comes back), the committed fake rates, and an
 accelerated clock (default 60× — an hour of "meeting" per real minute). It works on any
-`meet.google.com` tab without joining a call, and the overlay shows a **MOCK** badge so the
-numbers can't be mistaken for real ones. There is also a standalone demo page in
-`extension/demo/` with interactive time controls.
+Meet conference-code page, while home routes such as `/landing` stay idle. The overlay shows
+a **MOCK** badge so the numbers can't be mistaken for real ones. There is also a standalone
+demo page in `extension/demo/` with interactive time controls.
 
 ### When a name isn't recognized
 
@@ -144,31 +158,51 @@ emails. Enable *Use Google Calendar for exact matching* in Options after a one-t
 The extension then resolves the current Meet code to its calendar event
 (`chrome.identity` + `calendar.readonly`), matches invitee emails exactly against the baked
 email keys, and uses DOM scraping only for *presence* (who is actually in the room). If
-scraping breaks entirely, all non-declined invitees are counted; ad-hoc meetings with no
-event fall back to name matching automatically.
+scraping returns nobody, nobody is billed: Calendar invitees are never treated as proof of
+attendance. Ad-hoc meetings with no event use name matching automatically.
 
 ### The escalation ("bump")
 
 ```
 multiplier m(t) = 1                       for t ≤ grace period
                 = 1 + α·(t − grace)       after, capped at maxMultiplier
-total           = base_rate/min × t × m(t)
+increment       = roster_rate/min × ∫m(t)dt
+total           = sum of all roster-period increments
 ```
 
 Defaults: grace `30 min`, `α = 0.05/min`, cap `×4` → ×1.75 at 45 min, ×2.5 at 60 min. All
-adjustable on the Options page. The overlay turns amber then red as the penalty climbs.
+adjustable on the Options page. Timing starts only after a participant roster is detected.
+When someone joins or leaves, the new room rate affects only future seconds; earlier cost is
+never recalculated or reset. Meet's post-call screen freezes the final cost and elapsed time
+and stops any red alert blinking; Rejoin resumes without charging the time spent outside the
+call. The ledger is saved locally so a page reload keeps the total.
+
+### Cost colors
+
+The overlay background and toolbar icon are green by default, yellow above `$10`, orange above
+`$20`, and red above `$30`; red blinks. All three strictly-greater-than thresholds live in one
+`alertThresholdsUsd` setting and are editable together in Options. Threshold comparisons are
+always in USD even while the overlay displays PLN.
 
 ## Known limitations
 
 - **Name matching by default.** Without the Calendar setup, matching is display-name-based
-  (diacritics/word-order handled, plus overrides/suggestions above). Unmatched attendees use
-  the average rate and are counted separately (`8 in call (6 matched)`).
+  (diacritics/word-order handled, plus overrides/suggestions above). Unknown rates are excluded
+  and clearly marked; only an explicitly configured company fallback can estimate them.
 - **Meet DOM is fragile.** `extension/content/scrape.js` tries several selector strategies and
   fails soft (warning in the console when it finds nobody). When Meet changes its markup, run
   `window.__MCM.scrape.debugDump()` and set a custom selector in Options;
   `test/fixtures/meet-people-panel.html` is a reference snapshot.
-- **Only the Delivery salary PDF is wired up.** Business-team employees fall back to the
-  average rate until a Business PDF is added to `config.local.pdfs` (or the Notion page).
+- **The Business salary PDF is not present locally.** The optional path is already configured,
+  but Business-team rates stay unknown until `ingest/data/salary-business.pdf` is supplied (or
+  the Notion source exposes that attachment). No Business bands are invented.
+- **Contract type is currently an assumption.** The available employee CSV has no contract
+  type, so matched rates use the B2B/CoE midpoint and are labeled as estimates.
+- **Calendar OAuth still needs a real client ID.** Calendar matching remains disabled by
+  default until the placeholder in `extension/manifest.json` is replaced.
+- **Controlled live-Meet validation is still required before wider use.** Unit tests cover
+  parsing, matching, ledger integration, currency conversion, and thresholds, but Meet DOM
+  changes can only be confirmed in a real call.
 - **PDF parsing is heuristic** and must be tuned to the real layout (see step 1).
 
 ## Testing
@@ -184,12 +218,13 @@ loaded into a fake-DOM VM sandbox (`test/load-mcm.js`) for the extension's conte
 
 ```
 ingest/     notion.js · pdf.js · parse-salary.js · build-rates.js · index.js · dump-pdf-text.js · config.json
-extension/  manifest.json · content/{scrape,match,cost,overlay,main}.js · background/ · options/ · data/
+extension/  manifest.json · shared/settings.js · content/{scrape,match,cost,currency,overlay,main}.js · background/ · options/ · data/
 test/       *.test.js · fixtures/
 ```
 
 ## Privacy
 
-This tool reads compensation data. Keep it internal: `rates.json` stays out of git, the
-overlay shows only aggregate numbers, and per-person rates are rounded. Treat the baked file
-as confidential.
+This tool reads compensation data. Keep it internal: `rates.json` stays out of git and
+per-person rates are rounded, but the generated file still contains employee identity keys and
+rate proxies so the browser can match locally. The overlay shows only aggregate numbers. Treat
+the baked file and any packaged extension containing it as confidential.

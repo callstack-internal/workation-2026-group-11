@@ -5,6 +5,9 @@ node_modules/
 # Local planning transcripts can contain account details or copied production data.
 poc/
 
+# Unrelated local workshop checkout; never stage it with this extension.
+workation-2026-group-11/
+
 # Derived salary data — never commit. Regenerate with `npm run ingest`.
 extension/data/rates.json
 

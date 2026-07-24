@@ -54,3 +54,13 @@ test('csvToEmployees keeps email-only rows (no name), drops empty rows', () => {
 test('csvToEmployees throws a clear error when a required column is missing', () => {
   assert.throws(() => csvToEmployees('Nope,Header\n1,2', COLUMNS), /missing the "Name" column/);
 });
+
+test('csvToEmployees reads an optional per-person contract type column', () => {
+  const columns = { ...COLUMNS, contractType: 'Contract type' };
+  const csv = [
+    `${HEADER},Contract type`,
+    'Jamie,Example,jamie.example@example.test,Technical Delivery,"Senior 1, RN Dev",Demo Project,Demo Manager,Demo HRBP,jamie-demo,CoE',
+  ].join('\n');
+  const [emp] = csvToEmployees(csv, columns);
+  assert.equal(emp.contractType, 'CoE');
+});

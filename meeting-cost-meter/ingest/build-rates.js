@@ -5,8 +5,8 @@
 // Real "Delivery" PDF has two keying schemes and two contract types:
 //   - Developers: keyed by LEVEL (Expert / Senior 2 / … / Mid 1)
 //   - QA & Portfolio: keyed by full role TITLE
-//   - each exists as (B2B) and (CoE); the employee DB has no contract-type
-//     field, so config.contractType picks one (or "average").
+//   - each exists as (B2B) and (CoE). Per-person contract type is used when
+//     supplied; otherwise config.contractType is the explicit assumption.
 
 import { buildKeys } from './normalize.js';
 
@@ -140,6 +140,17 @@ function findBand(bands, classified, contractType) {
   return bestScore > -Infinity ? best : null;
 }
 
+/** Normalize common labels from CSV/Notion to the PDF's two contract types. */
+export function normalizeContractType(value) {
+  const text = norm(value);
+  if (!text) return null;
+  if (text === 'b2b' || /business to business|contractor/.test(text)) return 'B2B';
+  if (text === 'coe' || /contract of employment|employment contract|umowa o prace|uop/.test(text)) {
+    return 'CoE';
+  }
+  return null;
+}
+
 /** Resolve to a {min,max} band, honoring config.contractType ("B2B"|"CoE"|"average"). */
 export function resolveBand(bands, classified, config) {
   const ct = config.contractType || 'B2B';
@@ -169,27 +180,45 @@ export function roundSig(n, sig) {
   return Math.round(n * mult) / mult;
 }
 
-const mean = (arr) => (arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0);
-
-/** @returns {{ people, defaultRatePerMinute, matchedCount, unmatched }} */
+/**
+ * Build browser-safe rate records. An unmatched attendee gets a fallback only
+ * when fallbackAnnualGross is explicitly configured; we never derive it from
+ * the subset that happened to match a PDF.
+ */
 export function buildRates({ employees, salaryTable, config }) {
   const people = [];
-  const rates = [];
   const unmatched = [];
+  let estimatedCount = 0;
 
   for (const emp of employees) {
     const classified = classifyEmployee(emp, config);
-    const band = resolveBand(salaryTable, classified, config);
+    const employeeContractType = normalizeContractType(emp.contractType);
+    const contractType = employeeContractType || config.contractType || 'average';
+    const band = resolveBand(salaryTable, classified, { ...config, contractType });
     if (!band) {
       unmatched.push({ emp, classified });
       continue;
     }
     const annual = annualize(bandPointValue(band.min, band.max, config.bandPoint), config.period);
     const rate = roundSig(computeRatePerMinute(annual, config), config.rateRoundingSignificantDigits);
-    people.push({ keys: buildKeys(emp), ratePerMinute: rate });
-    rates.push(rate);
+    const estimated = !employeeContractType && contractType === 'average';
+    if (estimated) estimatedCount++;
+    people.push({ keys: buildKeys(emp), ratePerMinute: rate, estimated });
   }
 
-  const defaultRatePerMinute = roundSig(mean(rates), config.rateRoundingSignificantDigits);
-  return { people, defaultRatePerMinute, matchedCount: people.length, unmatched };
+  const fallbackAnnualGross = Number(config.fallbackAnnualGross);
+  const defaultRatePerMinute =
+    fallbackAnnualGross > 0
+      ? roundSig(
+          computeRatePerMinute(fallbackAnnualGross, config),
+          config.rateRoundingSignificantDigits,
+        )
+      : null;
+  return {
+    people,
+    defaultRatePerMinute,
+    matchedCount: people.length,
+    estimatedCount,
+    unmatched,
+  };
 }

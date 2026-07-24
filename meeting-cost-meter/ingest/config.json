@@ -2,7 +2,8 @@
   "currency": "PLN",
   "period": "monthly",
   "bandPoint": "mid",
-  "contractType": "B2B",
+  "contractType": "average",
+  "fallbackAnnualGross": null,
   "hoursPerYear": 2016,
   "overheadMultiplier": 1.0,
   "rateRoundingSignificantDigits": 2,
@@ -17,9 +18,13 @@
       "email": "Email",
       "team": "Team",
       "roleSeniority": "Role / Seniority Level",
-      "alias": "alternatively called"
+      "alias": "alternatively called",
+      "contractType": null
     },
-    "pdfs": [{ "path": "ingest/data/salary-delivery.pdf", "section": "delivery" }]
+    "pdfs": [
+      { "path": "ingest/data/salary-delivery.pdf", "section": "delivery" },
+      { "path": "ingest/data/salary-business.pdf", "section": "business", "optional": true }
+    ]
   },
 
   "employees": {
@@ -37,7 +42,8 @@
     "email": "Email",
     "alias": "alternatively called",
     "team": "Team",
-    "roleSeniority": "Role / Seniority Level"
+    "roleSeniority": "Role / Seniority Level",
+    "contractType": null
   },
 
   "levelTokens": [
