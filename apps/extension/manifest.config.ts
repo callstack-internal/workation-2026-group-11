@@ -23,4 +23,11 @@ export default defineManifest({
     128: "icons/icon128.png",
   },
   permissions: ["storage"],
+  content_scripts: [
+    {
+      matches: ["https://calendar.google.com/*"],
+      js: ["src/content/content.ts"],
+      run_at: "document_idle",
+    },
+  ],
 });
