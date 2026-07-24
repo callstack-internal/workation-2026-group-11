@@ -1,0 +1,5469 @@
+{
+  "source": {
+    "database": "Current Employees",
+    "page": "List of employees 🧑‍💻",
+    "pageUrl": "https://app.notion.com/p/6f3ef1975a1e4c68870b3084f55f4a4b",
+    "dataSourceId": "953ae54d-8b98-4a5b-8823-6a19e346817e",
+    "exportedAt": "2026-07-24"
+  },
+  "count": 226,
+  "employees": [
+    {
+      "id": "0163472b-d02b-4c23-9ade-46ffe9b14f08",
+      "url": "https://app.notion.com/0163472bd02b4c239ade46ffe9b14f08",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Trzciński",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Adam",
+      "userDefined:ID": 22,
+      "GitHub": "adamTrz",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "if dk"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "adam.trzcinski@callstack.com",
+      "alternatively called": "Adamos",
+      "Surname / Name": "Trzciński Adam"
+    },
+    {
+      "id": "049dd97d-498b-448a-b235-44a0d58e31dc",
+      "url": "https://app.notion.com/049dd97d498b448ab23544a0d58e31dc",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Gawrysiak",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Ada",
+      "userDefined:ID": 23,
+      "GitHub": null,
+      "Manager": null,
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Head of Sales"
+      ],
+      "Email": "Ada Gawrysiak <ada.gawrysiak@callstack.com>",
+      "alternatively called": null,
+      "Surname / Name": "Gawrysiak Ada"
+    },
+    {
+      "id": "08504a60-0f38-4374-83b1-cec05b141e38",
+      "url": "https://app.notion.com/08504a600f38437483b1cec05b141e38",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Chmielewska",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Paulina",
+      "userDefined:ID": 24,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "paulina.chmielewska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Chmielewska Paulina"
+    },
+    {
+      "id": "09da7f77-60f3-457a-975e-9e2902377977",
+      "url": "https://app.notion.com/09da7f7760f3457a975e9e2902377977",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Lewandowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Kamil",
+      "userDefined:ID": 25,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "kamil.lewandowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Lewandowski Kamil"
+    },
+    {
+      "id": "0f72f9c5-998b-403a-8c5e-c9dd75870a1e",
+      "url": "https://app.notion.com/0f72f9c5998b403a8c5ec9dd75870a1e",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Czekalska",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Weronika",
+      "userDefined:ID": 26,
+      "GitHub": null,
+      "Manager": "Kris Lis",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Head of Portfolio Delivery"
+      ],
+      "Email": "weronika.czekalska@callstack.com",
+      "alternatively called": "Ronnie",
+      "Surname / Name": "Czekalska Weronika"
+    },
+    {
+      "id": "1246081d-93cf-46ba-83fb-eddecf0ca25b",
+      "url": "https://app.notion.com/1246081d93cf46ba83fbeddecf0ca25b",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Staszewska",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Martyna",
+      "userDefined:ID": 27,
+      "GitHub": null,
+      "Manager": "Kamil Mikołajczyk",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior IT Recruiter"
+      ],
+      "Email": "martyna.staszewska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Staszewska Martyna"
+    },
+    {
+      "id": "153b86da-379e-48e4-b2e9-ee40f0aac36f",
+      "url": "https://app.notion.com/153b86da379e48e4b2e9ee40f0aac36f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Gawron",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Przemysław",
+      "userDefined:ID": 29,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "przemyslaw.gawron@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Gawron Przemysław"
+    },
+    {
+      "id": "16751225-bb3f-4996-a135-7cfadcd3db98",
+      "url": "https://app.notion.com/16751225bb3f4996a1357cfadcd3db98",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kornacki",
+      "Team": [
+        "Marketing Team"
+      ],
+      "Name": "Mateusz",
+      "userDefined:ID": 30,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "https://twitter.com/mat_kornacki",
+      "Project": null,
+      "Role / Seniority Level": [
+        "External Event Manager"
+      ],
+      "Email": "mateusz.kornacki@callstack.com",
+      "alternatively called": "Gutek",
+      "Surname / Name": "Kornacki Mateusz"
+    },
+    {
+      "id": "20e0b6e5-7458-49f8-b8e8-4ca9056fc314",
+      "url": "https://app.notion.com/20e0b6e5745849f8b8e84ca9056fc314",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Gkouziokas",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Ioannis",
+      "userDefined:ID": 32,
+      "GitHub": "https://github.com/gkouziik",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "john.gkouziokas@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Gkouziokas Ioannis (John)"
+    },
+    {
+      "id": "226d2f99-c1c6-4d19-b17a-a2ed0757caad",
+      "url": "https://app.notion.com/226d2f99c1c64d19b17aa2ed0757caad",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Güner",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Burak",
+      "userDefined:ID": 33,
+      "GitHub": "https://github.com/atlj",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "_atlj",
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "burak.guner@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Güner Burak"
+    },
+    {
+      "id": "2777fda3-78ba-4933-ad46-af8013683765",
+      "url": "https://app.notion.com/2777fda378ba4933ad46af8013683765",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Pytko-Włodarczyk",
+      "Team": [
+        "Marketing Team"
+      ],
+      "Name": "Aleksandra",
+      "userDefined:ID": 35,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Marketing Core Lead"
+      ],
+      "Email": "aleksandra.pytko-wlodarczyk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Pytko-Włodarczyk Aleksandra"
+    },
+    {
+      "id": "2fa0f525-f87d-4af5-be41-34dc5ccb77aa",
+      "url": "https://app.notion.com/2fa0f525f87d4af5be4134dc5ccb77aa",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Totov",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Hristo",
+      "userDefined:ID": 38,
+      "GitHub": "https://github.com/hristototov",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "hristo.totov@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Totov Hristo"
+    },
+    {
+      "id": "30aa2023-2767-43ab-a3bd-bd55a5f3f37e",
+      "url": "https://app.notion.com/30aa2023276743aba3bdbd55a5f3f37e",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Semenowicz",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Krzysztof",
+      "userDefined:ID": 39,
+      "GitHub": null,
+      "Manager": "Aleksander Rak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "IT Administrator"
+      ],
+      "Email": "krzysztof.semenowicz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Semenowicz Krzysztof"
+    },
+    {
+      "id": "323c69ee-bfce-4c71-a604-e5cab65f353b",
+      "url": "https://app.notion.com/323c69eebfce4c71a604e5cab65f353b",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Bijak",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Alicja",
+      "userDefined:ID": 40,
+      "GitHub": null,
+      "Manager": "Natalia Gros",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg",
+        "Teamworks"
+      ],
+      "Role / Seniority Level": [
+        "IT Project Manager",
+        "Senior"
+      ],
+      "Email": "alicja.bijak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Bijak Alicja"
+    },
+    {
+      "id": "35546a88-d790-4645-b591-7da3dd318bb6",
+      "url": "https://app.notion.com/35546a88d7904645b5917da3dd318bb6",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kozłowska",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Joanna",
+      "userDefined:ID": 41,
+      "GitHub": null,
+      "Manager": "Tomasz Krupiński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior Talent & Market Research Specialist"
+      ],
+      "Email": "joanna.kozlowska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kozłowska Joanna"
+    },
+    {
+      "id": "37383086-05e8-4de3-9f86-cc17da8a57ab",
+      "url": "https://app.notion.com/3738308605e84de39f86cc17da8a57ab",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Nestorov",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Dimitar",
+      "userDefined:ID": 44,
+      "GitHub": "https://github.com/DimitarNestorov",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "dimitar.nestorov@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Nestorov Dimitar"
+    },
+    {
+      "id": "3ff7a681-c277-42e6-bf7f-3660b480103b",
+      "url": "https://app.notion.com/3ff7a681c27742e6bf7f3660b480103b",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Trocki",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Piotr",
+      "userDefined:ID": 46,
+      "GitHub": "https://github.com/trozee",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "https://x.com/trozee_dev",
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "piotr.trocki@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Trocki Piotr"
+    },
+    {
+      "id": "4030f672-21ea-4d78-a095-2fb3ecebb43c",
+      "url": "https://app.notion.com/4030f67221ea4d78a0952fb3ecebb43c",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Szlegier",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Wiktor",
+      "userDefined:ID": 47,
+      "GitHub": "Wiiktor22",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "wiktor.szlegier@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Szlegier Wiktor"
+    },
+    {
+      "id": "423ad5fa-e91d-42fa-a56f-d41dffaa8835",
+      "url": "https://app.notion.com/423ad5fae91d42faa56fd41dffaa8835",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Henriques",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Fabio",
+      "userDefined:ID": 48,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "fabio.henriques@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Henriques Fábio"
+    },
+    {
+      "id": "44bd7b6a-f96b-468e-aa9c-44b877f5fda7",
+      "url": "https://app.notion.com/44bd7b6af96b468eaa9c44b877f5fda7",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Ali",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Hur",
+      "userDefined:ID": 50,
+      "GitHub": "https://github.com/hurali97",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "hurali97",
+      "Project": [
+        "R&D"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "hur.ali@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Ali Hur"
+    },
+    {
+      "id": "46b856cf-c88d-4ffb-b8dd-c5fe90bc0eab",
+      "url": "https://app.notion.com/46b856cfc88d4ffbb8ddc5fe90bc0eab",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Muzyk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Michał",
+      "userDefined:ID": 52,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "michal.muzyk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Muzyk Michał"
+    },
+    {
+      "id": "4b87181b-58ad-4e62-95a6-976a29e1facd",
+      "url": "https://app.notion.com/4b87181b58ad4e6295a6976a29e1facd",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Berger",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Elżbieta",
+      "userDefined:ID": 53,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Boats"
+      ],
+      "Role / Seniority Level": [
+        "QA Automation Eng.",
+        "Senior"
+      ],
+      "Email": "elzbieta.berger@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Berger Elżbieta"
+    },
+    {
+      "id": "4bf3dfab-b4e4-4fbb-b988-34fefba630cb",
+      "url": "https://app.notion.com/4bf3dfabb4e44fbbb98834fefba630cb",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Tomczyk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Bartłomiej",
+      "userDefined:ID": 54,
+      "GitHub": "https://github.com/barttom",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "https://x.com/barttomczyk",
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "bartlomiej.tomczyk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Tomczyk Bartłomiej"
+    },
+    {
+      "id": "4e022fad-b4b2-438f-bff6-edcb9b66d115",
+      "url": "https://app.notion.com/4e022fadb4b2438fbff6edcb9b66d115",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Chludziński",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Łukasz",
+      "userDefined:ID": 55,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Radek Chrzempka",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert",
+        "Engineering Manager"
+      ],
+      "Email": "lukasz.chludzinski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Chludziński Łukasz"
+    },
+    {
+      "id": "4e3e6f86-44bc-4178-aa92-0b69c6b62714",
+      "url": "https://app.notion.com/4e3e6f8644bc4178aa920b69c6b62714",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Grzeszczak",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Aleksandra",
+      "userDefined:ID": 56,
+      "GitHub": null,
+      "Manager": "Monika Stotko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Finance & Administration Specialist"
+      ],
+      "Email": "aleksandra.grzeszczak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Grzeszczak Aleksandra"
+    },
+    {
+      "id": "51c71ba4-0048-4fbf-8aae-3c97875be3af",
+      "url": "https://app.notion.com/51c71ba400484fbf8aae3c97875be3af",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Stoyanov",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Lachezar",
+      "userDefined:ID": 57,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "lachezar.stoyanov@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Stoyanov Lachezar"
+    },
+    {
+      "id": "58668971-4be3-400e-8a5e-0da56d67f26f",
+      "url": "https://app.notion.com/586689714be3400e8a5e0da56d67f26f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Drapich",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Piotr",
+      "userDefined:ID": 60,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "piotr.drapich@callstack.com",
+      "alternatively called": "Dratwa",
+      "Surname / Name": "Drapich Piotr"
+    },
+    {
+      "id": "5c6cfbde-335c-493b-be23-a132e4a9c1bb",
+      "url": "https://app.notion.com/5c6cfbde335c493bbe23a132e4a9c1bb",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Grzywaczewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Marcin",
+      "userDefined:ID": 61,
+      "GitHub": "Killavus",
+      "Manager": "Michał Chudziak",
+      "HRBP": "Radek Chrzempka",
+      "Twitter Username": "Killavus",
+      "Project": null,
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert",
+        "Engineering Manager"
+      ],
+      "Email": "marcin.grzywaczewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Grzywaczewski Marcin"
+    },
+    {
+      "id": "63f7a6b9-b516-4962-8719-303934ce5d8c",
+      "url": "https://app.notion.com/63f7a6b9b51649628719303934ce5d8c",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Pierzchała",
+      "Team": [
+        "Technology Team"
+      ],
+      "Name": "Michał",
+      "userDefined:ID": 63,
+      "GitHub": null,
+      "Manager": "Mike",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "thymikee",
+      "Project": null,
+      "Role / Seniority Level": [
+        "Principal Engineer"
+      ],
+      "Email": "michal.pierzchala@callstack.com",
+      "alternatively called": "Thymikee",
+      "Surname / Name": "Pierzchała Michał"
+    },
+    {
+      "id": "64c00b74-95a6-438d-b8c2-1414d86c1675",
+      "url": "https://app.notion.com/64c00b7495a6438db8c21414d86c1675",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kruk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Grzegorz",
+      "userDefined:ID": 65,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "CelcomDigi"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "grzegorz.kruk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kruk Grzegorz"
+    },
+    {
+      "id": "6808ca1d-f2f7-4f95-9ae8-58f18c4f99fe",
+      "url": "https://app.notion.com/6808ca1df2f74f959ae858f18c4f99fe",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Binda",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Jakub",
+      "userDefined:ID": 66,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Boats"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "akub.binda@callstack.com",
+      "alternatively called": "JB",
+      "Surname / Name": "Binda Jakub"
+    },
+    {
+      "id": "6ac4fd94-899b-475b-90b0-8d8c53dac552",
+      "url": "https://app.notion.com/6ac4fd94899b475b90b08d8c53dac552",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Jastrzębski",
+      "Team": [
+        "Technology Team"
+      ],
+      "Name": "Maciej",
+      "userDefined:ID": 67,
+      "GitHub": "mdjastrzebski",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "mdj_dev",
+      "Project": [
+        "Zalando"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "maciej.jastrzebski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Jastrzębski Maciej"
+    },
+    {
+      "id": "6d3798ca-fb42-4968-81b9-efcf9c57ab39",
+      "url": "https://app.notion.com/6d3798cafb42496881b9efcf9c57ab39",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Krupiński",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Tomasz",
+      "userDefined:ID": 68,
+      "GitHub": null,
+      "Manager": "Kamil Mikołajczyk",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Talent & Market Research Lead"
+      ],
+      "Email": "tomasz.krupinski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Krupiński Tomasz"
+    },
+    {
+      "id": "6f394733-eb14-439a-bad0-a7a816d0c206",
+      "url": "https://app.notion.com/6f394733eb14439abad0a7a816d0c206",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Anklewicz",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Dymitr",
+      "userDefined:ID": 70,
+      "GitHub": "dymank",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "dymitr.anklewicz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Anklewicz Dymitr"
+    },
+    {
+      "id": "76fa29e9-74d4-47dc-88d5-3b5b3282b9d5",
+      "url": "https://app.notion.com/76fa29e974d447dc88d53b5b3282b9d5",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Bujko",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Jakub",
+      "userDefined:ID": 71,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Radek Chrzempka",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert",
+        "Engineering Manager"
+      ],
+      "Email": "jakub.bujko@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Bujko Jakub"
+    },
+    {
+      "id": "78436be4-3966-456c-8874-bd5c24780806",
+      "url": "https://app.notion.com/78436be43966456c8874bd5c24780806",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Piotrowska",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Katarzyna",
+      "userDefined:ID": 73,
+      "GitHub": null,
+      "Manager": "Kamil Mikołajczyk",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior IT Recruiter"
+      ],
+      "Email": "katarzyna.piotrowska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Piotrowska Katarzyna"
+    },
+    {
+      "id": "78bf4a49-146f-4465-8d65-470bef784bc5",
+      "url": "https://app.notion.com/78bf4a49146f44658d65470bef784bc5",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kosior",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Agata",
+      "userDefined:ID": 74,
+      "GitHub": "koko57",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Pepsi"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "agata.kosior@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kosior Agata"
+    },
+    {
+      "id": "7a6abc89-e811-403f-81c2-1d34e6280cab",
+      "url": "https://app.notion.com/7a6abc89e811403f81c21d34e6280cab",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Akinyemi",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Mishael Mosolasi",
+      "userDefined:ID": 75,
+      "GitHub": "mosoakinyemi",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "mishael.akinyemi@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Akinyemi Mishael Mosolasi"
+    },
+    {
+      "id": "7b9b2947-7472-429c-8f9c-785309052b67",
+      "url": "https://app.notion.com/7b9b29477472429c8f9c785309052b67",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Markiewicz",
+      "Team": [
+        "Marketing Team"
+      ],
+      "Name": "Barbara",
+      "userDefined:ID": 76,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "https://twitter.com/barbara_markie",
+      "Project": null,
+      "Role / Seniority Level": [
+        "Community and Events Manager"
+      ],
+      "Email": "barbara.markiewicz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Markiewicz Barbara"
+    },
+    {
+      "id": "7f665daa-c189-45a4-84d6-6f19bfcf304f",
+      "url": "https://app.notion.com/7f665daac18945a484d66f19bfcf304f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Walczak",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Łukasz",
+      "userDefined:ID": 77,
+      "GitHub": "https://github.com/lukewalczak",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "_happiryu",
+      "Project": [
+        "Zalando"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "lukasz.walczak@callstack.com",
+      "alternatively called": "Ryu",
+      "Surname / Name": "Walczak Łukasz"
+    },
+    {
+      "id": "8227f580-b1f3-4ed6-be64-ffb4c96c4149",
+      "url": "https://app.notion.com/8227f580b1f34ed6be64ffb4c96c4149",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Horodyski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Adam",
+      "userDefined:ID": 78,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "adhorodyski",
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "adam.horodyski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Horodyski Adam"
+    },
+    {
+      "id": "85ef9106-842e-46c0-9ed7-973c1d9352d3",
+      "url": "https://app.notion.com/85ef9106842e46c09ed7973c1d9352d3",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Slavik",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Denis",
+      "userDefined:ID": 79,
+      "GitHub": "slavikdenis",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "denis.slavik@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Slavik Denis"
+    },
+    {
+      "id": "85f6389c-ea1a-420d-bd1c-a445c2b430ec",
+      "url": "https://app.notion.com/85f6389cea1a420dbd1ca445c2b430ec",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Eisen",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Kacper",
+      "userDefined:ID": 80,
+      "GitHub": null,
+      "Manager": "Mike",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Office Manager"
+      ],
+      "Email": "kacper.eisen@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Eisen Kacper"
+    },
+    {
+      "id": "86f1170f-08df-4422-8bdd-8427791ef138",
+      "url": "https://app.notion.com/86f1170f08df44228bdd8427791ef138",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Janiczek",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Tomasz",
+      "userDefined:ID": 81,
+      "GitHub": "https://github.com/tjaniczek",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "https://twitter.com/TomekJaniczek",
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "tomasz.janiczek@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Janiczek Tomasz"
+    },
+    {
+      "id": "89728d44-f43e-46fb-9012-30111ca2855f",
+      "url": "https://app.notion.com/89728d44f43e46fb901230111ca2855f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Wereszczyński",
+      "Team": [
+        "Technology Team"
+      ],
+      "Name": "Kewin",
+      "userDefined:ID": 82,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Codesignal"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "kewin.wereszczynski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Wereszczyński Kewin"
+    },
+    {
+      "id": "8d0f6657-c16d-4498-8ccb-b1dbd3e0aefb",
+      "url": "https://app.notion.com/8d0f6657c16d44988ccbb1dbd3e0aefb",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kłobus",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Jakub",
+      "userDefined:ID": 85,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Radek Chrzempka",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert",
+        "Engineering Manager"
+      ],
+      "Email": "jakub.klobus@callstack.com",
+      "alternatively called": "Kubi",
+      "Surname / Name": "Kłobus Jakub"
+    },
+    {
+      "id": "94fb4b02-af2a-48a9-bc4d-0b41417b440e",
+      "url": "https://app.notion.com/94fb4b02af2a48a9bc4d0b41417b440e",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Matusiak",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Aleksandra",
+      "userDefined:ID": 87,
+      "GitHub": null,
+      "Manager": "Tomasz Krupiński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Talent & Market Research Specialist"
+      ],
+      "Email": "aleksandra.matusiak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Matusiak Aleksandra"
+    },
+    {
+      "id": "9afe4372-9202-463c-aefc-a2540c152544",
+      "url": "https://app.notion.com/9afe43729202463caefca2540c152544",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Chrzempka",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Radek",
+      "userDefined:ID": 91,
+      "GitHub": null,
+      "Manager": "Kris Lis",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Head of People & Culture Team"
+      ],
+      "Email": "radek.chrzempka@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Chrzempka Radek"
+    },
+    {
+      "id": "a0078b7c-7e65-45a5-a216-eba851b6bf6f",
+      "url": "https://app.notion.com/a0078b7c7e6545a5a216eba851b6bf6f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kata",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Paweł",
+      "userDefined:ID": 92,
+      "GitHub": "pawelkata",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "pawel.kata@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kata Paweł"
+    },
+    {
+      "id": "a646b135-5d5f-424f-ba0c-24b1d851faae",
+      "url": "https://app.notion.com/a646b1355d5f424fba0c24b1d851faae",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Matczuk",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Anna",
+      "userDefined:ID": 94,
+      "GitHub": null,
+      "Manager": "Monika Stotko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Financial Analyst"
+      ],
+      "Email": "anna.matczuk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Matczuk Anna"
+    },
+    {
+      "id": "a875473d-d56d-4b99-ab23-dc52d83c5ff5",
+      "url": "https://app.notion.com/a875473dd56d4b99ab23dc52d83c5ff5",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Szymański",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Paweł",
+      "userDefined:ID": 97,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "_panpawel",
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "pawel.szymanski@callstack.com",
+      "alternatively called": "Pan Paweł",
+      "Surname / Name": "Szymański Paweł"
+    },
+    {
+      "id": "a97537d2-d937-4995-b6c0-8b48c3d0f131",
+      "url": "https://app.notion.com/a97537d2d9374995b6c08b48c3d0f131",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Arefyeu",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Nikolay",
+      "userDefined:ID": 98,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Jetbrains"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "nikolay.arefyeu@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Arefyeu Nikolay"
+    },
+    {
+      "id": "acbac503-ef2d-4601-ae90-0a190d70833f",
+      "url": "https://app.notion.com/acbac503ef2d4601ae900a190d70833f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Pasiński",
+      "Team": [
+        "Incubator"
+      ],
+      "Name": "Mariusz",
+      "userDefined:ID": 100,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Spotify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "mariusz.pasinski@callstack.com",
+      "alternatively called": "Mario",
+      "Surname / Name": "Pasiński Mariusz"
+    },
+    {
+      "id": "acdb2e39-24ae-4a5a-bbe9-2978afed3f9f",
+      "url": "https://app.notion.com/acdb2e3924ae4a5abbe92978afed3f9f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kopeć",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Małgorzata",
+      "userDefined:ID": 101,
+      "GitHub": null,
+      "Manager": "Marika Marcinkowska",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior Employer Branding Specialist"
+      ],
+      "Email": "malgorzata.kopec@callstack.com",
+      "alternatively called": "Gocha",
+      "Surname / Name": "Kopeć Małgorzata"
+    },
+    {
+      "id": "affd82ad-bcf3-440f-a9e4-684e1719eefa",
+      "url": "https://app.notion.com/affd82adbcf3440fa9e4684e1719eefa",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kaszowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Bogusz",
+      "userDefined:ID": 102,
+      "GitHub": "BogiKay",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "@bogi_kay",
+      "Project": [
+        "Boats"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "bogusz.kaszowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kaszowski Bogusz"
+    },
+    {
+      "id": "b00e3c2e-1389-48b0-88e3-7268d67a1ab1",
+      "url": "https://app.notion.com/b00e3c2e138948b088e37268d67a1ab1",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Rożniata",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Kacper",
+      "userDefined:ID": 103,
+      "GitHub": "krozniata",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Zalando"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "kacper.rozniata@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Rożniata Kacper"
+    },
+    {
+      "id": "b0621f6e-17e8-4d0f-a7fb-588373c7cb3e",
+      "url": "https://app.notion.com/b0621f6e17e84d0fa7fb588373c7cb3e",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Ołpińska",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Angelika",
+      "userDefined:ID": 104,
+      "GitHub": null,
+      "Manager": "Marika Marcinkowska",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "HR Administrator"
+      ],
+      "Email": "angelika.olpinska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Ołpińska Angelika"
+    },
+    {
+      "id": "b60c40ff-2cb2-4299-9b4e-47d26e7e5646",
+      "url": "https://app.notion.com/b60c40ff2cb242999b4e47d26e7e5646",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Zając",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Dariusz",
+      "userDefined:ID": 106,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "QA Manual Eng.",
+        "Senior"
+      ],
+      "Email": "dariusz.zajac@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Zając Dariusz"
+    },
+    {
+      "id": "b85590fc-4aeb-4729-a3e8-c3b33c2e0f46",
+      "url": "https://app.notion.com/b85590fc4aeb4729a3e8c3b33c2e0f46",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Żurek",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Olimpia",
+      "userDefined:ID": 109,
+      "GitHub": "OlimpiaZurek",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "olimpia.zurek@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Żurek Olimpia"
+    },
+    {
+      "id": "b9a97069-b8ee-47f7-ab8b-c47032ed74d1",
+      "url": "https://app.notion.com/b9a97069b8ee47f7ab8bc47032ed74d1",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Stotko",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Monika",
+      "userDefined:ID": 110,
+      "GitHub": null,
+      "Manager": "Aleksander Rak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Finance & Administration Manager"
+      ],
+      "Email": "monika.stotko@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Stotko Monika"
+    },
+    {
+      "id": "bc945037-2458-49d5-ac04-536c4498de2f",
+      "url": "https://app.notion.com/bc945037245849d5ac04536c4498de2f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kosoń",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Mateusz",
+      "userDefined:ID": 111,
+      "GitHub": "matkoson",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "mateusz.koson@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kosoń Mateusz"
+    },
+    {
+      "id": "c9b0a815-94d1-437e-aa23-da30b7372f7f",
+      "url": "https://app.notion.com/c9b0a81594d1437eaa23da30b7372f7f",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Galińska",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Alicja",
+      "userDefined:ID": 115,
+      "GitHub": null,
+      "Manager": "Marika Marcinkowska",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior HR Business Partner"
+      ],
+      "Email": "alicja.galinska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Galińska Alicja"
+    },
+    {
+      "id": "d0f949f9-17cc-4ae0-ba8a-84157a15b377",
+      "url": "https://app.notion.com/d0f949f917cc4ae0ba8a84157a15b377",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Chrabąszczewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Arkadiusz",
+      "userDefined:ID": 117,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "arkadiusz.chrabaszczewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Chrabąszczewski Arkadiusz"
+    },
+    {
+      "id": "d2cb6fa0-31ba-452d-9651-b354a4cf8c40",
+      "url": "https://app.notion.com/d2cb6fa031ba452d9651b354a4cf8c40",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Desmurs-Linczewska",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Aleksandra",
+      "userDefined:ID": 118,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Spotify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "ola.linczewska@callstack.com",
+      "alternatively called": "Ola",
+      "Surname / Name": "Desmurs-Linczewska Aleksandra"
+    },
+    {
+      "id": "d588ba5e-80f5-4103-af15-8cefa7ee2b80",
+      "url": "https://app.notion.com/d588ba5e80f54103af158cefa7ee2b80",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Bieganowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Kamil",
+      "userDefined:ID": 119,
+      "GitHub": "kbieganowski",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "kamil.bieganowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Bieganowski Kamil"
+    },
+    {
+      "id": "d87c6c9c-f51f-4e2b-966c-c50b899737b7",
+      "url": "https://app.notion.com/d87c6c9cf51f4e2b966cc50b899737b7",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Sahoo",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Satyajit",
+      "userDefined:ID": 120,
+      "GitHub": "satya164",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "satya164",
+      "Project": [
+        "R&D"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "satyajit.sahoo@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Sahoo Satyajit"
+    },
+    {
+      "id": "d8c564f4-b96b-4396-9487-a189d5363ca6",
+      "url": "https://app.notion.com/d8c564f4b96b43969487a189d5363ca6",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Strzyż",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Wojciech",
+      "userDefined:ID": 121,
+      "GitHub": "wstrzyz",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "wojciech.strzyz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Strzyż Wojciech"
+    },
+    {
+      "id": "dcae060e-c203-4e11-9393-6dcb62884d2a",
+      "url": "https://app.notion.com/dcae060ec2034e1193936dcb62884d2a",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Ulanowski",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Paweł",
+      "userDefined:ID": 123,
+      "GitHub": null,
+      "Manager": "Natalia Gros",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "Business Analyst/Product Owner",
+        "Senior"
+      ],
+      "Email": "pawel.ulanowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Ulanowski Paweł"
+    },
+    {
+      "id": "df7e491b-53cc-443c-952e-955f4d6eaf51",
+      "url": "https://app.notion.com/df7e491b53cc443c952e955f4d6eaf51",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Klonowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Bartosz",
+      "userDefined:ID": 125,
+      "GitHub": "BartoszKlonowski",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Get your Guide"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "bartosz.klonowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Klonowski Bartosz"
+    },
+    {
+      "id": "e73678d0-b63e-4594-b50e-d95f6c992e36",
+      "url": "https://app.notion.com/e73678d0b63e4594b50ed95f6c992e36",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Zakrzewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Rafał",
+      "userDefined:ID": 127,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Radek Chrzempka",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert",
+        "Engineering Manager"
+      ],
+      "Email": "rafal.zakrzewski@callstack.com",
+      "alternatively called": "Rafix",
+      "Surname / Name": "Zakrzewski Rafał"
+    },
+    {
+      "id": "eaecbfa6-66d9-4400-83d9-5c85e89f47fb",
+      "url": "https://app.notion.com/eaecbfa666d9440083d95c85e89f47fb",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Lewicka",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Marta",
+      "userDefined:ID": 129,
+      "GitHub": null,
+      "Manager": "Kamil Mikołajczyk",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior IT Recruiter"
+      ],
+      "Email": "marta.lewicka@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Lewicka Marta"
+    },
+    {
+      "id": "f64a5027-a4ce-4d9f-ac63-1e0680d963c3",
+      "url": "https://app.notion.com/f64a5027a4ce4d9fac631e0680d963c3",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Gros",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Natalia",
+      "userDefined:ID": 131,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Portfolio Manager"
+      ],
+      "Email": "natalia.gros@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Gros Natalia"
+    },
+    {
+      "id": "f787c3fd-1e18-4c04-ae06-18d41f5f6f2d",
+      "url": "https://app.notion.com/f787c3fd1e184c04ae0618d41f5f6f2d",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Stadniczuk",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Jakub",
+      "userDefined:ID": 132,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Business Development Manager"
+      ],
+      "Email": "jakub.stadniczuk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Stadniczuk Jakub"
+    },
+    {
+      "id": "f85bcf28-7278-4ab0-a1b0-43bf7f172f43",
+      "url": "https://app.notion.com/f85bcf2872784ab0a1b043bf7f172f43",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Lis",
+      "Team": [
+        "CEO"
+      ],
+      "Name": "Kris",
+      "userDefined:ID": 133,
+      "GitHub": null,
+      "Manager": null,
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "CEO"
+      ],
+      "Email": "krzysztof.lis@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Lis Kris"
+    },
+    {
+      "id": "f8b62b61-03d6-49da-9ddc-e115d50aecf4",
+      "url": "https://app.notion.com/f8b62b6103d649da9ddce115d50aecf4",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Karolczyk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Grzegorz",
+      "userDefined:ID": 134,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Get your Guide"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "grzegorz.karolczyk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Karolczyk Grzegorz"
+    },
+    {
+      "id": "f909c4d8-84aa-44ed-9819-976afc4a9f01",
+      "url": "https://app.notion.com/f909c4d884aa44ed9819976afc4a9f01",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Misiukiewicz",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Tomasz",
+      "userDefined:ID": 135,
+      "GitHub": "TMisiukiewicz",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "TMisiukiewicz",
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "tomasz.misiukiewicz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Misiukiewicz Tomasz"
+    },
+    {
+      "id": "fc0cbf38-a9d1-4a85-9e29-9305a9364534",
+      "url": "https://app.notion.com/fc0cbf38a9d14a859e299305a9364534",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Brezinski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Thiago",
+      "userDefined:ID": 136,
+      "GitHub": "thiagobrez",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "thiagobrez",
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "thiago.brezinski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Brezinski Thiago"
+    },
+    {
+      "id": "fd2169d3-cd98-45b9-a67b-00dd4fb4b205",
+      "url": "https://app.notion.com/fd2169d3cd9845b9a67b00dd4fb4b205",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Kiyko",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Kanstantsin",
+      "userDefined:ID": 137,
+      "GitHub": "SneakyEchidna",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Zalando"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "kanstantsin.kiyko@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kiyko Kanstantsin"
+    },
+    {
+      "id": "feedac34-d828-4c76-8e07-0d6695da22fa",
+      "url": "https://app.notion.com/feedac34d8284c768e070d6695da22fa",
+      "createdTime": "2023-04-05 13:33:05Z",
+      "Last name": "Pasiński",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Robert",
+      "userDefined:ID": 138,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "rob_pasinski",
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "robert.pasinski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Pasiński Robert"
+    },
+    {
+      "id": "e7a958d2-a8de-4312-8bac-e1dff05bc810",
+      "url": "https://app.notion.com/e7a958d2a8de43128bace1dff05bc810",
+      "createdTime": "2023-05-15 09:06:13Z",
+      "Last name": "Wiszczuk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Kacper",
+      "userDefined:ID": 140,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "esemesek",
+      "Project": [
+        "if dk"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "kacper.wiszczuk@callstack.com",
+      "alternatively called": "esemesek",
+      "Surname / Name": "Wiszczuk Kacper"
+    },
+    {
+      "id": "a785dd74-85dc-4605-b6a4-87dfd416a076",
+      "url": "https://app.notion.com/a785dd7485dc4605b6a487dfd416a076",
+      "createdTime": "2023-05-22 05:38:29Z",
+      "Last name": "Mórawski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Łukasz",
+      "userDefined:ID": 141,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "CelcomDigi"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "lukasz.morawski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Mórawski Łukasz"
+    },
+    {
+      "id": "3f9dac94-c924-4cf5-9914-554cf364b7a1",
+      "url": "https://app.notion.com/3f9dac94c9244cf59914554cf364b7a1",
+      "createdTime": "2023-06-02 07:59:26Z",
+      "Last name": "Makushov",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Artem",
+      "userDefined:ID": 144,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Phantom"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "artem.makushov@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Makushov Artem"
+    },
+    {
+      "id": "22ce1d1f-5da1-4d5a-b332-ce134f2ae8f0",
+      "url": "https://app.notion.com/22ce1d1f5da14d5ab332ce134f2ae8f0",
+      "createdTime": "2023-06-12 10:04:10Z",
+      "Last name": "Pasiukevich",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Yauheni",
+      "userDefined:ID": 145,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Pepsi"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "yauheni.pasiukevich@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Pasiukevich Yauheni"
+    },
+    {
+      "id": "4d5a9375-67bc-4dba-8de4-6f6e0e490138",
+      "url": "https://app.notion.com/4d5a937567bc4dba8de46f6e0e490138",
+      "createdTime": "2023-06-26 14:11:52Z",
+      "Last name": "Muras",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Łukasz",
+      "userDefined:ID": 147,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "Senior",
+        "QA Automation Eng."
+      ],
+      "Email": "lukasz.muras@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Muras Łukasz"
+    },
+    {
+      "id": "d94a5d39-2535-458c-bd8b-fb727c977bce",
+      "url": "https://app.notion.com/d94a5d392535458cbd8bfb727c977bce",
+      "createdTime": "2023-06-30 14:20:20Z",
+      "Last name": "Mikołajczak",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Kacper",
+      "userDefined:ID": 149,
+      "GitHub": "kacper-mikolajczak",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "kacper.mikolajczak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Mikołajczak Kacper"
+    },
+    {
+      "id": "3db6e10d-aac2-493b-8627-06aefdbdf9df",
+      "url": "https://app.notion.com/3db6e10daac2493b862706aefdbdf9df",
+      "createdTime": "2023-06-30 14:23:58Z",
+      "Last name": "Mędrek",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Mateusz",
+      "userDefined:ID": 151,
+      "GitHub": "mateusz1913",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "mateusz1913",
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "mateusz.medrek@callstack.com",
+      "alternatively called": "Luigi",
+      "Surname / Name": "Mędrek Mateusz"
+    },
+    {
+      "id": "31edc89b-5539-4e3a-90bd-7074f279b1df",
+      "url": "https://app.notion.com/31edc89b55394e3a90bd7074f279b1df",
+      "createdTime": "2023-06-30 14:26:23Z",
+      "Last name": "Buciuman",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Adrian",
+      "userDefined:ID": 153,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "adrian.buciuman@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Buciuman Adrian"
+    },
+    {
+      "id": "d3a55fd4-322f-4ace-bf88-ccb141815a3d",
+      "url": "https://app.notion.com/d3a55fd4322f4acebf88ccb141815a3d",
+      "createdTime": "2023-07-17 11:07:16Z",
+      "Last name": "Hrabia",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Dariusz",
+      "userDefined:ID": 156,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "QA Automation Eng.",
+        "Senior"
+      ],
+      "Email": "dariusz.hrabia@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Hrabia Dariusz"
+    },
+    {
+      "id": "2e442a1a-d8f1-4b0a-acdf-b47b493d9e07",
+      "url": "https://app.notion.com/2e442a1ad8f14b0aacdfb47b493d9e07",
+      "createdTime": "2023-07-17 11:08:55Z",
+      "Last name": "Kobryński",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Julian",
+      "userDefined:ID": 157,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "julian.kobrynski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kobryński Julian"
+    },
+    {
+      "id": "31e685ad-fe66-43aa-9e27-ee56ee789166",
+      "url": "https://app.notion.com/31e685adfe6643aa9e27ee56ee789166",
+      "createdTime": "2023-07-17 11:10:08Z",
+      "Last name": "Narbutovich",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Davyd",
+      "userDefined:ID": 158,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "tell_me_mur",
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "davyd.narbutovich@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Narbutovich Davyd"
+    },
+    {
+      "id": "a473ffc4-c2f1-487c-9ded-5ed32c2c731e",
+      "url": "https://app.notion.com/a473ffc4c2f1487c9ded5ed32c2c731e",
+      "createdTime": "2023-08-01 06:24:36Z",
+      "Last name": "Matuszewska",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Katarzyna",
+      "userDefined:ID": 160,
+      "GitHub": null,
+      "Manager": "Marika Marcinkowska",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": null,
+      "Email": "katarzyna.matuszewska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Matuszewska Katarzyna"
+    },
+    {
+      "id": "b583fde2-c401-4b38-8a6c-56f1f38407c0",
+      "url": "https://app.notion.com/b583fde2c4014b388a6c56f1f38407c0",
+      "createdTime": "2023-08-16 06:12:54Z",
+      "Last name": "Marinov",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Andrey",
+      "userDefined:ID": 164,
+      "GitHub": "https://github.com/akmarinov",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior iOS Developer",
+        "Senior 2"
+      ],
+      "Email": "andrey.marinov@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Marinov Andrey"
+    },
+    {
+      "id": "16a0537e-02f1-44b8-b195-36423d885fea",
+      "url": "https://app.notion.com/16a0537e02f144b8b19536423d885fea",
+      "createdTime": "2023-08-16 06:26:51Z",
+      "Last name": "Mielczarek",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Konrad",
+      "userDefined:ID": 165,
+      "GitHub": "https://github.com/mielczarekconrad",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "konrad.mielczarek@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Mielczarek Konrad"
+    },
+    {
+      "id": "ec901de2-22f8-4883-9120-e6de70a2c084",
+      "url": "https://app.notion.com/ec901de222f848839120e6de70a2c084",
+      "createdTime": "2023-08-31 14:20:11Z",
+      "Last name": "Zawiłowska",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Roksana",
+      "userDefined:ID": 167,
+      "GitHub": "https://github.com/roksanaz",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "roksana.zawilowska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Zawiłowska Roksana"
+    },
+    {
+      "id": "694707c8-608d-427e-bac8-16b25a32b9cb",
+      "url": "https://app.notion.com/694707c8608d427ebac816b25a32b9cb",
+      "createdTime": "2023-08-31 14:32:26Z",
+      "Last name": "Shcherba",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Igor",
+      "userDefined:ID": 168,
+      "GitHub": "IgorShcherba",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "AutoZone"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "igor.shcherba@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Shcherba Igor"
+    },
+    {
+      "id": "4b8fb03d-eb98-4d59-b79a-91307081fd45",
+      "url": "https://app.notion.com/4b8fb03deb984d59b79a91307081fd45",
+      "createdTime": "2023-08-31 14:49:13Z",
+      "Last name": "Kliushun",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Viktoryia",
+      "userDefined:ID": 169,
+      "GitHub": "https://github.com/VickyStash",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "viktoryia.kliushun@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kliushun Viktoryia"
+    },
+    {
+      "id": "7ad6a828-25c1-49d1-9187-419a4455555d",
+      "url": "https://app.notion.com/7ad6a82825c149d19187419a4455555d",
+      "createdTime": "2023-09-11 09:26:31Z",
+      "Last name": "Rebelo",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Ruben",
+      "userDefined:ID": 172,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "ruben.rebelo@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Rebelo Ruben"
+    },
+    {
+      "id": "cf87de51-24a6-4d52-ac10-cb94204e8cdd",
+      "url": "https://app.notion.com/cf87de5124a64d52ac10cb94204e8cdd",
+      "createdTime": "2023-10-02 09:13:10Z",
+      "Last name": "Muryn",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Natalia",
+      "userDefined:ID": 175,
+      "GitHub": "https://github.com/bear-junior",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "natalia.muryn@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Muryn Natalia"
+    },
+    {
+      "id": "d3545443-b679-4605-966a-0772025b561e",
+      "url": "https://app.notion.com/d3545443b6794605966a0772025b561e",
+      "createdTime": "2023-10-02 09:15:28Z",
+      "Last name": "Morys Magiera",
+      "Team": null,
+      "Name": "Artur",
+      "userDefined:ID": 176,
+      "GitHub": "artus9033",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "R&D"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "artur.morys-magiera@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Morys Magiera Artur"
+    },
+    {
+      "id": "2548c165-2c21-4281-bb44-f520452b5ef6",
+      "url": "https://app.notion.com/2548c1652c214281bb44f520452b5ef6",
+      "createdTime": "2023-10-02 10:22:37Z",
+      "Last name": "Paciorek",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Jacek",
+      "userDefined:ID": 177,
+      "GitHub": "https://github.com/booua",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "jacek.paciorek@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Paciorek Jacek"
+    },
+    {
+      "id": "8b78076b-85c5-435c-9f52-14b6cfc977f6",
+      "url": "https://app.notion.com/8b78076b85c5435c9f5214b6cfc977f6",
+      "createdTime": "2023-10-30 07:57:03Z",
+      "Last name": "Klukaczewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Bartosz",
+      "userDefined:ID": 181,
+      "GitHub": "bklukaczewski",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "bartosz.klukaczewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Klukaczewski Bartosz"
+    },
+    {
+      "id": "2b121daf-bdff-46e6-a9b3-da2ea4ccd417",
+      "url": "https://app.notion.com/2b121dafbdff46e6a9b3da2ea4ccd417",
+      "createdTime": "2023-10-30 07:59:28Z",
+      "Last name": "Zakrzewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Szymon",
+      "userDefined:ID": 182,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "szymon.zakrzewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Zakrzewski Szymon"
+    },
+    {
+      "id": "674f250c-8953-4ee8-9595-1e789211b97c",
+      "url": "https://app.notion.com/674f250c89534ee895951e789211b97c",
+      "createdTime": "2023-10-30 08:03:23Z",
+      "Last name": "Leśniakiewicz",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Tomasz",
+      "userDefined:ID": 183,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "tomasz.lesniakiewicz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Leśniakiewicz Tomasz"
+    },
+    {
+      "id": "4be099ab-be87-4343-ae5d-c75c36e9e66b",
+      "url": "https://app.notion.com/4be099abbe874343ae5dc75c36e9e66b",
+      "createdTime": "2023-11-13 10:53:33Z",
+      "Last name": "Zgîrvaci",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Andrei",
+      "userDefined:ID": 184,
+      "GitHub": "https://github.com/andrei-zgirvaci",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "https://x.com/andrei_zgirvaci",
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "andrei.zgirvaci@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Zgîrvaci Andrei"
+    },
+    {
+      "id": "c267f719-78d4-4eb3-9296-ff1b5f90d924",
+      "url": "https://app.notion.com/c267f71978d44eb39296ff1b5f90d924",
+      "createdTime": "2023-12-04 07:45:02Z",
+      "Last name": "Ivanishvili",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Nikolaz",
+      "userDefined:ID": 189,
+      "GitHub": null,
+      "Manager": "Maciej Kabata",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Sales Operation Specialist"
+      ],
+      "Email": "nikolas.ivanishvili@callstack.com",
+      "alternatively called": "Nikolas",
+      "Surname / Name": "Ivanishvili Nikolaz"
+    },
+    {
+      "id": "abd04aaf-9182-4fe1-9b68-9910ebb4f096",
+      "url": "https://app.notion.com/abd04aaf91824fe19b689910ebb4f096",
+      "createdTime": "2023-12-04 07:58:44Z",
+      "Last name": "Barańska",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Magdalena",
+      "userDefined:ID": 190,
+      "GitHub": null,
+      "Manager": "Natalia Gros",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "Senior",
+        "IT Project Manager"
+      ],
+      "Email": "magdalena.baranska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Barańska Magdalena"
+    },
+    {
+      "id": "5f647be6-b20f-4312-b9cc-c00efc5cee41",
+      "url": "https://app.notion.com/5f647be6b20f4312b9ccc00efc5cee41",
+      "createdTime": "2023-12-04 08:02:46Z",
+      "Last name": "Janik",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Agata",
+      "userDefined:ID": 191,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Account Manager"
+      ],
+      "Email": "agata.janik@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Janik Agata"
+    },
+    {
+      "id": "8922b6e5-cb26-4bc4-92ab-dcb36614349b",
+      "url": "https://app.notion.com/8922b6e5cb264bc492abdcb36614349b",
+      "createdTime": "2023-12-04 08:04:00Z",
+      "Last name": "Budziński",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Maciej",
+      "userDefined:ID": 192,
+      "GitHub": "maciekBudzinski",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "maciej.budzinski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Budziński Maciej"
+    },
+    {
+      "id": "e52813a7-6728-4000-b2ac-ca6d51298928",
+      "url": "https://app.notion.com/e52813a767284000b2acca6d51298928",
+      "createdTime": "2024-01-03 15:54:13Z",
+      "Last name": "Ochodnický",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Ondřej",
+      "userDefined:ID": 198,
+      "GitHub": "https://github.com/ochodnicky",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "ondrej.ochodnicky@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Ochodnický Ondřej"
+    },
+    {
+      "id": "5ce182c2-3a6f-4058-b3da-f88fcb2d433a",
+      "url": "https://app.notion.com/5ce182c23a6f4058b3daf88fcb2d433a",
+      "createdTime": "2024-01-03 15:57:37Z",
+      "Last name": "Kornek",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Marcin",
+      "userDefined:ID": 199,
+      "GitHub": "https://github.com/marcinkornek",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "marcin.kornek@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kornek Marcin"
+    },
+    {
+      "id": "ad715026-a595-4a6d-b6ee-c718af5260c2",
+      "url": "https://app.notion.com/ad715026a5954a6db6eec718af5260c2",
+      "createdTime": "2024-01-03 15:59:43Z",
+      "Last name": "Wszołek",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Patrycja",
+      "userDefined:ID": 200,
+      "GitHub": null,
+      "Manager": "Marika Marcinkowska",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "HR Business Partner"
+      ],
+      "Email": "patrycja.wszolek@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Wszołek Patrycja"
+    },
+    {
+      "id": "573e282b-5828-4b2a-bcef-2811d9459ec6",
+      "url": "https://app.notion.com/573e282b58284b2abcef2811d9459ec6",
+      "createdTime": "2024-01-03 16:00:41Z",
+      "Last name": "Bujanowicz",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Paweł",
+      "userDefined:ID": 201,
+      "GitHub": null,
+      "Manager": "Marta Moc",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "Business Analyst/Product Owner"
+      ],
+      "Email": "pawel.bujanowicz@callstack.com",
+      "alternatively called": "Buja",
+      "Surname / Name": "Bujanowicz Paweł"
+    },
+    {
+      "id": "39a61b80-27ae-4158-8ddd-9f930390d2b5",
+      "url": "https://app.notion.com/39a61b8027ae41588ddd9f930390d2b5",
+      "createdTime": "2024-01-08 11:38:56Z",
+      "Last name": "Latusek",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Karol",
+      "userDefined:ID": 206,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "Expert",
+        "RN Dev"
+      ],
+      "Email": "karol.latusek@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Latusek Karol"
+    },
+    {
+      "id": "adc92385-94b3-43b4-b060-a1bac993fc7d",
+      "url": "https://app.notion.com/adc9238594b343b4b060a1bac993fc7d",
+      "createdTime": "2024-03-04 08:13:47Z",
+      "Last name": "Dolny",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Dominik",
+      "userDefined:ID": 207,
+      "GitHub": "ddolny",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "dominik.dolny@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Dolny Dominik"
+    },
+    {
+      "id": "98c4f4fe-3804-4a34-ab37-46b20468d34f",
+      "url": "https://app.notion.com/98c4f4fe38044a34ab3746b20468d34f",
+      "createdTime": "2024-03-04 14:49:28Z",
+      "Last name": "Melnyk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Mykyta",
+      "userDefined:ID": 212,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "QA Automation Eng.",
+        "Senior"
+      ],
+      "Email": "mykyta.melnyk@callstack.com",
+      "alternatively called": "Nikita",
+      "Surname / Name": "Melnyk Mykyta"
+    },
+    {
+      "id": "84018566-6ec1-4153-bd0a-7d47fecd033d",
+      "url": "https://app.notion.com/840185666ec14153bd0a7d47fecd033d",
+      "createdTime": "2024-03-05 07:28:05Z",
+      "Last name": "Nowak",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Damian",
+      "userDefined:ID": 213,
+      "GitHub": "DamianNowak5f",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "damiann5f",
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "damian.nowak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Nowak Damian"
+    },
+    {
+      "id": "275d2227-c883-4a1f-8a9e-76140f29b26f",
+      "url": "https://app.notion.com/275d2227c8834a1f8a9e76140f29b26f",
+      "createdTime": "2024-03-05 07:34:53Z",
+      "Last name": "Polski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Marcin",
+      "userDefined:ID": 214,
+      "GitHub": "https://github.com/MarcinPolski",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "marcin.polski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Polski Marcin"
+    },
+    {
+      "id": "3adcbdce-12db-43e1-8d57-2feb572ee87b",
+      "url": "https://app.notion.com/3adcbdce12db43e18d572feb572ee87b",
+      "createdTime": "2024-03-05 07:40:06Z",
+      "Last name": "Stanislavchuk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Mykola",
+      "userDefined:ID": 215,
+      "GitHub": "groot007",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "mykola.stanislavchuk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Stanislavchuk Mykola"
+    },
+    {
+      "id": "c2050317-fbf3-49b8-99ec-e47c7bb91a97",
+      "url": "https://app.notion.com/c2050317fbf349b899ece47c7bb91a97",
+      "createdTime": "2024-03-13 10:55:35Z",
+      "Last name": "Krok",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Bartłomiej",
+      "userDefined:ID": 219,
+      "GitHub": "https://github.com/bartekkrok",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "https://x.com/bartek_krok",
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "bartlomiej.krok@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Krok Bartłomiej"
+    },
+    {
+      "id": "f48a0619-9c22-4caf-be91-ecf4aab444ae",
+      "url": "https://app.notion.com/f48a06199c224cafbe91ecf4aab444ae",
+      "createdTime": "2024-03-13 10:55:37Z",
+      "Last name": "Lorenz",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Kacper",
+      "userDefined:ID": 220,
+      "GitHub": null,
+      "Manager": "Tomasz Krupiński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Talent & Market Research Specialist"
+      ],
+      "Email": "kacper.lorenz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Lorenz Kacper"
+    },
+    {
+      "id": "bf96a307-af0a-44d4-a148-17dfab869976",
+      "url": "https://app.notion.com/bf96a307af0a44d4a14817dfab869976",
+      "createdTime": "2024-03-28 14:00:50Z",
+      "Last name": "Niżyński",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Daniel",
+      "userDefined:ID": 222,
+      "GitHub": "https://github.com/DanNizy",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "daniel.nizynski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Niżyński Daniel"
+    },
+    {
+      "id": "da7d0464-7a3d-4e9d-9ea1-7c77d35925ec",
+      "url": "https://app.notion.com/da7d04647a3d4e9d9ea17c77d35925ec",
+      "createdTime": "2024-03-28 14:47:13Z",
+      "Last name": "Zabielski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Sebastian",
+      "userDefined:ID": 224,
+      "GitHub": "https://github.com/seb-zabielski",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "sebastian.zabielski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Zabielski Sebastian"
+    },
+    {
+      "id": "10ee0abe-e367-4492-9adc-af4460f05cb5",
+      "url": "https://app.notion.com/10ee0abee36744929adcaf4460f05cb5",
+      "createdTime": "2024-05-06 07:08:34Z",
+      "Last name": "Asanowicz",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Nina",
+      "userDefined:ID": 225,
+      "GitHub": null,
+      "Manager": "Marika Marcinkowska",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "People Learning & Development Expert"
+      ],
+      "Email": "nina.asanowicz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Asanowicz Nina"
+    },
+    {
+      "id": "bd5948f9-b3b2-4fb5-99b5-b6e20d6c707c",
+      "url": "https://app.notion.com/bd5948f9b3b24fb599b5b6e20d6c707c",
+      "createdTime": "2024-05-09 09:16:09Z",
+      "Last name": "Chudziak",
+      "Team": null,
+      "Name": "Michał",
+      "userDefined:ID": 226,
+      "GitHub": null,
+      "Manager": "Grzegorz Wołodko",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Head of Engineering"
+      ],
+      "Email": "michal.chudziak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Chudziak Michał"
+    },
+    {
+      "id": "2b5a14be-d6d9-4a26-b2a7-3d91a28c64a8",
+      "url": "https://app.notion.com/2b5a14bed6d94a26b2a73d91a28c64a8",
+      "createdTime": "2024-05-22 08:42:01Z",
+      "Last name": "Tomczewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Piotr",
+      "userDefined:ID": 229,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Boats"
+      ],
+      "Role / Seniority Level": [
+        "Full-stack React Innovation Expert"
+      ],
+      "Email": "piotr.tomczewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Tomczewski Piotr"
+    },
+    {
+      "id": "d48a6129-b815-478b-97f6-9a5dcd2a98b1",
+      "url": "https://app.notion.com/d48a6129b815478b97f69a5dcd2a98b1",
+      "createdTime": "2024-06-17 10:55:26Z",
+      "Last name": "Sajko",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Adam",
+      "userDefined:ID": 230,
+      "GitHub": "adam-sajko",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "Senior 1",
+        "RN Dev"
+      ],
+      "Email": "adam.sajko@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Sajko Adam"
+    },
+    {
+      "id": "be6336eb-5429-4c43-9557-b5555eaabb36",
+      "url": "https://app.notion.com/be6336eb54294c439557b5555eaabb36",
+      "createdTime": "2024-07-08 12:31:31Z",
+      "Last name": "Kaczmarzyk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Oskar",
+      "userDefined:ID": 231,
+      "GitHub": "https://github.com/kachmashk",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "https://x.com/kachmashk",
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Mid 2"
+      ],
+      "Email": "oskar.kaczmarzyk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kaczmarzyk Oskar"
+    },
+    {
+      "id": "610d3746-7c25-44a5-8f8e-25071b8b08e0",
+      "url": "https://app.notion.com/610d37467c2544a58f8e25071b8b08e0",
+      "createdTime": "2024-07-15 06:53:23Z",
+      "Last name": "Kędzierski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Kamil",
+      "userDefined:ID": 232,
+      "GitHub": "https://github.com/kamilkedzierski",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "codingbrah",
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "Senior 1",
+        "RN Dev"
+      ],
+      "Email": "kamil.kedzierski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kędzierski Kamil"
+    },
+    {
+      "id": "aaec606a-257a-47c4-9bb4-af3a8afbd8af",
+      "url": "https://app.notion.com/aaec606a257a47c49bb4af3a8afbd8af",
+      "createdTime": "2024-07-29 11:19:46Z",
+      "Last name": "Chmal",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Szymon",
+      "userDefined:ID": 237,
+      "GitHub": "V3RON",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "ChmalSzymon",
+      "Project": [
+        "R&D"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Expert"
+      ],
+      "Email": "szymon.chmal@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Chmal Szymon"
+    },
+    {
+      "id": "642e52c6-4182-4f1c-83c2-074e11440e75",
+      "url": "https://app.notion.com/642e52c641824f1c83c2074e11440e75",
+      "createdTime": "2024-07-29 11:21:38Z",
+      "Last name": "Łodygowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Maciej",
+      "userDefined:ID": 238,
+      "GitHub": "https://github.com/draggie",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "SES"
+      ],
+      "Role / Seniority Level": [
+        "Senior 1",
+        "RN Dev"
+      ],
+      "Email": "maciej.lodygowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Łodygowski Maciej"
+    },
+    {
+      "id": "68c96b5b-b68e-496c-8dbf-7fa31c1beadd",
+      "url": "https://app.notion.com/68c96b5bb68e496c8dbf7fa31c1beadd",
+      "createdTime": "2024-08-13 07:12:01Z",
+      "Last name": "Bataev",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Vladislav",
+      "userDefined:ID": 241,
+      "GitHub": "https://github.com/bataevvlad",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "vladislav.bataev@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Bataev Vladislav"
+    },
+    {
+      "id": "665baa3b-2e25-4f9e-b915-8aa41c12cc51",
+      "url": "https://app.notion.com/665baa3b2e254f9eb9158aa41c12cc51",
+      "createdTime": "2024-08-26 09:56:14Z",
+      "Last name": null,
+      "Team": null,
+      "Name": null,
+      "userDefined:ID": 242,
+      "GitHub": null,
+      "Manager": null,
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Founder & CTO"
+      ],
+      "Email": "mike@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Grabowski Mike"
+    },
+    {
+      "id": "7db97e7d-3f47-4588-a9f8-06a3c2be4e08",
+      "url": "https://app.notion.com/7db97e7d3f474588a9f806a3c2be4e08",
+      "createdTime": "2024-08-30 07:07:16Z",
+      "Last name": "Grzeluk",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Iwona",
+      "userDefined:ID": 243,
+      "GitHub": null,
+      "Manager": "Kamil Mikołajczyk",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior IT Recruiter"
+      ],
+      "Email": "iwona.grzeluk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Grzeluk Iwona"
+    },
+    {
+      "id": "10d5d027-c0f8-8034-9623-c2f2a7b7c835",
+      "url": "https://app.notion.com/10d5d027c0f880349623c2f2a7b7c835",
+      "createdTime": "2024-09-26 12:24:00Z",
+      "Last name": "Kondek",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Ewa",
+      "userDefined:ID": 248,
+      "GitHub": null,
+      "Manager": "Monika Stotko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Office Coordinator"
+      ],
+      "Email": "ewa.kondek@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kondek Ewa"
+    },
+    {
+      "id": "1225d027-c0f8-809a-8c9c-dc8bd0ef3e3b",
+      "url": "https://app.notion.com/1225d027c0f8809a8c9cdc8bd0ef3e3b",
+      "createdTime": "2024-10-17 06:39:25Z",
+      "Last name": "Pasca",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Marius",
+      "userDefined:ID": 251,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "marius.pasca@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Pasca Marius"
+    },
+    {
+      "id": "1225d027-c0f8-801f-a71d-d325724962ae",
+      "url": "https://app.notion.com/1225d027c0f8801fa71dd325724962ae",
+      "createdTime": "2024-10-17 06:42:22Z",
+      "Last name": "Omelan",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Marcin",
+      "userDefined:ID": 252,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Boats"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "marcin.omelan@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Omelan Marcin"
+    },
+    {
+      "id": "1345d027-c0f8-8098-8955-c6399e502b4c",
+      "url": "https://app.notion.com/1345d027c0f880988955c6399e502b4c",
+      "createdTime": "2024-11-04 08:05:07Z",
+      "Last name": "Yankov",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Boris",
+      "userDefined:ID": 255,
+      "GitHub": "borisyankov",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "borisyankov",
+      "Project": [
+        "Get your Guide"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "boris.yankov@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Yankov Boris"
+    },
+    {
+      "id": "1345d027-c0f8-8024-9833-cd11df0d38f3",
+      "url": "https://app.notion.com/1345d027c0f880249833cd11df0d38f3",
+      "createdTime": "2024-11-04 08:07:17Z",
+      "Last name": "Kliushun",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Mikita",
+      "userDefined:ID": 256,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bangkok Bank"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "mikita.kliushun@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kliushun Mikita"
+    },
+    {
+      "id": "1345d027-c0f8-800d-9055-c94e895e98c7",
+      "url": "https://app.notion.com/1345d027c0f8800d9055c94e895e98c7",
+      "createdTime": "2024-11-04 08:08:53Z",
+      "Last name": "Moc",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Marta",
+      "userDefined:ID": 257,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Portfolio Manager"
+      ],
+      "Email": "marta.moc@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Moc Marta"
+    },
+    {
+      "id": "13c5d027-c0f8-805e-9e50-da3e7e3352fd",
+      "url": "https://app.notion.com/13c5d027c0f8805e9e50da3e7e3352fd",
+      "createdTime": "2024-11-12 11:43:58Z",
+      "Last name": "Tymkiv",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Stanislav",
+      "userDefined:ID": 261,
+      "GitHub": null,
+      "Manager": "Natalia Gros",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "stanislav.tymkiv@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Tymkiv Stanislav"
+    },
+    {
+      "id": "13d5d027-c0f8-808c-84f2-c158cd8a6c6b",
+      "url": "https://app.notion.com/13d5d027c0f8808c84f2c158cd8a6c6b",
+      "createdTime": "2024-11-13 12:08:55Z",
+      "Last name": "Stasiak",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Jakub",
+      "userDefined:ID": 262,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "QA Automation Eng.",
+        "Senior"
+      ],
+      "Email": "jakub.stasiak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Stasiak Jakub"
+    },
+    {
+      "id": "1505d027-c0f8-8040-9ac0-dc9820b255d8",
+      "url": "https://app.notion.com/1505d027c0f880409ac0dc9820b255d8",
+      "createdTime": "2024-12-02 13:36:39Z",
+      "Last name": "Nagy",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Zsolt",
+      "userDefined:ID": 266,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "QA Automation Eng.",
+        "Senior"
+      ],
+      "Email": "zsolt.nagy@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Nagy Zsolt"
+    },
+    {
+      "id": "1505d027-c0f8-8097-b504-d90504ea7d21",
+      "url": "https://app.notion.com/1505d027c0f88097b504d90504ea7d21",
+      "createdTime": "2024-12-02 13:40:57Z",
+      "Last name": "Benitez Guijarro",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Antonio",
+      "userDefined:ID": 268,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "antonio.benitez@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Benitez Guijarro Antonio"
+    },
+    {
+      "id": "15a5d027-c0f8-80ad-9946-e6f7b43fcdbf",
+      "url": "https://app.notion.com/15a5d027c0f880ad9946e6f7b43fcdbf",
+      "createdTime": "2024-12-12 06:43:07Z",
+      "Last name": "Bramora",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Piotr",
+      "userDefined:ID": 270,
+      "GitHub": null,
+      "Manager": "Marta Moc",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "piotr.bramora@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Bramora Piotr"
+    },
+    {
+      "id": "1745d027-c0f8-80b9-8c46-f10e431da98c",
+      "url": "https://app.notion.com/1745d027c0f880b98c46f10e431da98c",
+      "createdTime": "2025-01-07 11:12:33Z",
+      "Last name": "Sobolak",
+      "Team": [
+        "Marketing Team"
+      ],
+      "Name": "Justyna",
+      "userDefined:ID": 271,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Marketing Project Manager"
+      ],
+      "Email": "justyna.sobolak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Sobolak Justyna"
+    },
+    {
+      "id": "1745d027-c0f8-80d4-9639-d753568f3d2c",
+      "url": "https://app.notion.com/1745d027c0f880d49639d753568f3d2c",
+      "createdTime": "2025-01-07 11:15:12Z",
+      "Last name": "Kmieciak",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Martin",
+      "userDefined:ID": 272,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Pepsi"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "martin.kmieciak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kmieciak Martin"
+    },
+    {
+      "id": "1745d027-c0f8-803d-8151-d2a9aa1a313d",
+      "url": "https://app.notion.com/1745d027c0f8803d8151d2a9aa1a313d",
+      "createdTime": "2025-01-07 11:16:30Z",
+      "Last name": "Zeinalov",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Rustam",
+      "userDefined:ID": 273,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "QA Automation Eng.",
+        "Senior"
+      ],
+      "Email": "rustam.zeinalov@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Zeinalov Rustam"
+    },
+    {
+      "id": "1815d027-c0f8-80c2-977d-e9a05288dc09",
+      "url": "https://app.notion.com/1815d027c0f880c2977de9a05288dc09",
+      "createdTime": "2025-01-20 13:52:39Z",
+      "Last name": "Sosiński",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Hubert",
+      "userDefined:ID": 275,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "hubert.sosinski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Sosiński Hubert"
+    },
+    {
+      "id": "1815d027-c0f8-8035-ac1d-dc31f55975cd",
+      "url": "https://app.notion.com/1815d027c0f88035ac1ddc31f55975cd",
+      "createdTime": "2025-01-20 13:54:15Z",
+      "Last name": "Kosewski",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Filip",
+      "userDefined:ID": 276,
+      "GitHub": null,
+      "Manager": "Aleksander Rak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "IT Administrator"
+      ],
+      "Email": "filip.kosewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kosewski Filip"
+    },
+    {
+      "id": "1815d027-c0f8-802e-8bda-c81835c0085d",
+      "url": "https://app.notion.com/1815d027c0f8802e8bdac81835c0085d",
+      "createdTime": "2025-01-20 13:55:42Z",
+      "Last name": "Shvets",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Uladzimir",
+      "userDefined:ID": 277,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "QA Automation Eng.",
+        "Senior"
+      ],
+      "Email": "uladzimir.shvets@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Shvets Uladzimir"
+    },
+    {
+      "id": "1915d027-c0f8-8097-8287-e43778d3ef17",
+      "url": "https://app.notion.com/1915d027c0f880978287e43778d3ef17",
+      "createdTime": "2025-02-05 15:57:05Z",
+      "Last name": "Nitica",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Petru",
+      "userDefined:ID": 282,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "QA Automation Eng.",
+        "Senior"
+      ],
+      "Email": "petru.nitica@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Nitica Petru"
+    },
+    {
+      "id": "1915d027-c0f8-80e1-958d-fad21b445b1f",
+      "url": "https://app.notion.com/1915d027c0f880e1958dfad21b445b1f",
+      "createdTime": "2025-02-05 15:58:57Z",
+      "Last name": "Solarska - Własenko",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Justyna",
+      "userDefined:ID": 283,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Account Manager"
+      ],
+      "Email": "justyna.solarska-wlasenko@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Solarska - Własenko Justyna"
+    },
+    {
+      "id": "1ac5d027-c0f8-808a-a275-c96c398494a3",
+      "url": "https://app.notion.com/1ac5d027c0f8808aa275c96c398494a3",
+      "createdTime": "2025-03-04 07:32:42Z",
+      "Last name": "Michalski",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Paweł",
+      "userDefined:ID": 284,
+      "GitHub": null,
+      "Manager": "Natalia Gros",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "pawel.michalski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Michalski Paweł"
+    },
+    {
+      "id": "1ac5d027-c0f8-8027-83ca-e2c1074bf7df",
+      "url": "https://app.notion.com/1ac5d027c0f8802783cae2c1074bf7df",
+      "createdTime": "2025-03-04 07:56:20Z",
+      "Last name": "Jaszczuk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Wiktor",
+      "userDefined:ID": 285,
+      "GitHub": "https://github.com/wjaszczuk",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "Senior 1",
+        "RN Dev"
+      ],
+      "Email": "wiktor.jaszczuk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Jaszczuk Wiktor"
+    },
+    {
+      "id": "1ac5d027-c0f8-80d0-8f5f-e52d85390476",
+      "url": "https://app.notion.com/1ac5d027c0f880d08f5fe52d85390476",
+      "createdTime": "2025-03-04 07:59:42Z",
+      "Last name": "Paradowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Kamil",
+      "userDefined:ID": 286,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "R&D"
+      ],
+      "Role / Seniority Level": [
+        "Senior 2",
+        "RN Dev"
+      ],
+      "Email": "kamil.paradowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Paradowski Kamil"
+    },
+    {
+      "id": "1ac5d027-c0f8-802b-969c-d4b27b7141d4",
+      "url": "https://app.notion.com/1ac5d027c0f8802b969cd4b27b7141d4",
+      "createdTime": "2025-03-04 08:02:06Z",
+      "Last name": "Babrykovich",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Aliaksandr",
+      "userDefined:ID": 287,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Get your Guide"
+      ],
+      "Role / Seniority Level": [
+        "Senior 1",
+        "RN Dev"
+      ],
+      "Email": "aliaksandr.babrykovich@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Babrykovich Aliaksandr"
+    },
+    {
+      "id": "1ac5d027-c0f8-8048-8e5a-e6b216b5a164",
+      "url": "https://app.notion.com/1ac5d027c0f880488e5ae6b216b5a164",
+      "createdTime": "2025-03-04 08:05:42Z",
+      "Last name": "Yaskevich",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Anastasiya",
+      "userDefined:ID": 288,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "Mid 2",
+        "RN Dev"
+      ],
+      "Email": "anastasiya.yaskevich@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Yaskevich Anastasiya"
+    },
+    {
+      "id": "1ac5d027-c0f8-8014-8f6b-c762b12d3bc4",
+      "url": "https://app.notion.com/1ac5d027c0f880148f6bc762b12d3bc4",
+      "createdTime": "2025-03-04 08:07:59Z",
+      "Last name": "Petkelis",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Juozas",
+      "userDefined:ID": 289,
+      "GitHub": "https://github.com/JuozasP",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "Mid 2",
+        "RN Dev"
+      ],
+      "Email": "juozas.petkelis@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Petkelis Juozas"
+    },
+    {
+      "id": "1c95d027-c0f8-8050-8faf-eaa5adc5adad",
+      "url": "https://app.notion.com/1c95d027c0f880508fafeaa5adc5adad",
+      "createdTime": "2025-04-02 13:06:27Z",
+      "Last name": "Król",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Jarosław",
+      "userDefined:ID": 290,
+      "GitHub": "https://github.com/jaroslawkrol",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "jaroslaw.krol@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Król Jarosław"
+    },
+    {
+      "id": "1c95d027-c0f8-8010-9215-f7fb95d31d3c",
+      "url": "https://app.notion.com/1c95d027c0f880109215f7fb95d31d3c",
+      "createdTime": "2025-04-02 13:08:59Z",
+      "Last name": "Staniewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Michał",
+      "userDefined:ID": 291,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Zalando"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "michal.staniewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Staniewski Michał"
+    },
+    {
+      "id": "1c95d027-c0f8-80b5-836d-f82c3da83e0f",
+      "url": "https://app.notion.com/1c95d027c0f880b5836df82c3da83e0f",
+      "createdTime": "2025-04-02 13:10:40Z",
+      "Last name": "Potor",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Daniel",
+      "userDefined:ID": 292,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Phantom"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "daniel.potor@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Potor Daniel"
+    },
+    {
+      "id": "1d55d027-c0f8-80e9-a71d-e52350fcfa64",
+      "url": "https://app.notion.com/1d55d027c0f880e9a71de52350fcfa64",
+      "createdTime": "2025-04-14 11:13:49Z",
+      "Last name": "Gołaszewski",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Krzysztof",
+      "userDefined:ID": 297,
+      "GitHub": null,
+      "Manager": "Grzegorz Wołodko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior Project Manager"
+      ],
+      "Email": "krzysztof.golaszewski@callstack.com",
+      "alternatively called": "Kris",
+      "Surname / Name": "Gołaszewski Krzysztof"
+    },
+    {
+      "id": "1ea5d027-c0f8-80f4-883a-f48259c67565",
+      "url": "https://app.notion.com/1ea5d027c0f880f4883af48259c67565",
+      "createdTime": "2025-05-05 10:47:44Z",
+      "Last name": "Wyszomirski",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Wojciech",
+      "userDefined:ID": 299,
+      "GitHub": null,
+      "Manager": "Marta Moc",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Boats"
+      ],
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "wojciech.wyszomirski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Wyszomirski Wojciech"
+    },
+    {
+      "id": "1ea5d027-c0f8-80ca-a748-d17f56117ade",
+      "url": "https://app.notion.com/1ea5d027c0f880caa748d17f56117ade",
+      "createdTime": "2025-05-05 10:49:53Z",
+      "Last name": "Zamfir",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Alex",
+      "userDefined:ID": 300,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "eToro"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "alex.zamfir@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Zamfir Alex"
+    },
+    {
+      "id": "2315d027-c0f8-80f4-8d84-d87e3e1cfb55",
+      "url": "https://app.notion.com/2315d027c0f880f48d84d87e3e1cfb55",
+      "createdTime": "2025-07-15 07:17:42Z",
+      "Last name": "Glińska - Tkocz",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Karina",
+      "userDefined:ID": 302,
+      "GitHub": null,
+      "Manager": "Monika Stotko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Office Manager & CEO Assistant"
+      ],
+      "Email": "karina.glinska-tkocz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Glińska - Tkocz Karina"
+    },
+    {
+      "id": "2315d027-c0f8-8047-9357-d856ab4a3b7c",
+      "url": "https://app.notion.com/2315d027c0f880479357d856ab4a3b7c",
+      "createdTime": "2025-07-15 07:19:21Z",
+      "Last name": "Mikołajczyk",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Kamil",
+      "userDefined:ID": 303,
+      "GitHub": null,
+      "Manager": "Radek Chrzempka",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Recruitment Manager"
+      ],
+      "Email": "kamil.mikolajczyk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Mikołajczyk Kamil"
+    },
+    {
+      "id": "2315d027-c0f8-8072-9c57-ef96307b7fff",
+      "url": "https://app.notion.com/2315d027c0f880729c57ef96307b7fff",
+      "createdTime": "2025-07-15 07:21:36Z",
+      "Last name": "Mirońska - Veigas",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Katarzyna",
+      "userDefined:ID": 304,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Business Development Manager"
+      ],
+      "Email": "katarzyna.mironska-veigas@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Mirońska - Veigas Katarzyna"
+    },
+    {
+      "id": "2315d027-c0f8-8074-b97a-d4927e2ab21c",
+      "url": "https://app.notion.com/2315d027c0f88074b97ad4927e2ab21c",
+      "createdTime": "2025-07-15 07:23:17Z",
+      "Last name": "Hetriuc",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Valentin",
+      "userDefined:ID": 305,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Feeld"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "valentin.hetriuc@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Hetriuc Valentin"
+    },
+    {
+      "id": "2315d027-c0f8-8090-83e3-e2e235c19795",
+      "url": "https://app.notion.com/2315d027c0f8809083e3e2e235c19795",
+      "createdTime": "2025-07-15 07:25:45Z",
+      "Last name": "Doroshenko",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Andrii",
+      "userDefined:ID": 306,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "andrii.doroshenko@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Doroshenko Andrii"
+    },
+    {
+      "id": "2545d027-c0f8-80f3-9348-ebc3d8f2dfb2",
+      "url": "https://app.notion.com/2545d027c0f880f39348ebc3d8f2dfb2",
+      "createdTime": "2025-08-19 10:59:01Z",
+      "Last name": "Goshen",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Eliran",
+      "userDefined:ID": 307,
+      "GitHub": "https://github.com/elirangoshen",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "eliran.goshen@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Goshen Eliran"
+    },
+    {
+      "id": "2555d027-c0f8-8001-b0ae-dcf242f6ab18",
+      "url": "https://app.notion.com/2555d027c0f88001b0aedcf242f6ab18",
+      "createdTime": "2025-08-20 06:30:08Z",
+      "Last name": "Sydiaha",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Nazar",
+      "userDefined:ID": 308,
+      "GitHub": "https://github.com/californiandreamer",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "nazar.sydiaha@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Sydiaha Nazar"
+    },
+    {
+      "id": "2555d027-c0f8-8018-8aa7-ca2b37982ec1",
+      "url": "https://app.notion.com/2555d027c0f880188aa7ca2b37982ec1",
+      "createdTime": "2025-08-20 06:33:04Z",
+      "Last name": "Mandziak",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Grzegorz",
+      "userDefined:ID": 310,
+      "GitHub": "alimek",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bloomberg"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "grzegorz.mandziak@callstack.com",
+      "alternatively called": "Greg",
+      "Surname / Name": "Mandziak Grzegorz"
+    },
+    {
+      "id": "2555d027-c0f8-8027-bb94-c009da93ae6b",
+      "url": "https://app.notion.com/2555d027c0f88027bb94c009da93ae6b",
+      "createdTime": "2025-08-20 06:39:16Z",
+      "Last name": "Belobrovik",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Anatoliy",
+      "userDefined:ID": 312,
+      "GitHub": "https://github.com/seiraye",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "anatoly.belobrovik@callstack.com",
+      "alternatively called": "Anatoly",
+      "Surname / Name": "Belobrovik Anatoliy"
+    },
+    {
+      "id": "2555d027-c0f8-80bb-933b-fb762c0b08c1",
+      "url": "https://app.notion.com/2555d027c0f880bb933bfb762c0b08c1",
+      "createdTime": "2025-08-20 06:41:16Z",
+      "Last name": "Modzelewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Łukasz",
+      "userDefined:ID": 313,
+      "GitHub": "https://github.com/LukasMod",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Mid 2"
+      ],
+      "Email": "lukasz.modzelewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Modzelewski Łukasz"
+    },
+    {
+      "id": "2625d027-c0f8-807c-a4d4-e0d96a6a287d",
+      "url": "https://app.notion.com/2625d027c0f8807ca4d4e0d96a6a287d",
+      "createdTime": "2025-09-02 09:06:35Z",
+      "Last name": "Fogel",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Wiktoria",
+      "userDefined:ID": 315,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Mid 2"
+      ],
+      "Email": "wiktoria.fogel@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Fogel Wiktoria"
+    },
+    {
+      "id": "2625d027-c0f8-80df-8b6d-d6fb86b74975",
+      "url": "https://app.notion.com/2625d027c0f880df8b6dd6fb86b74975",
+      "createdTime": "2025-09-02 09:08:35Z",
+      "Last name": "Wysoczański",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Mateusz",
+      "userDefined:ID": 316,
+      "GitHub": null,
+      "Manager": "Marta Moc",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "mateusz.wysoczanski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Wysoczański Mateusz"
+    },
+    {
+      "id": "2625d027-c0f8-808e-9095-dc4c7db56213",
+      "url": "https://app.notion.com/2625d027c0f8808e9095dc4c7db56213",
+      "createdTime": "2025-09-02 09:10:23Z",
+      "Last name": "Oleś",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Robert",
+      "userDefined:ID": 317,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "robert.oles@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Oleś Robert"
+    },
+    {
+      "id": "26f5d027-c0f8-803e-bc2e-d0ebd39fad01",
+      "url": "https://app.notion.com/26f5d027c0f8803ebc2ed0ebd39fad01",
+      "createdTime": "2025-09-15 08:47:46Z",
+      "Last name": "Mota",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Diogo",
+      "userDefined:ID": 319,
+      "GitHub": "https://github.com/xdimota7x",
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "AutoZone"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "diogo.mota@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Mota Diogo"
+    },
+    {
+      "id": "26f5d027-c0f8-807b-aafa-faf767b441ea",
+      "url": "https://app.notion.com/26f5d027c0f8807baafafaf767b441ea",
+      "createdTime": "2025-09-15 08:54:41Z",
+      "Last name": "Kabata",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Maciej",
+      "userDefined:ID": 320,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Sales Operations Manager"
+      ],
+      "Email": "maciej.kabata@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kabata Maciej"
+    },
+    {
+      "id": "27f5d027-c0f8-805f-bceb-daa3f9f66c73",
+      "url": "https://app.notion.com/27f5d027c0f8805fbcebdaa3f9f66c73",
+      "createdTime": "2025-10-01 11:19:44Z",
+      "Last name": "Głowacz",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Kamila",
+      "userDefined:ID": 321,
+      "GitHub": null,
+      "Manager": "Marta Moc",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru",
+        "Pepsi"
+      ],
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "kamila.glowacz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Głowacz Kamila"
+    },
+    {
+      "id": "27f5d027-c0f8-808a-a992-eb9e0901759d",
+      "url": "https://app.notion.com/27f5d027c0f8808aa992eb9e0901759d",
+      "createdTime": "2025-10-01 11:24:06Z",
+      "Last name": "Večerin",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Alen",
+      "userDefined:ID": 323,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "alen.vecerin@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Večerin Alen"
+    },
+    {
+      "id": "27f5d027-c0f8-807d-a13e-fd744d5d7386",
+      "url": "https://app.notion.com/27f5d027c0f8807da13efd744d5d7386",
+      "createdTime": "2025-10-01 11:25:56Z",
+      "Last name": "Kilarski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Marcin",
+      "userDefined:ID": 324,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Mid 2"
+      ],
+      "Email": "marcin.kilarski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kilarski Marcin"
+    },
+    {
+      "id": "27f5d027-c0f8-8097-949d-f2b58c847e20",
+      "url": "https://app.notion.com/27f5d027c0f88097949df2b58c847e20",
+      "createdTime": "2025-10-01 11:27:29Z",
+      "Last name": "Bubyr",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Yehor",
+      "userDefined:ID": 325,
+      "GitHub": "https://ybubyr.com",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "@BubyrYehor",
+      "Project": [
+        "Pepsi"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "yehor.bubyr@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Bubyr Yehor"
+    },
+    {
+      "id": "2885d027-c0f8-80b6-a0ab-fa11427abc13",
+      "url": "https://app.notion.com/2885d027c0f880b6a0abfa11427abc13",
+      "createdTime": "2025-10-10 06:17:52Z",
+      "Last name": "Kuprins",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Vitalijs",
+      "userDefined:ID": 327,
+      "GitHub": "https://github.com/vkuprin",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "vitalijs.kuprins@callstack.com",
+      "alternatively called": "Vitaly",
+      "Surname / Name": "Kuprins Vitaly"
+    },
+    {
+      "id": "28c5d027-c0f8-8033-a8f6-c378a5b792c9",
+      "url": "https://app.notion.com/28c5d027c0f88033a8f6c378a5b792c9",
+      "createdTime": "2025-10-14 06:54:24Z",
+      "Last name": "Lul",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Michał",
+      "userDefined:ID": 328,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "michal.lul@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Lul Michał"
+    },
+    {
+      "id": "28c5d027-c0f8-809e-aa26-f4c25565e23c",
+      "url": "https://app.notion.com/28c5d027c0f8809eaa26f4c25565e23c",
+      "createdTime": "2025-10-14 06:58:35Z",
+      "Last name": "Motruk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Dmytro",
+      "userDefined:ID": 329,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "dmytro.motruk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Motruk Dmytro"
+    },
+    {
+      "id": "2925d027-c0f8-8022-bef4-fb93ff9dee86",
+      "url": "https://app.notion.com/2925d027c0f88022bef4fb93ff9dee86",
+      "createdTime": "2025-10-20 13:06:23Z",
+      "Last name": "Datsiuk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Vitalii",
+      "userDefined:ID": 331,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "vitalii.datsiuk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Datsiuk Vitalii"
+    },
+    {
+      "id": "2925d027-c0f8-8046-b1b8-d98262f09950",
+      "url": "https://app.notion.com/2925d027c0f88046b1b8d98262f09950",
+      "createdTime": "2025-10-20 13:08:30Z",
+      "Last name": "Dragos",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Apostol",
+      "userDefined:ID": 332,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "dragos.apostol@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Apostol Dragos"
+    },
+    {
+      "id": "2925d027-c0f8-801d-86d5-d3fdf09b4cfa",
+      "url": "https://app.notion.com/2925d027c0f8801d86d5d3fdf09b4cfa",
+      "createdTime": "2025-10-20 13:10:01Z",
+      "Last name": "Dražić",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Mitar",
+      "userDefined:ID": 333,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "mitar.drazic@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Dražić Mitar"
+    },
+    {
+      "id": "2a15d027-c0f8-80f8-b91d-cc834759c34e",
+      "url": "https://app.notion.com/2a15d027c0f880f8b91dcc834759c34e",
+      "createdTime": "2025-11-04 07:55:02Z",
+      "Last name": "Marchewka",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Mateusz",
+      "userDefined:ID": 335,
+      "GitHub": "https://github.com/MarchewkaMatthew",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "mateusz.marchewka@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Marchewka Mateusz"
+    },
+    {
+      "id": "2a15d027-c0f8-80d6-b89d-e99eec601f46",
+      "url": "https://app.notion.com/2a15d027c0f880d6b89de99eec601f46",
+      "createdTime": "2025-11-04 07:56:34Z",
+      "Last name": "Kochanowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Piotr",
+      "userDefined:ID": 336,
+      "GitHub": "https://github.com/TheKohan",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "https://x.com/The_Kohan",
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "piotr.kochanowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kochanowski Piotr"
+    },
+    {
+      "id": "2a15d027-c0f8-80a9-a878-fc560fe5272d",
+      "url": "https://app.notion.com/2a15d027c0f880a9a878fc560fe5272d",
+      "createdTime": "2025-11-04 07:58:20Z",
+      "Last name": "Tripuz",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Anastazja",
+      "userDefined:ID": 337,
+      "GitHub": "https://github.com/anastasiia-tripuz",
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Venn"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "anastasiia.tripuz@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Tripuz Anastazja"
+    },
+    {
+      "id": "2a15d027-c0f8-80ba-9532-d3cdaccd265e",
+      "url": "https://app.notion.com/2a15d027c0f880ba9532d3cdaccd265e",
+      "createdTime": "2025-11-04 07:59:44Z",
+      "Last name": "Podomarof",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Piotr",
+      "userDefined:ID": 338,
+      "GitHub": null,
+      "Manager": "Natalia Gros",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First",
+        "Spotify"
+      ],
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "piotr.podomarof@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Podomarof Piotr"
+    },
+    {
+      "id": "2a15d027-c0f8-80d8-b113-eb4451ac93ea",
+      "url": "https://app.notion.com/2a15d027c0f880d8b113eb4451ac93ea",
+      "createdTime": "2025-11-04 08:02:32Z",
+      "Last name": "Obudziński",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Bartłomiej",
+      "userDefined:ID": 339,
+      "GitHub": null,
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Expensify"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Mid 2"
+      ],
+      "Email": "bartlomiej.obudzinski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Obudziński Bartłomiej"
+    },
+    {
+      "id": "2af5d027-c0f8-8035-9d21-ceab0eb2dc21",
+      "url": "https://app.notion.com/2af5d027c0f880359d21ceab0eb2dc21",
+      "createdTime": "2025-11-18 07:38:36Z",
+      "Last name": "Zasina",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Arkadiusz",
+      "userDefined:ID": 340,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "arkadiusz.zasina@callstack.com",
+      "alternatively called": "Arek",
+      "Surname / Name": "Zasina Arkadiusz"
+    },
+    {
+      "id": "2af5d027-c0f8-8009-b9cc-c650b2a67a42",
+      "url": "https://app.notion.com/2af5d027c0f88009b9ccc650b2a67a42",
+      "createdTime": "2025-11-18 07:40:59Z",
+      "Last name": "Jankowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Jan",
+      "userDefined:ID": 341,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "jan.jankowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Jankowski Jan"
+    },
+    {
+      "id": "2af5d027-c0f8-80af-aba0-defb3db50371",
+      "url": "https://app.notion.com/2af5d027c0f880afaba0defb3db50371",
+      "createdTime": "2025-11-18 07:42:09Z",
+      "Last name": "Jarno",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Filip",
+      "userDefined:ID": 342,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Get your Guide"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "filip.jarno@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Jarno Filip"
+    },
+    {
+      "id": "2af5d027-c0f8-80d2-85b8-e3a636c219f2",
+      "url": "https://app.notion.com/2af5d027c0f880d285b8e3a636c219f2",
+      "createdTime": "2025-11-18 07:43:39Z",
+      "Last name": "Gaydarov",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Radoslav",
+      "userDefined:ID": 343,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "eToro"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "radoslav.gaydarov@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Gaydarov Radoslav"
+    },
+    {
+      "id": "2af5d027-c0f8-8083-9e47-d2234a8f5513",
+      "url": "https://app.notion.com/2af5d027c0f880839e47d2234a8f5513",
+      "createdTime": "2025-11-18 07:46:46Z",
+      "Last name": "Leśniewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Maciej",
+      "userDefined:ID": 345,
+      "GitHub": "https://github.com/leshniak",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "SES"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "maciej.lesniewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Leśniewski Maciej"
+    },
+    {
+      "id": "2be5d027-c0f8-801c-ab30-ca90dc51c80d",
+      "url": "https://app.notion.com/2be5d027c0f8801cab30ca90dc51c80d",
+      "createdTime": "2025-12-03 07:35:46Z",
+      "Last name": "Williams",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Daniel",
+      "userDefined:ID": 346,
+      "GitHub": "https://github.com/dannyhw",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "@Danny_H_W",
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "daniel.williams@callstack.com",
+      "alternatively called": "Danny",
+      "Surname / Name": "Williams Daniel"
+    },
+    {
+      "id": "2be5d027-c0f8-8009-a033-d26926d7e30a",
+      "url": "https://app.notion.com/2be5d027c0f88009a033d26926d7e30a",
+      "createdTime": "2025-12-03 07:36:57Z",
+      "Last name": "Droszczak",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Alicja",
+      "userDefined:ID": 347,
+      "GitHub": null,
+      "Manager": "Krzysztof Gołaszewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Project Management Coordinator"
+      ],
+      "Email": "alicja.droszczak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Droszczak Alicja"
+    },
+    {
+      "id": "2be5d027-c0f8-8031-804d-d5dac189e562",
+      "url": "https://app.notion.com/2be5d027c0f88031804dd5dac189e562",
+      "createdTime": "2025-12-03 07:38:44Z",
+      "Last name": "Młynarczyk",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Dominik",
+      "userDefined:ID": 348,
+      "GitHub": "https://github.com/dominikmlynarczyk",
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "https://x.com/dom_mlynarczyk",
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "dominik.mlynarczyk@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Młynarczyk Dominik"
+    },
+    {
+      "id": "2be5d027-c0f8-8047-85c7-dafe4c78b0d8",
+      "url": "https://app.notion.com/2be5d027c0f8804785c7dafe4c78b0d8",
+      "createdTime": "2025-12-03 07:40:07Z",
+      "Last name": "Walenczak",
+      "Team": [
+        "Marketing Team"
+      ],
+      "Name": "Monika",
+      "userDefined:ID": 349,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Content & Promotion Specialist"
+      ],
+      "Email": "monika.walenczak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Walenczak Monika"
+    },
+    {
+      "id": "2e15d027-c0f8-80bb-a53c-f6c3b4dfb280",
+      "url": "https://app.notion.com/2e15d027c0f880bba53cf6c3b4dfb280",
+      "createdTime": "2026-01-07 07:41:31Z",
+      "Last name": "Królikowski",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Szymon",
+      "userDefined:ID": 351,
+      "GitHub": null,
+      "Manager": "Natalia Gros",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "szymon.krolikowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Królikowski Szymon"
+    },
+    {
+      "id": "2e15d027-c0f8-8011-ae68-cf93708b25da",
+      "url": "https://app.notion.com/2e15d027c0f88011ae68cf93708b25da",
+      "createdTime": "2026-01-07 07:45:03Z",
+      "Last name": "Fanidis",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "John",
+      "userDefined:ID": 352,
+      "GitHub": "https://github.com/Doberjohn",
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "john.fanidis@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Fanidis John"
+    },
+    {
+      "id": "2f65d027-c0f8-808a-a9ae-cefd104cbaa8",
+      "url": "https://app.notion.com/2f65d027c0f8808aa9aecefd104cbaa8",
+      "createdTime": "2026-01-28 19:08:39Z",
+      "Last name": "Farrell",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Luke",
+      "userDefined:ID": 353,
+      "GitHub": "https://github.com/lukebrandonfarrell",
+      "Manager": "Łukasz Chludziński",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "https://x.com/lukebfarrell",
+      "Project": [
+        "Get your Guide"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 2"
+      ],
+      "Email": "luke.farrell@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Farrell Luke"
+    },
+    {
+      "id": "2f65d027-c0f8-8041-a455-dd4106ece5c2",
+      "url": "https://app.notion.com/2f65d027c0f88041a455dd4106ece5c2",
+      "createdTime": "2026-01-28 19:13:53Z",
+      "Last name": "Kalinowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Lech",
+      "userDefined:ID": 354,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior AI System Engineer"
+      ],
+      "Email": "lech.kalinowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kalinowski Lech"
+    },
+    {
+      "id": "2f65d027-c0f8-80d7-b1e5-ee968e8db14f",
+      "url": "https://app.notion.com/2f65d027c0f880d7b1e5ee968e8db14f",
+      "createdTime": "2026-01-28 19:13:59Z",
+      "Last name": "Lesiński",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Michał",
+      "userDefined:ID": 355,
+      "GitHub": "https://github.com/Michal-Lesinski",
+      "Manager": "Marta Moc",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": "https://x.com/LesinskiMi82325",
+      "Project": [
+        "Bitmex"
+      ],
+      "Role / Seniority Level": [
+        "IT Project Manager"
+      ],
+      "Email": "michal.lesinski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Lesiński Michał"
+    },
+    {
+      "id": "3025d027-c0f8-8072-a38b-f091613e0f7a",
+      "url": "https://app.notion.com/3025d027c0f88072a38bf091613e0f7a",
+      "createdTime": "2026-02-09 10:03:54Z",
+      "Last name": "Abate",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Marco",
+      "userDefined:ID": 356,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "marco.abate@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Abate Marco"
+    },
+    {
+      "id": "3025d027-c0f8-8056-801b-d70c96dc340f",
+      "url": "https://app.notion.com/3025d027c0f88056801bd70c96dc340f",
+      "createdTime": "2026-02-09 10:03:59Z",
+      "Last name": "Szpanelewski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Łukasz",
+      "userDefined:ID": 357,
+      "GitHub": null,
+      "Manager": "Rafał Zakrzewski",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Abbott"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "lukasz.szpanelewski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Szpanelewski Łukasz"
+    },
+    {
+      "id": "3025d027-c0f8-8013-9611-eb3ab97eadcd",
+      "url": "https://app.notion.com/3025d027c0f880139611eb3ab97eadcd",
+      "createdTime": "2026-02-09 10:04:06Z",
+      "Last name": "Miłkowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Piotr",
+      "userDefined:ID": 358,
+      "GitHub": null,
+      "Manager": "Michał Chudziak",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior AI System Engineer"
+      ],
+      "Email": "piotr.milkowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Miłkowski Piotr"
+    },
+    {
+      "id": "3025d027-c0f8-804e-9e45-c8e0b4e806be",
+      "url": "https://app.notion.com/3025d027c0f8804e9e45c8e0b4e806be",
+      "createdTime": "2026-02-09 10:04:12Z",
+      "Last name": "Kassprzak",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Szymon",
+      "userDefined:ID": 359,
+      "GitHub": null,
+      "Manager": "Marta Moc",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior Project Manager"
+      ],
+      "Email": "szymon.kasprzak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Kasprzak Szymon"
+    },
+    {
+      "id": "3025d027-c0f8-80c8-a476-e57d593695d2",
+      "url": "https://app.notion.com/3025d027c0f880c8a476e57d593695d2",
+      "createdTime": "2026-02-09 10:04:17Z",
+      "Last name": "Szaszkow",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Maksim",
+      "userDefined:ID": 360,
+      "GitHub": null,
+      "Manager": "Jakub Kłobus",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Builders First"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "maksim.szaszkow@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Szaszkow Maksim"
+    },
+    {
+      "id": "3255d027-c0f8-8015-be27-e20fb29af3a3",
+      "url": "https://app.notion.com/3255d027c0f88015be27e20fb29af3a3",
+      "createdTime": "2026-03-16 07:36:23Z",
+      "Last name": "Szalski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Marcin",
+      "userDefined:ID": 361,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": [
+        "Bench"
+      ],
+      "Role / Seniority Level": [
+        "Senior 2"
+      ],
+      "Email": "marcin.szalski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Szalski Marcin"
+    },
+    {
+      "id": "3255d027-c0f8-80b7-9497-daa86c644fee",
+      "url": "https://app.notion.com/3255d027c0f880b79497daa86c644fee",
+      "createdTime": "2026-03-16 07:37:24Z",
+      "Last name": "Wołodko",
+      "Team": null,
+      "Name": "Grzegorz",
+      "userDefined:ID": 362,
+      "GitHub": null,
+      "Manager": "Kris Lis",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "CDO"
+      ],
+      "Email": "grzegorz.wolodko@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Wołodko Grzegorz"
+    },
+    {
+      "id": "3255d027-c0f8-809d-86ef-e3989385ce69",
+      "url": "https://app.notion.com/3255d027c0f8809d86efe3989385ce69",
+      "createdTime": "2026-03-16 07:38:22Z",
+      "Last name": "Rak",
+      "Team": [
+        "Finance & Administration Team"
+      ],
+      "Name": "Aleksander",
+      "userDefined:ID": 363,
+      "GitHub": null,
+      "Manager": "Kris Lis",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "CFO"
+      ],
+      "Email": "aleksander.rak@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Rak Aleksander"
+    },
+    {
+      "id": "3255d027-c0f8-800f-b03e-ca92bf0a0b94",
+      "url": "https://app.notion.com/3255d027c0f8800fb03eca92bf0a0b94",
+      "createdTime": "2026-03-16 07:39:23Z",
+      "Last name": "Dybowski",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Bartłomiej",
+      "userDefined:ID": 364,
+      "GitHub": null,
+      "Manager": "Marcin Grzywaczewski",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "SES"
+      ],
+      "Role / Seniority Level": [
+        "Senior 2",
+        "RN Dev"
+      ],
+      "Email": "bartlomiej.dybowski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Dybowski Bartłomiej"
+    },
+    {
+      "id": "3355d027-c0f8-8033-8a31-d0f5560b090d",
+      "url": "https://app.notion.com/3355d027c0f880338a31d0f5560b090d",
+      "createdTime": "2026-04-01 10:35:05Z",
+      "Last name": "Marcinkowska",
+      "Team": [
+        "People & Culture Team"
+      ],
+      "Name": "Marika",
+      "userDefined:ID": 367,
+      "GitHub": null,
+      "Manager": "Radek Chrzempka",
+      "HRBP": null,
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "HR Manager"
+      ],
+      "Email": "marika.marcinkowska@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Marcinkowska Marika"
+    },
+    {
+      "id": "3355d027-c0f8-800b-8bce-fb869471945f",
+      "url": "https://app.notion.com/3355d027c0f8800b8bcefb869471945f",
+      "createdTime": "2026-04-01 10:36:13Z",
+      "Last name": "Gawroński",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Olgierd",
+      "userDefined:ID": 368,
+      "GitHub": null,
+      "Manager": "Natalia Gros",
+      "HRBP": "Alicja Galińska",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Senior IT Project Managaer"
+      ],
+      "Email": "olgierd.gawronski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Gawroński Olgierd"
+    },
+    {
+      "id": "3355d027-c0f8-8082-9ef0-e6afa9f471a2",
+      "url": "https://app.notion.com/3355d027c0f880829ef0e6afa9f471a2",
+      "createdTime": "2026-04-01 10:37:16Z",
+      "Last name": "Redecki",
+      "Team": [
+        "Technology Team"
+      ],
+      "Name": "Damian",
+      "userDefined:ID": 369,
+      "GitHub": null,
+      "Manager": "Mike",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Principal Designer"
+      ],
+      "Email": "damian.redecki@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Redecki Damian"
+    },
+    {
+      "id": "3425d027-c0f8-80ba-93d7-f1ef0bd95155",
+      "url": "https://app.notion.com/3425d027c0f880ba93d7f1ef0bd95155",
+      "createdTime": "2026-04-14 11:50:35Z",
+      "Last name": "Mika",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Tomasz",
+      "userDefined:ID": 370,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Business Development Manager"
+      ],
+      "Email": "tomasz.mika@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Mika Tomasz"
+    },
+    {
+      "id": "3735d027-c0f8-804a-89ad-c0112092ac4e",
+      "url": "https://app.notion.com/3735d027c0f8804a89adc0112092ac4e",
+      "createdTime": "2026-06-02 07:46:41Z",
+      "Last name": "Dzierżawski",
+      "Team": [
+        "Sales"
+      ],
+      "Name": "Hubert",
+      "userDefined:ID": 371,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Business Development Representative"
+      ],
+      "Email": "hubert.dzierzawski@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Dzierżawski Hubert"
+    },
+    {
+      "id": "3905d027-c0f8-8063-b8c6-d5f16c435ab8",
+      "url": "https://app.notion.com/3905d027c0f88063b8c6d5f16c435ab8",
+      "createdTime": "2026-07-01 07:19:29Z",
+      "Last name": null,
+      "Team": [
+        "Sales"
+      ],
+      "Name": null,
+      "userDefined:ID": 372,
+      "GitHub": null,
+      "Manager": "Ada Gawrysiak",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Business Development Manager"
+      ],
+      "Email": "piotr.urbas@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Urbas Piotr"
+    },
+    {
+      "id": "3a55d027-c0f8-80a2-a33f-c7f49aaa19a2",
+      "url": "https://app.notion.com/3a55d027c0f880a2a33fc7f49aaa19a2",
+      "createdTime": "2026-07-22 06:40:04Z",
+      "Last name": "Graciano",
+      "Team": [
+        "Technical Delivery"
+      ],
+      "Name": "Eduardo",
+      "userDefined:ID": 373,
+      "GitHub": null,
+      "Manager": "Jakub Bujko",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": "teddydroid07",
+      "Project": [
+        "Bank Peru"
+      ],
+      "Role / Seniority Level": [
+        "RN Dev",
+        "Senior 1"
+      ],
+      "Email": "eduardo.graciano@callstack.com",
+      "alternatively called": "Edu",
+      "Surname / Name": "Graciano Eduardo"
+    },
+    {
+      "id": "3a55d027-c0f8-8026-93c2-d41581ae152a",
+      "url": "https://app.notion.com/3a55d027c0f8802693c2d41581ae152a",
+      "createdTime": "2026-07-22 06:41:46Z",
+      "Last name": "Deptuła",
+      "Team": [
+        "Project Delivery"
+      ],
+      "Name": "Nikodem",
+      "userDefined:ID": 374,
+      "GitHub": null,
+      "Manager": "Marta Moc",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": [
+        "DirecTV"
+      ],
+      "Role / Seniority Level": [
+        "Product Owner"
+      ],
+      "Email": "nikodem.deptula@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Deptuła Nikodem"
+    },
+    {
+      "id": "3a55d027-c0f8-8043-b8c7-f6981300cebc",
+      "url": "https://app.notion.com/3a55d027c0f88043b8c7f6981300cebc",
+      "createdTime": "2026-07-22 06:46:03Z",
+      "Last name": "Skoneczny",
+      "Team": [
+        "Marketing Team"
+      ],
+      "Name": "Bartosz",
+      "userDefined:ID": 375,
+      "GitHub": null,
+      "Manager": "Damian Radecki",
+      "HRBP": "Patrycja Wszołek",
+      "Twitter Username": null,
+      "Project": null,
+      "Role / Seniority Level": [
+        "Brand & Marketing Designer"
+      ],
+      "Email": "bartosz.skoneczny@callstack.com",
+      "alternatively called": null,
+      "Surname / Name": "Skoneczny Bartosz"
+    }
+  ]
+}
