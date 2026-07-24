@@ -112,9 +112,10 @@ function isEnabled(): Promise<boolean> {
   });
 }
 
-function buildCostRow(notificationsRow: Element): HTMLElement {
+function buildCostRow(): HTMLElement {
   const row = document.createElement("div");
-  row.className = notificationsRow.className;
+  // Matches the native metadata rows (Notifications, organizer, etc.).
+  row.className = "nBzcnc OcVpRe";
   row.setAttribute(MARKER_ATTR, "");
   // Respect the current toggle state at creation to avoid a flash of the label
   // when the plugin is disabled and the dialog (re)renders.
@@ -132,17 +133,34 @@ function buildCostRow(notificationsRow: Element): HTMLElement {
   return row;
 }
 
+// Find a native detail row to anchor the cost row to. The Notifications row is
+// preferred, but it's absent for events without reminders (e.g. all-day events,
+// see no-notif.html), so fall back to rows that are always present: the
+// organizer row, then the date/time row.
+function findAnchor(): { row: Element; position: InsertPosition } | null {
+  const notifications = document.getElementById("xDetDlgNot")?.closest(".nBzcnc");
+  if (notifications) return { row: notifications, position: "afterend" };
+
+  const organizer = document.getElementById("xDetDlgCal")?.closest(".nBzcnc");
+  if (organizer) return { row: organizer, position: "beforebegin" };
+
+  const when = document.getElementById("xDetDlgWhen")?.closest(".nBzcnc");
+  if (when) return { row: when, position: "afterend" };
+
+  return null;
+}
+
 function injectCostRow(): void {
-  const notifications = document.getElementById("xDetDlgNot");
-  if (!notifications) return;
+  const anchor = findAnchor();
+  if (!anchor || !anchor.row.parentElement) return;
 
-  const notificationsRow = notifications.closest(".nBzcnc");
-  if (!notificationsRow || !notificationsRow.parentElement) return;
+  // Dedupe across the whole dialog, since the anchor can change between ticks
+  // (e.g. if the Notifications row shows up later) and land in another parent.
+  const scope = anchor.row.closest('[role="dialog"]') ?? document;
+  if (scope.querySelector(`[${MARKER_ATTR}]`)) return;
 
-  if (notificationsRow.parentElement.querySelector(`[${MARKER_ATTR}]`)) return;
-
-  const costRow = buildCostRow(notificationsRow);
-  notificationsRow.insertAdjacentElement("afterend", costRow);
+  const costRow = buildCostRow();
+  anchor.row.insertAdjacentElement(anchor.position, costRow);
 }
 
 // Refresh any already-injected badge to reflect `current`.
