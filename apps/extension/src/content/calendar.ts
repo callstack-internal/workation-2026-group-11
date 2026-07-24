@@ -48,7 +48,11 @@ function scan(): void {
       console.error("[CallCost] Failed:", resp?.error);
       return;
     }
-    const emails = resp.attendees.map((a) => a.email);
+    // Exclude anyone who declined; keep accepted, tentative, and
+    // not-yet-responded (needsAction / unset).
+    const emails = resp.attendees
+      .filter((a) => a.responseStatus !== "declined")
+      .map((a) => a.email);
     const { durationSeconds, allDay } = resp.timing;
     // Human-readable label for the log only; durationSeconds is the value
     // downstream logic should use.
